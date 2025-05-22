@@ -1,0 +1,24 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+
+  "localization_terms": [
+    {
+      "key": "CardTraitLoaned_CardText",
+      "texts": {
+        "english": "Loan {0}"
+      }
+    },
+    {
+      "key": "CardTraitLoaned_TooltipTitle",
+      "texts": {
+        "english": "Loan"
+      }
+    },
+    {
+      "key": "CardTraitLoaned_TooltipText",
+      "texts": {
+        "english": "This card costs {0}[coin] to play."
+      }
+    }
+  ]
+}

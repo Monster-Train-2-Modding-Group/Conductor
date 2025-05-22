@@ -1,0 +1,75 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+
+  "card_trigger_types": [
+    {
+      "id": "Junk",
+      "names": {
+        "english": "Junk"
+      },
+      "descriptions": {
+        "english": "Triggers when a card (other than this one) is discarded before the end of the turn."
+      }
+    }
+  ],
+  "character_trigger_types": [
+    {
+      "id": "Vengeance",
+      "names": {
+        "english": "Vengeance"
+      },
+      "descriptions": {
+        "english": "Triggers when an allied unit is hit by an opposing unit."
+      },
+      "sprite": "@trigger_vengeance"
+    },
+    {
+      "id": "Junk",
+      "names": {
+        "english": "Junk"
+      },
+      "descriptions": {
+        "english": "Triggers when a card is discarded before the end of the turn."
+      },
+      "sprite": "@trigger_junk"
+    },
+    {
+      "id": "Encounter",
+      "names": {
+        "english": "Encounter"
+      },
+      "descriptions": {
+        "english": "Triggers when this unit encounters another friendly unit."
+      },
+      "sprite": "@trigger_encounter"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "trigger_vengeance",
+      "path": "textures/trigger_vengeance.png"
+    },
+    {
+      "id": "trigger_junk",
+      "path": "textures/trigger_junk.png"
+    },
+    {
+      "id": "trigger_encounter",
+      "path": "textures/trigger_encounter.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "trigger_vengeance",
+      "path": "textures/trigger_vengeance.png"
+    },
+    {
+      "id": "trigger_junk",
+      "path": "textures/trigger_junk.png"
+    },
+    {
+      "id": "trigger_encounter",
+      "path": "textures/trigger_encounter.png"
+    }
+  ]
+}

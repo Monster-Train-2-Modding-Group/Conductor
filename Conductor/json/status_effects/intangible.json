@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "sprites": [
+    {
+      "id": "Ghost",
+      "path": "textures/status_intangible.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Ghost",
+      "path": "textures/status_intangible_tooltip.png"
+    }
+  ],
+  "status_effects": [
+    {
+      "id": "intangible",
+      "class_name": "StatusEffectIntangibleState",
+      "names": {
+        "english": "Intangible"
+      },
+      "stackable_names": {
+        "english": "Intangible {0}"
+      },
+      "card_tooltips": {
+        "english": "Unit will only take 1 damage. Decreases at end of turn."
+      },
+      "character_tooltips": {
+        "english": "Unit will only take 1 damage. Decreases at end of turn."
+      },
+      "notifications": {
+        "english": "Intangible"
+      },
+      "replacement_texts": {
+        "english": "<b>Intangible</b>"
+      },
+      "is_propagatable": true,
+      "display_category": "positive",
+      "trigger_stage": "on_pre_attacked",
+      "remove_stack_at_end_of_turn": true,
+      "is_stackable": true,
+      "icon": "@Ghost"
+    }
+  ]
+}

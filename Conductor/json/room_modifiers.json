@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+
+  "localization_terms": [
+    {
+      "key": "RoomStateDamageSpellCostModifier",
+      "texts": {
+        "english": "Discount"
+      }
+    },
+    {
+      "key": "RoomStateHealSpellCostModifier",
+      "texts": {
+        "english": "Discount"
+      }
+    }
+  ]
+}
