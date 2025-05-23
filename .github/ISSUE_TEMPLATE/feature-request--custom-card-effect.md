@@ -2,7 +2,7 @@
 name: 'Feature request: Custom Card Effect'
 about: Request a custom card effect to be made.
 title: "[Card Effect] name of effect and brief summary"
-labels: ''
+labels: status effect
 assignees: ''
 
 ---

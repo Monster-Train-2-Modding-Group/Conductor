@@ -1,5 +1,5 @@
 ---
-name: 'Feature request: Custom status effect'
+name: 'Feature request: Custom Status Effect'
 about: Request a custom status effect to be made.
 title: "[Status Effect] Name of status effect and brief summary"
 labels: status effect

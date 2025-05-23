@@ -1,6 +1,6 @@
 ---
-name: 'Feature request: Custom relic effect (Artifact)'
-about: Request a custom relic effect (artifact) to be made.
+name: 'Feature request: Custom Relic Effect'
+about: Request a custom relic effect to be made.
 title: "[Relic effect] name and brief summary"
 labels: ''
 assignees: ''
