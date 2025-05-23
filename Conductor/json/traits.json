@@ -5,19 +5,22 @@
     {
       "key": "CardTraitLoaned_CardText",
       "texts": {
-        "english": "Loan {0}"
+        "english": "Loan {0}",
+        "chinese": "贷款 {0}"
       }
     },
     {
       "key": "CardTraitLoaned_TooltipTitle",
       "texts": {
-        "english": "Loan"
+        "english": "Loan",
+        "chinese": "贷款"
       }
     },
     {
       "key": "CardTraitLoaned_TooltipText",
       "texts": {
-        "english": "This card costs {0}[coin] to play."
+        "english": "This card costs {0}[coin] to play.",
+        "chinese": "这张牌需要花费 {0}[coin] 才能打出。"
       }
     }
   ]
