@@ -12,8 +12,8 @@ permissions:
 
 env:
   base_version: '0.1.0'
-  mod_namespace: 'Trainworks.Conductor'
-  mod_name: 'TrainworksConductor'
+  mod_namespace: 'MT2'
+  mod_name: 'Conductor'
 
 jobs:
   build:
