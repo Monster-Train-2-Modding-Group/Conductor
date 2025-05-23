@@ -5,10 +5,12 @@
     {
       "id": "Junk",
       "names": {
-        "english": "Junk"
+        "english": "Junk",
+        "chinese": "废弃"
       },
       "descriptions": {
-        "english": "Triggers when a card (other than this one) is discarded before the end of the turn."
+        "english": "Triggers when a card (other than this one) is discarded before the end of the turn.",
+        "chinese": "回合结束前有其他卡牌被舍弃时触发。"
       }
     }
   ],
@@ -16,30 +18,36 @@
     {
       "id": "Vengeance",
       "names": {
-        "english": "Vengeance"
+        "english": "Vengeance",
+        "chinese": "复仇（盟友）"
       },
       "descriptions": {
-        "english": "Triggers when an allied unit is hit by an opposing unit."
+        "english": "Triggers when an allied unit is hit by an opposing unit.",
+        "chinese": "友方单位被敌方单位命中时触发。"
       },
       "sprite": "@trigger_vengeance"
     },
     {
       "id": "Junk",
       "names": {
-        "english": "Junk"
+        "english": "Junk",
+        "chinese": "废弃"
       },
       "descriptions": {
-        "english": "Triggers when a card is discarded before the end of the turn."
+        "english": "Triggers when a card is discarded before the end of the turn.",
+        "chinese": "回合结束前有卡牌被舍弃时触发。"
       },
       "sprite": "@trigger_junk"
     },
     {
       "id": "Encounter",
       "names": {
-        "english": "Encounter"
+        "english": "Encounter",
+        "chinese": "遭遇"
       },
       "descriptions": {
-        "english": "Triggers when this unit encounters another friendly unit."
+        "english": "Triggers when this unit encounters another friendly unit.",
+        "chinese": "遇到其他盟友时触发。"
       },
       "sprite": "@trigger_encounter"
     }
