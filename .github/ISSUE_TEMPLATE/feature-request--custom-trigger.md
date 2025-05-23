@@ -19,3 +19,5 @@ A clear and concise description of the trigger as best you can. You should inclu
 It would also be helpful if a sprite for your requested trigger be provided. This should be an icon sized 50x50 that gets used in the UI.
 
 <sub>A reminder that to be accepted the trigger must be reusable, ultra clan specific stuff can be requested in the mt-modding channel on discord.</sub>
+
+<sub>Note if you aren't modding the game yourself please don't use this to request content to be made for you, the issue will be closed. This is only for modders to request a novel effect that can't be done with the codebase so that they can make content.</sub>

@@ -15,6 +15,8 @@ A clear and concise description of the status effect as best you can. You should
  * Is it stackable? If so when should stacks be removed?
  * Any interactions with other stuff. (ex. Not eligible for Doublestack, Dualism, etc.)
 
-It would also be helpful if a sprite for your requested status be provided. Two icons sized 24x24 should be provided a black and white image of the status effect and an another with a transparent background and white only (see: status_intangible.png and status_intangible_tooltip.png [here](https://github.com/Monster-Train-2-Modding-Group/Conductor/tree/main/Conductor/textures)
+It would also be helpful if a sprite for your requested status be provided. Two icons sized 50x50 should be provided a black and white image of the status effect and an another with a transparent background and white only (see: status_intangible.png and status_intangible_tooltip.png [here](https://github.com/Monster-Train-2-Modding-Group/Conductor/tree/main/Conductor/textures)
 
 <sub>A reminder that to be accepted the status effect must be reusable, ultra clan specific stuff can be requested in the mt-modding channel on discord.</sub>
+
+<sub>Note if you aren't modding the game yourself please don't use this to request content to be made for you, the issue will be closed. This is only for modders to request a novel effect that can't be done with the codebase so that they can make content.</sub>
