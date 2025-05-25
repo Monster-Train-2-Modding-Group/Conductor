@@ -2,10 +2,10 @@
 schemaVersion = "0.0.1"
 
 [package]
-namespace = "MT2"
+namespace = "Conductor"
 name = "Conductor"
 versionNumber = "0.0.1"
-description = "Reusable Effects for anyone modding Monster Train 2"
+description = "Central library of reusable effects and keywords for anyone modding Monster Train 2, used as a dependency for other mods"
 websiteUrl = "https://github.com/Monster-Train-2-Modding-Group/Conductor"
 containsNsfwContent = false
 
