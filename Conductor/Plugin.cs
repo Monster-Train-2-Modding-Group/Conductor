@@ -28,6 +28,7 @@ namespace Conductor
                     c.AddMergedJsonFile(
                         "json/loaned.json",
                         "json/status_effects/intangible.json",
+                        "json/status_effects/smirk.json",
                         "json/triggers.json",
                         "json/room_modifiers.json"
                     );

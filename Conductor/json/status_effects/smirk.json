@@ -1,0 +1,59 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "sprites": [
+    {
+      "id": "Smirk",
+      "path": "textures/status_smirk.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Smirk",
+      "path": "textures/status_smirk_tooltip.png"
+    },
+    {
+      "id": "CardTextSmirk",
+      "path": "textures/trigger_smirk.png"
+    }
+  ],
+  "replacement_texts": [
+    {
+      "key": "smirk_effect",
+      "texts": {
+        "english": "<sprite name=\"Conductor-Sprite-CardTextSmirk\">"
+      }
+    }
+  ],
+  "status_effects": [
+    {
+      "id": "smirk",
+      "class_name": "StatusEffectSmirkState",
+      "names": {
+        "english": "Smirk"
+      },
+      "stackable_names": {
+        "english": "Smirk {0}"
+      },
+      "card_tooltips": {
+        "english": "+[codeint0][attack] per stack and enables bonus effects.<br>Decreases each time the unit attacks."
+      },
+      "character_tooltips": {
+        "english": "+[codeint0][attack] (+[codeint1][attack] per stack) and enables bonus effects.<br>Decreases each time the unit attacks."
+      },
+      "notifications": {
+        "english": "Smirk"
+      },
+      "replacement_texts": {
+        "english": "<b>Smirk</b>"
+      },
+      "trigger_stage": "on_post_attacking",
+      "remove_when_triggered": true,
+      "param_int": 5,
+      "is_propagatable": true,
+      "display_category": "positive",
+      "exclude_hero_propagation": true,
+      "is_stackable": true,
+      "icon": "@Smirk"
+    }
+  ],
+}
