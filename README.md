@@ -18,8 +18,12 @@ To learn what Conductor can do for you, be sure to check our [wiki](https://gith
 
 ## Attribution
 
-Vengeance icon: <a href="https://www.flaticon.com/free-icons/knight" title="knight icons">Knight icons created by Freepik - Flaticon</a>
-Encounter icon: <a href="https://www.flaticon.com/free-icons/find" title="find icons">Find icons created by Freepik - Flaticon</a>
-Junk icon: <a href="https://www.flaticon.com/free-icons/recycle-bin" title="recycle bin icons">Recycle bin icons created by cah nggunung - Flaticon</a>
-Intangible icon: <a href="https://www.flaticon.com/free-icons/ghost" title="ghost icons">Ghost icons created by Aldo Cervantes - Flaticon</a>
-Smirk icon: from SMT IV. https://megamitensei.fandom.com/wiki/Smirk
+- Vengeance icon: <a href="https://www.flaticon.com/free-icons/knight" title="knight icons">Knight icons created by Freepik - Flaticon</a>
+
+- Encounter icon: [Find icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/find "find icons")
+
+- Junk icon: [Recycle bin icons created by cah nggunung - Flaticon](https://www.flaticon.com/free-icons/recycle-bin "recycle bin icons")
+
+- Intangible icon: [Ghost icons created by Aldo Cervantes - Flaticon](https://www.flaticon.com/free-icons/ghost "ghost icons")
+
+- Smirk icon: from SMT IV. [Smirk | Megami Tensei Wiki | Fandom](https://megamitensei.fandom.com/wiki/Smirk)
