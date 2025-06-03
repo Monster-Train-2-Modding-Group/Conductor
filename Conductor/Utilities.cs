@@ -23,7 +23,6 @@ namespace Conductor
                     {
                         cardTraitNames.Add(type.Name);
                         cardTraitNames.Add(type.AssemblyQualifiedName);
-                        Console.WriteLine(type.Name);
                     }
 
                 }

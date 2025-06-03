@@ -16,7 +16,10 @@ namespace Conductor.CardEffects
     /// Example Json.
     /// {
     ///   "id": "RequireFrontFriendlyUnitHas20Valor",
-    ///   "name": "CardEffectRequireStatusThreshold",
+    ///   "name": {
+    ///     "id": "CardEffectRequireStatusThreshold",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "front_in_room",
     ///   "target_team": "monsters",
     ///   "param_bool": true,

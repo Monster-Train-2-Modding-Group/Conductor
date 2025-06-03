@@ -31,7 +31,7 @@ namespace Conductor.CardEffects
     ///    "target_team": "monsters",
     ///    "param_int": 20,
     ///    "param_multiplier": 10,
-    ///    "additional_param_int": 0, // TargetMode.Room
+    ///    "param_int_2": 0, // TargetMode.Room
     ///    "param_bool": true
     ///  }
     /// </summary>

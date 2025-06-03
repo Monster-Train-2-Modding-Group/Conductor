@@ -13,7 +13,10 @@ namespace Conductor.CardEffects
     /// Example Json
     /// {
     ///   "id": "GiveFiveSapForEveryStackOfPyregel",
-    ///   "name": "CardEffectAddStatusEffectPerAnotherStatusEffect",
+    ///   "name": {
+    ///     "id": "CardEffectAddStatusEffectPerAnotherStatusEffect",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "drop_target_character",
     ///   "target_team": "both",
     ///   "param_status_effects": [

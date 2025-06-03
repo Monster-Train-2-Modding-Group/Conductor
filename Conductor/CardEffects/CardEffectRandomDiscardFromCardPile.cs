@@ -21,7 +21,10 @@ namespace Conductor.CardEffects
     /// Example Json
     /// {
     ///   "id": "DiscardTwoMonstersFromDeck",
-    ///   "name": "CardEffectRandomDiscardFromCardPile",
+    ///   "name": {
+    ///     "id": "CardEffectRandomDiscardFromCardPile",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "draw_pile",
     ///   "target_card_type": "monster",
     ///   "param_int":  2

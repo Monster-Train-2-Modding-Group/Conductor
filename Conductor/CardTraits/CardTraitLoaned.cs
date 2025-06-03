@@ -3,6 +3,21 @@ using UnityEngine;
 
 namespace Conductor
 {
+    /// <summary>
+    /// Card Trait that makes a card cost money to play
+    /// 
+    /// You are prevented from playing the card if you don't have enough gold.
+    /// 
+    /// Example json:
+    /// {
+    ///   "id": "Costs10GoldToPlay",
+    ///   "name": {
+    ///     "id": "CardTraitLoaned",
+    ///     "mod_reference": "Conductor"
+    ///   },
+    ///   "param_int": 10
+    /// }
+    /// </summary>
     class CardTraitLoaned : CardTraitState
     {
         PlayerManager? playerManager;
@@ -10,7 +25,10 @@ namespace Conductor
 
         public override PropDescriptions CreateEditorInspectorDescriptions()
         {
-            return PropDescriptions.DisplayNone;
+            return new PropDescriptions
+            {
+                [CardTraitFieldNames.ParamInt.GetFieldName()] = new PropDescription("Cost in gold")
+            };
         }
 
         public override void OnCardDrawn(CardState thisCard, ICoreGameManagers coreGameManagers)

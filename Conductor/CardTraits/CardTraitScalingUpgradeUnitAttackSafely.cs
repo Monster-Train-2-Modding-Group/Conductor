@@ -13,6 +13,43 @@
     /// 
     /// Note that Spell cards which applies upgrades are unaffected since the CardTraits on the played
     /// card modify the upgrade applied, not the Card traits on the unit on which the upgrade is applied to.
+    /// 
+    /// Example Json
+    /// "traits": [
+    ///   {
+    ///     "id": "UpgradeUnitAttackBy3xPlayedCostThisTurn",
+    ///     "name": {
+    ///       "id": "CardTraitScalingUpgradeUnitAttackSafely",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "param_int": 3,
+    ///     "param_tracked_value": "played_cost",
+    ///     "param_entry_duration": "this_turn",
+    ///     "param_upgrade": "@MyUpgrade"
+    ///   }
+    /// ],
+    /// "upgrades": [
+    ///   {
+    ///     "id": "@MyUpgrade",
+    ///     "bonus_damage": 0
+    ///   }
+    /// ],
+    /// "triggers": [
+    ///   {
+    ///     "id": "StatBonusOnSummon",
+    ///     "description": "Gain [trait0.power][x][attack]."
+    ///     "trigger": "on_spawn",
+    ///     "effects": "@StatBonus"
+    ///   }
+    /// ],
+    /// "effects": [
+    ///   {
+    ///     "id": "StatBonus",
+    ///     "name": "CardEffectAddTempCardUpgradeToUnits",
+    ///     "target_mode": "self",
+    ///     "param_upgrade": "@MyUpgrade"
+    ///   }
+    /// ]
     /// </summary>
     public sealed class CardTraitScalingUpgradeUnitAttackSafely : CardTraitState
     {

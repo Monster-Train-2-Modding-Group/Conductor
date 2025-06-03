@@ -10,7 +10,10 @@ namespace Conductor.CardEffects
     /// Example Json
     /// {
     ///   "id": "GiveTwoRageButWithAMaximumOfThreeRage",
-    ///   "name": "CardEffectAddStatusEffectUpToMaximum",
+    ///   "name": {
+    ///     "id": "CardEffectAddStatusEffectUpToMaximum",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "drop_target_character",
     ///   "target_team": "both",
     ///   "param_int": 3,

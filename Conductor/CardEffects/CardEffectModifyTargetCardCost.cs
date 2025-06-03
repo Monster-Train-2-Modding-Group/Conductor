@@ -15,7 +15,10 @@ namespace Conductor.CardEffects
     /// Example Json
     /// {
     ///   "id": "MakeSpellsInDrawPileMoreExpensive",
-    ///   "name": "CardEffectModifyTargetCardCost",
+    ///   "name": {
+    ///     "id": "CardEffectModifyTargetCardCost",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "draw_pile",
     ///   "target_card_type": "spell",
     ///   "param_int":  1

@@ -24,7 +24,10 @@ namespace Conductor.CardEffects
     /// "effects": [
     ///   {
     ///     "id": "DiscardedMonstersCostOneLessAndGain20Attack",
-    ///     "name": "CardEffectAddCardUpgradeToTargetCards",
+    ///     "name": {
+    ///       "id": "CardEffectAddCardUpgradeToTargetCards",
+    ///       "mod_reference": "Conductor"
+    ///     },
     ///     "target_mode": "discard",
     ///     "target_team": "none",
     ///     "param_bool": true,

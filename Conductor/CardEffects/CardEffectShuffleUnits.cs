@@ -10,7 +10,10 @@ namespace Conductor.CardEffects
     /// Example Json.
     /// {
     ///   "id": "ShuffleEveryone",
-    ///   "name": "CardEffectShuffleUnits",
+    ///   "name": {
+    ///     "id": "CardEffectShuffleUnits",
+    ///     "mod_reference": "Conductor"
+    ///   },
     ///   "target_mode": "room",
     ///   "target_team": "both",
     /// }
