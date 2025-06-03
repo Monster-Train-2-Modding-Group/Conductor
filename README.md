@@ -8,15 +8,13 @@ Firstly add Conductor to your dependencies in your thunderstore.toml file
 
 If testing locally be sure grab a copy from releases and extract the contents of the folder to your `BepinEx/plugins` folder.
 
-
+(Coming shortly) If using Conductor's utility functions a dependency must be added in your csproj file along with installing the nuget package.
 
 ## Usage
 
-Be sure to check our wiki. This library is meant to be used as a dependency. 
+To learn what Conductor can do for you, be sure to check our [wiki](https://github.com/Monster-Train-2-Modding-Group/Conductor/wiki). This library is meant to be used as a dependency for other mods. 
 
 **Do not copy code or json from any file in this repository as it won't work in your own project**! Instead, reference the effects and classes from within your own json files.
-
-
 
 ## Attribution
 
