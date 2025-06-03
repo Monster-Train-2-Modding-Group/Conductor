@@ -14,20 +14,22 @@ namespace Conductor.CardEffects
     ///    param_bool is false and none of the targets meet the status effect requirement.
     /// 
     /// Example Json.
-    /// {
-    ///   "id": "RequireFrontFriendlyUnitHas20Valor",
-    ///   "name": {
-    ///     "id": "CardEffectRequireStatusThreshold",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "front_in_room",
-    ///   "target_team": "monsters",
-    ///   "param_bool": true,
-    ///   "param_status_effects": {
-    ///     "status": "valor",
-    ///     "count": 20
+    /// "effects": [
+    ///   {
+    ///     "id": "RequireFrontFriendlyUnitHas20Valor",
+    ///     "name": {
+    ///       "id": "@CardEffectRequireStatusThreshold",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "target_mode": "front_in_room",
+    ///     "target_team": "monsters",
+    ///     "param_bool": true,
+    ///     "param_status_effects": {
+    ///       "status": "valor",
+    ///       "count": 20
+    ///     }
     ///   }
-    /// }
+    /// ]
     /// </summary>
     public sealed class CardEffectRequireStatusThreshold : CardEffectBase
     {

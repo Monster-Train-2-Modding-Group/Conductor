@@ -24,16 +24,21 @@ namespace Conductor.CardEffects
     ///   ParamBool: True to split the damage, false to apply the same amount of damage
     ///   
     /// Example Json
-    ///  {
-    ///    "id": "HealAndSplitHealedAmountTimes10EvenlyToEnemies",
-    ///    "name": "CardEffectHealAndDamageRelativeCustomTargets",
-    ///    "target_mode": "drop_target_character",
-    ///    "target_team": "monsters",
-    ///    "param_int": 20,
-    ///    "param_multiplier": 10,
-    ///    "param_int_2": 0, // TargetMode.Room
-    ///    "param_bool": true
-    ///  }
+    /// "effects": [ 
+    ///    {
+    ///      "id": "HealAndSplitHealedAmountTimes10EvenlyToEnemies",
+    ///      "name": {
+    ///        "id": "@CardEffectHealAndDamageRelativeCustomTargets",
+    ///        "mod_reference": "Conductor"
+    ///      },
+    ///      "target_mode": "drop_target_character",
+    ///      "target_team": "monsters",
+    ///      "param_int": 20,
+    ///      "param_multiplier": 10,
+    ///      "param_int_2": 0, // TargetMode.Room
+    ///      "param_bool": true
+    ///    }
+    ///  ]
     /// </summary>
     public sealed class CardEffectHealAndDamageRelativeCustomTargets : CardEffectHeal
     {

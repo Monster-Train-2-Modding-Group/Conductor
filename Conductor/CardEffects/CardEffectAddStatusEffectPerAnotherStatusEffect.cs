@@ -11,25 +11,27 @@ namespace Conductor.CardEffects
     /// Test Passes if any character targeted has stacks of the first status preset in param_status_effects.
     /// 
     /// Example Json
-    /// {
-    ///   "id": "GiveFiveSapForEveryStackOfPyregel",
-    ///   "name": {
-    ///     "id": "CardEffectAddStatusEffectPerAnotherStatusEffect",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "drop_target_character",
-    ///   "target_team": "both",
-    ///   "param_status_effects": [
-    ///     {
-    ///       "status": "pyregel",
-    ///       "count":  0
+    /// "effects": [
+    ///   {
+    ///     "id": "GiveFiveSapForEveryStackOfPyregel",
+    ///     "name": {
+    ///       "id": "@CardEffectAddStatusEffectPerAnotherStatusEffect",
+    ///       "mod_reference": "Conductor"
     ///     },
-    ///     {
-    ///       "status": "debuff",
-    ///       "count": 5
-    ///     }
-    ///   ]
-    /// }
+    ///     "target_mode": "drop_target_character",
+    ///     "target_team": "both",
+    ///     "param_status_effects": [
+    ///       {
+    ///         "status": "pyregel",
+    ///         "count":  0
+    ///       },
+    ///       {
+    ///         "status": "debuff",
+    ///         "count": 5
+    ///       }
+    ///     ]
+    ///   }
+    /// ]
     /// </summary>
     public class CardEffectAddStatusEffectPerAnotherStatusEffect : CardEffectAddStatusEffect
     {

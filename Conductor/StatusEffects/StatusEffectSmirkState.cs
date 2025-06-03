@@ -3,7 +3,9 @@ using System.Collections;
 
 namespace Conductor.StatusEffects
 {
-    // Pretty much this is a combination of Lifesteal (for when to trigger) and Rage (for buffing attack).
+    /// <summary>
+    /// Pretty much this is a combination of Lifesteal (for when to trigger) and Rage (for buffing attack). 
+    /// </summary>
     class StatusEffectSmirkState : StatusEffectState
     {
         public const string StatusId = "conductor_statuseffect_smirk";

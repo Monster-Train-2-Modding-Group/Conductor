@@ -18,7 +18,7 @@
     ///   {
     ///     "id": "UpgradeDecreaseUnitSizeBy1xPlayedCostThisTurn",
     ///     "name": {
-    ///       "id": "CardTraitScalingUpgradeUnitSizeSafely",
+    ///       "id": "@CardTraitScalingUpgradeUnitSizeSafely",
     ///       "mod_reference": "Conductor"
     ///     },
     ///     "param_int": -1,

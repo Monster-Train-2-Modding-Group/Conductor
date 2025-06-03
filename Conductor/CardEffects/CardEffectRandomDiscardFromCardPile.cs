@@ -19,16 +19,18 @@ namespace Conductor.CardEffects
     ///   TargetCharacterSubtype: If TargetCardType is Monster additional filtering based on subtype.The default is the None subtype which matches all.
     ///
     /// Example Json
-    /// {
-    ///   "id": "DiscardTwoMonstersFromDeck",
-    ///   "name": {
-    ///     "id": "CardEffectRandomDiscardFromCardPile",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "draw_pile",
-    ///   "target_card_type": "monster",
-    ///   "param_int":  2
-    /// }
+    /// "effects": [
+    ///   {
+    ///     "id": "DiscardTwoMonstersFromDeck",
+    ///     "name": {
+    ///       "id": "@CardEffectRandomDiscardFromCardPile",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "target_mode": "draw_pile",
+    ///     "target_card_type": "monster",
+    ///     "param_int":  2
+    ///   }
+    /// ]
     /// </summary>
     public sealed class CardEffectRandomDiscardFromCardPile : CardEffectBase
     {

@@ -8,15 +8,17 @@ namespace Conductor.CardEffects
     /// Test fails if there's no shuffling (Heroes and Monsters count on the floor needs to be <1 for each)
     /// 
     /// Example Json.
-    /// {
-    ///   "id": "ShuffleEveryone",
-    ///   "name": {
-    ///     "id": "CardEffectShuffleUnits",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "room",
-    ///   "target_team": "both",
-    /// }
+    /// "effects": [
+    ///   {
+    ///     "id": "ShuffleEveryone",
+    ///     "name": {
+    ///       "id": "@CardEffectShuffleUnits",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "target_mode": "room",
+    ///     "target_team": "both",
+    ///   }
+    /// ]
     /// </summary>
     class CardEffectShuffleUnits : CardEffectBase
     {

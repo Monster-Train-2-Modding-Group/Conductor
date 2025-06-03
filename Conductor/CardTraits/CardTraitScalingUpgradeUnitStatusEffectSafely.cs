@@ -18,7 +18,7 @@
     ///   {
     ///     "id": "UpgradeUnitValorStatusBy6xPlayedCostThisTurn",
     ///     "name": {
-    ///       "id": "CardTraitScalingUpgradeUnitStatusEffectSafely",
+    ///       "id": "@CardTraitScalingUpgradeUnitStatusEffectSafely",
     ///       "mod_reference": "Conductor"
     ///     },
     ///     "param_int": 6,

@@ -8,22 +8,24 @@ namespace Conductor.CardEffects
     /// Currently doesn't consider CardTraits, RoomModifiers, and Dualism.
     /// 
     /// Example Json
-    /// {
-    ///   "id": "GiveTwoRageButWithAMaximumOfThreeRage",
-    ///   "name": {
-    ///     "id": "CardEffectAddStatusEffectUpToMaximum",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "drop_target_character",
-    ///   "target_team": "both",
-    ///   "param_int": 3,
-    ///   "param_status_effects": [
-    ///     {
-    ///       "status": "buff",
-    ///       "count":  2
-    ///     }
-    ///   ]
-    /// }
+    /// "effects": [
+    ///   {
+    ///     "id": "GiveTwoRageButWithAMaximumOfThreeRage",
+    ///     "name": {
+    ///       "id": "@CardEffectAddStatusEffectUpToMaximum",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "target_mode": "drop_target_character",
+    ///     "target_team": "both",
+    ///     "param_int": 3,
+    ///     "param_status_effects": [
+    ///       {
+    ///         "status": "buff",
+    ///         "count":  2
+    ///       }
+    ///     ]
+    ///   }
+    /// ]
     /// </summary>
     public class CardEffectAddStatusEffectUpToMaximum : CardEffectAddStatusEffect
     {

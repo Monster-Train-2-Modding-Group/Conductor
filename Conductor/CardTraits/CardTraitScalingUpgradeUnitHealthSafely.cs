@@ -16,7 +16,7 @@
     ///   {
     ///     "id": "UpgradeUnitHealthBy5xPlayedCostThisTurn",
     ///     "name": {
-    ///       "id": "CardTraitScalingUpgradeUnitHealthSafely",
+    ///       "id": "@CardTraitScalingUpgradeUnitHealthSafely",
     ///       "mod_reference": "Conductor"
     ///     },
     ///     "param_int": 5,

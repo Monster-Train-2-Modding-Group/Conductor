@@ -13,16 +13,18 @@ namespace Conductor.CardEffects
     ///    TargetCardType: Cards type to restrict target cards to. Defaults to Spell Cards. Set to CardType.Invalid to disable this filter.
     ///
     /// Example Json
-    /// {
-    ///   "id": "MakeSpellsInDrawPileMoreExpensive",
-    ///   "name": {
-    ///     "id": "CardEffectModifyTargetCardCost",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "target_mode": "draw_pile",
-    ///   "target_card_type": "spell",
-    ///   "param_int":  1
-    /// }
+    /// "effects": [
+    ///   {
+    ///     "id": "MakeSpellsInDrawPileMoreExpensive",
+    ///     "name": {
+    ///       "id": "@CardEffectModifyTargetCardCost",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "target_mode": "draw_pile",
+    ///     "target_card_type": "spell",
+    ///     "param_int":  1
+    ///   }
+    /// ]
     /// </summary>
     public sealed class CardEffectModifyTargetCardCost : CardEffectBase
     {

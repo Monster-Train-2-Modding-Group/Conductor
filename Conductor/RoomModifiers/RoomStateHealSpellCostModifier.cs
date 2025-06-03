@@ -7,6 +7,17 @@
     /// inherit from CardEffectHeal adding to the OtherHealingCardEffects list.
     /// 
     /// The original only checked for CardEffectHeal (and subclasses).
+    /// 
+    /// "room_modifiers": [
+    ///   {
+    ///     "id": "ReduceHealSpellsBy1Ember",
+    ///     "name": {
+    ///       "id": "@RoomStateHealSpellCostModifier",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "param_int": 1
+    ///   }
+    /// ]
     /// </summary>
     public class RoomStateHealSpellCostModifier : RoomStateCostModifierBase
     {

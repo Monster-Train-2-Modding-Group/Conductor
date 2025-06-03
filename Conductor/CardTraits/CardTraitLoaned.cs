@@ -9,14 +9,16 @@ namespace Conductor
     /// You are prevented from playing the card if you don't have enough gold.
     /// 
     /// Example json:
-    /// {
-    ///   "id": "Costs10GoldToPlay",
-    ///   "name": {
-    ///     "id": "CardTraitLoaned",
-    ///     "mod_reference": "Conductor"
-    ///   },
-    ///   "param_int": 10
-    /// }
+    /// "traits": [
+    ///   {
+    ///     "id": "Costs10GoldToPlay",
+    ///     "name": {
+    ///       "id": "@CardTraitLoaned",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "param_int": 10
+    ///   }
+    /// ]
     /// </summary>
     class CardTraitLoaned : CardTraitState
     {

@@ -19,7 +19,7 @@
     ///   {
     ///     "id": "UpgradeUnitAttackBy3xPlayedCostThisTurn",
     ///     "name": {
-    ///       "id": "CardTraitScalingUpgradeUnitAttackSafely",
+    ///       "id": "@CardTraitScalingUpgradeUnitAttackSafely",
     ///       "mod_reference": "Conductor"
     ///     },
     ///     "param_int": 3,

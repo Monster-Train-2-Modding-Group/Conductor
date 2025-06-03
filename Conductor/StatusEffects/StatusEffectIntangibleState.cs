@@ -2,6 +2,9 @@
 
 namespace Conductor.StatusEffects
 {
+    /// <summary>
+    /// Example status effect that makes the damage always be one.
+    /// </summary>
     class StatusEffectIntangibleState : StatusEffectState
     {
         public const string StatusId = "conductor_statuseffect_intangible";

@@ -6,6 +6,33 @@ namespace Conductor.RelicEffects
     /// <summary>
     /// A working implementation of "Wurmtooth" from Monster Train 1. That particular artifact does nothing and its effects were implemented as
     /// ClassData.enable_corruption. This RelicEffect handles upgrading starter cards. The other part of Wurmtooth can be done with ClassData.randomDraftEnhancerPool.
+    /// 
+    /// Example Json
+    /// "relic_effects": [
+    ///  {
+    ///    "id": "FakeWurmkinsInfusedUpgrade",
+    ///    "name": {
+    ///      "id": "@RelicEffectUpgradeStarterCards",
+    ///      "mod_reference": "Conductor"
+    ///    },
+    ///    "param_upgrade": "@AddInfused"
+    ///  }
+    /// ],
+    /// "upgrades": [
+    ///   {
+    ///     "id": "AddInfused",
+    ///     "trait_upgrades": [
+    ///       "@Infused"
+    ///     ]
+    ///   }
+    /// ],
+    /// "traits": [
+    ///   {
+    ///     "id": "Infused",
+    ///     "name": "CardTraitCorruptState"
+    ///   }
+    /// ]
+    /// 
     /// </summary>
     class RelicEffectUpgradeStarterCards : RelicEffectBase, IPostStartOfRunRelicEffect
     {

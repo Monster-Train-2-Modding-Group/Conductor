@@ -7,6 +7,18 @@
     /// the DamagingCardEffects list.
     /// 
     /// The original only checked for CardEffectDamage.
+    /// 
+    /// Example Json
+    /// "room_modifiers": [
+    ///   {
+    ///     "id": "ReduceDamageSpellsBy2Ember",
+    ///     "name": {
+    ///       "id": "@RoomStateDamageSpellCostModifier",
+    ///       "mod_reference": "Conductor"
+    ///     },
+    ///     "param_int": 2
+    ///   }
+    /// ]
     /// </summary>
     public class RoomStateDamageSpellCostModifier : RoomStateCostModifierBase
     {
