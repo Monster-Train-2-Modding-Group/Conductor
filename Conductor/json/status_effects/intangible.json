@@ -15,7 +15,7 @@
   "status_effects": [
     {
       "id": "intangible",
-      "class_name": "StatusEffectIntangibleState",
+      "class_name": "@StatusEffectIntangibleState",
       "names": {
         "english": "Intangible",
         "chinese": "无实体"

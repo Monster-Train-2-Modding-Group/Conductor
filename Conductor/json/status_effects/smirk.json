@@ -27,7 +27,7 @@
   "status_effects": [
     {
       "id": "smirk",
-      "class_name": "StatusEffectSmirkState",
+      "class_name": "@StatusEffectSmirkState",
       "names": {
         "english": "Smirk"
       },
@@ -55,5 +55,5 @@
       "is_stackable": true,
       "icon": "@Smirk"
     }
-  ],
+  ]
 }
