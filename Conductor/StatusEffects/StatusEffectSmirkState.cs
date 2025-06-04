@@ -8,7 +8,7 @@ namespace Conductor.StatusEffects
     /// </summary>
     class StatusEffectSmirkState : StatusEffectState
     {
-        public const string StatusId = "conductor_statuseffect_smirk";
+        public const string StatusId = "conductor_smirk";
 
         public override bool TestTrigger(InputTriggerParams inputTriggerParams, OutputTriggerParams outputTriggerParams, ICoreGameManagers coreGameManagers)
         {

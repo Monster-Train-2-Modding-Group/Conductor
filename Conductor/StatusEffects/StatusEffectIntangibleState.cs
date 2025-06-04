@@ -7,7 +7,7 @@ namespace Conductor.StatusEffects
     /// </summary>
     class StatusEffectIntangibleState : StatusEffectState
     {
-        public const string StatusId = "conductor_statuseffect_intangible";
+        public const string StatusId = "conductor_intangible";
 
         public override bool TestTrigger(InputTriggerParams inputTriggerParams, OutputTriggerParams outputTriggerParams, ICoreGameManagers coreGameManagers)
         {
