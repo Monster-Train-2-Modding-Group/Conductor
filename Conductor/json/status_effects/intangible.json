@@ -26,11 +26,11 @@
       },
       "card_tooltips": {
         "english": "Unit will only take 1 damage.<br>Decreases at end of turn.",
-        "chinese": "受到的伤害降低为 1。<br>每回合不断减少。"
+        "chinese": "受到的伤害降低为 1。<br>回合结束时，层数减少 1。"
       },
       "character_tooltips": {
         "english": "Unit will only take 1 damage.<br>Decreases at end of turn.",
-        "chinese": "受到的伤害降低为 1。<br>每回合不断减少。"
+        "chinese": "受到的伤害降低为 1。<br>回合结束时，层数减少 1。"
       },
       "notifications": {
         "english": "Intangible",
