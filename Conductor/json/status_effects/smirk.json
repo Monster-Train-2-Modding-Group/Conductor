@@ -29,22 +29,28 @@
       "id": "smirk",
       "class_name": "@StatusEffectSmirkState",
       "names": {
-        "english": "Smirk"
+        "english": "Smirk",
+        "chinese": "奸笑"
       },
       "stackable_names": {
-        "english": "Smirk {0}"
+        "english": "Smirk {0}",
+        "chinese": "奸笑 {0}"
       },
       "card_tooltips": {
-        "english": "+[codeint0][attack] per stack and enables bonus effects.<br>Decreases each time the unit attacks."
+        "english": "+[codeint0][attack] per stack and enables bonus effects.<br>Decreases each time the unit attacks.",
+        "chinese": "每一层 +[codeint0][attack]。<br>该单位每次攻击时，层数减少 1。"
       },
       "character_tooltips": {
-        "english": "+[codeint0][attack] (+[codeint1][attack] per stack) and enables bonus effects.<br>Decreases each time the unit attacks."
+        "english": "+[codeint0][attack] (+[codeint1][attack] per stack) and enables bonus effects.<br>Decreases each time the unit attacks.",
+        "chinese": "+[codeint0][attack]（每一层 +[codeint1][attack]）。<br>该单位每次攻击时，层数减少 1。"
       },
       "notifications": {
-        "english": "Smirk"
+        "english": "Smirk",
+        "chinese": "奸笑"
       },
       "replacement_texts": {
-        "english": "<b>Smirk</b>"
+        "english": "<b>Smirk</b>",
+        "chinese": "<b>奸笑</b>"
       },
       "trigger_stage": "on_post_attacking",
       "remove_when_triggered": true,
