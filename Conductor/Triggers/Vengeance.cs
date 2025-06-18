@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using ShinyShoe.Logging;
 using System.Collections;
 
 namespace Conductor.Triggers
@@ -45,7 +46,13 @@ namespace Conductor.Triggers
                 yield break;
 
             outCharacters.Clear();
-            RoomState room = __instance.GetSpawnPoint().GetRoomOwner()!;
+            RoomState? room = __instance.GetSpawnPoint(true)?.GetRoomOwner();
+            if (room == null)
+            {
+                Log.Error(LogGroups.Gameplay, "Could not find room associated with character.", LogOptions.None, "OnOtherMonsterHitPatch CharacterState.ApplyDamagePostfix");
+                yield break;
+            }
+
             room.AddCharactersToList(outCharacters, Team.Type.Monsters);
 
             foreach (CharacterState character in outCharacters)
