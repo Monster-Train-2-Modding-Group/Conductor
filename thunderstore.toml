@@ -4,14 +4,14 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "Conductor"
 name = "Conductor"
-versionNumber = "0.1.1"
+versionNumber = "0.1.2"
 description = "Central library of reusable custom effects, status effects, and keywords to make modding Monster Train 2 safer and easier, used as a dependency for other mods."
 websiteUrl = "https://github.com/Monster-Train-2-Modding-Group/Conductor"
 containsNsfwContent = false
 
 [package.dependencies]
 BepInEx-BepInExPack = "5.4.2100"
-MT2-Trainworks_Reloaded = "0.4.1"
+MT2-Trainworks_Reloaded = "0.4.7"
 
 [build]
 icon = "./icon.png"
