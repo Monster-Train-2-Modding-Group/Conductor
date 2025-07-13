@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine.TextCore.Text;
+﻿using Conductor.Interfaces;
 
 namespace Conductor.StatusEffects
 {
-    class StatusEffectDivineBlessingState : StatusEffectState
+    class StatusEffectDivineBlessingState : StatusEffectState, IOnOtherStatusEffectAdded
     {
         public const string StatusId = "conductor_divine_blessing";
 
