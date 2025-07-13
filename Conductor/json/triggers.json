@@ -15,28 +15,14 @@
   ],
   "character_trigger_types": [
     {
-      "id": "Vengeance",
+      "id": "Accursed",
       "names": {
-        "english": "Vengeance",
-        "chinese": "复仇（盟友）"
+        "english": "Accursed"
       },
       "descriptions": {
-        "english": "Triggers when an allied unit is hit by an opposing unit.",
-        "chinese": "友方单位被敌方单位命中时触发。"
+        "english": "Triggers when a Blight or Scourge is played or discarded during your turn."
       },
-      "sprite": "@trigger_vengeance"
-    },
-    {
-      "id": "Junk",
-      "names": {
-        "english": "Junk",
-        "chinese": "废弃"
-      },
-      "descriptions": {
-        "english": "Triggers when a card is discarded before the end of the turn.",
-        "chinese": "回合结束前有卡牌被舍弃时触发。"
-      },
-      "sprite": "@trigger_junk"
+      "sprite": "@trigger_accursed"
     },
     {
       "id": "Encounter",
@@ -51,14 +37,16 @@
       "sprite": "@trigger_encounter"
     },
     {
-      "id": "Accursed",
+      "id": "Junk",
       "names": {
-        "english": "Accursed"
+        "english": "Junk",
+        "chinese": "废弃"
       },
       "descriptions": {
-        "english": "Triggers when a Blight or Scourge is played or discarded during your turn."
+        "english": "Triggers when a card is discarded before the end of the turn.",
+        "chinese": "回合结束前有卡牌被舍弃时触发。"
       },
-      "sprite": "@trigger_accursed"
+      "sprite": "@trigger_junk"
     },
     {
       "id": "Penance",
@@ -69,6 +57,18 @@
         "english": "Triggers when a Blight or Scourge is played during your turn."
       },
       "sprite": "@trigger_penance"
+    },
+    {
+      "id": "Vengeance",
+      "names": {
+        "english": "Vengeance",
+        "chinese": "复仇（盟友）"
+      },
+      "descriptions": {
+        "english": "Triggers when an allied unit is hit by an opposing unit.",
+        "chinese": "友方单位被敌方单位命中时触发。"
+      },
+      "sprite": "@trigger_vengeance"
     }
   ],
   "sprites": [
