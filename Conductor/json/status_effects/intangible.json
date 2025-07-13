@@ -1,17 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
-  "sprites": [
-    {
-      "id": "Ghost",
-      "path": "textures/status_intangible.png"
-    }
-  ],
-  "atlas_icons": [
-    {
-      "id": "Ghost",
-      "path": "textures/status_intangible_tooltip.png"
-    }
-  ],
   "status_effects": [
     {
       "id": "intangible",
@@ -41,11 +29,24 @@
         "chinese": "<b>无实体</b>"
       },
       "is_propagatable": true,
+      "exclude_hero_propagation": true,
       "display_category": "positive",
       "trigger_stage": "on_pre_attacked",
       "remove_stack_at_end_of_turn": true,
       "is_stackable": true,
-      "icon": "@Ghost"
+      "icon": "@intangible"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "intangible",
+      "path": "textures/status_intangible.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "intangible",
+      "path": "textures/status_intangible_tooltip.png"
     }
   ]
 }
