@@ -4,6 +4,7 @@ using static CardManager;
 
 namespace Conductor.Triggers
 {
+    // Junk (character), Junk (card), Penance, Accursed trigger implementations.
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.DiscardCard))]
     class DiscardCharacterTriggerTypePatch
     {
@@ -28,6 +29,16 @@ namespace Conductor.Triggers
             }
 
             bool flag = discardCardParams.triggeredByCard && discardCardParams.discardCard.HasTrait(typeof(CardTraitTreasure));
+
+            if ((discardCardParams.wasPlayed || flag) && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
+            {
+                yield return ___combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Penance, ___roomManager.GetSelectedRoom());
+            }
+
+            if ((discardCardParams.wasPlayed || discardCardParams.triggeredByCard) && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
+            {
+                yield return ___combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Accursed, ___roomManager.GetSelectedRoom());
+            }
 
             if (!discardCardParams.wasPlayed || flag)
             {

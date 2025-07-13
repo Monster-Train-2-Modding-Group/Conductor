@@ -1,6 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
-
   "card_trigger_types": [
     {
       "id": "Junk",
@@ -50,6 +49,26 @@
         "chinese": "遇到其他盟友时触发。"
       },
       "sprite": "@trigger_encounter"
+    },
+    {
+      "id": "Accursed",
+      "names": {
+        "english": "Accursed"
+      },
+      "descriptions": {
+        "english": "Triggers when a Blight or Scourge is played or discarded during your turn."
+      },
+      "sprite": "@trigger_accursed"
+    },
+    {
+      "id": "Penance",
+      "names": {
+        "english": "Penance"
+      },
+      "descriptions": {
+        "english": "Triggers when a Blight or Scourge is played during your turn."
+      },
+      "sprite": "@trigger_penance"
     }
   ],
   "sprites": [
@@ -64,6 +83,14 @@
     {
       "id": "trigger_encounter",
       "path": "textures/trigger_encounter.png"
+    },
+    {
+      "id": "trigger_accursed",
+      "path": "textures/trigger_accursed.png"
+    },
+    {
+      "id": "trigger_penance",
+      "path": "textures/trigger_penance.png"
     }
   ],
   "atlas_icons": [
@@ -78,6 +105,14 @@
     {
       "id": "trigger_encounter",
       "path": "textures/trigger_encounter.png"
+    },
+    {
+      "id": "trigger_accursed",
+      "path": "textures/trigger_accursed.png"
+    },
+    {
+      "id": "trigger_penance",
+      "path": "textures/trigger_penance.png"
     }
   ]
 }
