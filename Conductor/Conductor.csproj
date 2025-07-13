@@ -21,13 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="json/*.json">
+    <None Update="json/**/*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="json/status_effects/*.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="textures/*">
+    <None Update="textures/**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
