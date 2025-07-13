@@ -26,9 +26,12 @@ namespace Conductor
                 c =>
                 {
                     c.AddMergedJsonFile(
-                        "json/loaned.json",
+                        "json/status_effects/divine_blessing.json",
+                        "json/status_effects/hex.json",
                         "json/status_effects/intangible.json",
                         "json/status_effects/smirk.json",
+                        "json/status_effects/construct.json",
+                        "json/traits.json",
                         "json/triggers.json",
                         "json/room_modifiers.json"
                     );
@@ -50,6 +53,12 @@ namespace Conductor
 
                     id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Encounter");
                     CharacterTriggers.Encounter = manager.GetValueOrDefault(id);
+
+                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Penance");
+                    CharacterTriggers.Penance = manager.GetValueOrDefault(id);
+
+                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Accursed");
+                    CharacterTriggers.Accursed = manager.GetValueOrDefault(id);
 
                     id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, "Junk");
                     CardTriggers.Junk = triggerManager.GetValueOrDefault(id);

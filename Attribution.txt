@@ -3,3 +3,6 @@ Encounter icon: <a href="https://www.flaticon.com/free-icons/find" title="find i
 Junk icon: <a href="https://www.flaticon.com/free-icons/recycle-bin" title="recycle bin icons">Recycle bin icons created by cah nggunung - Flaticon</a>
 Intangible icon: <a href="https://www.flaticon.com/free-icons/ghost" title="ghost icons">Ghost icons created by Aldo Cervantes - Flaticon</a>
 Smirk icon: from SMT IV. https://megamitensei.fandom.com/wiki/Smirk
+Construct icon: <a href="https://www.flaticon.com/free-icons/gears" title="gears icons">Gears icons created by The Chohans - Flaticon</a>
+Halo icon: <a href="https://www.flaticon.com/free-icons/halo" title="halo icons">Halo icons created by Freepik - Flaticon</a>
+prayer icon: <a href="https://www.flaticon.com/free-icons/pray" title="pray icons">Pray icons created by Aranagraphics - Flaticon</a>
