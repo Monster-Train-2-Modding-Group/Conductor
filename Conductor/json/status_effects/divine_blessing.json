@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "status_effects": [
+    {
+      "id": "divine_blessing",
+      "class_name": "@StatusEffectDivineBlessingState",
+      "names": {
+        "english": "Divine Blessing"
+      },
+      "stackable_names": {
+        "english": "Divine Blessing {0}"
+      },
+      "card_tooltips": {
+        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not propagate."
+      },
+      "character_tooltips": {
+        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not propagate."
+      },
+      "notifications": {
+        "english": "Blessed"
+      },
+      "replacement_texts": {
+        "english": "<b>Divine Blessing</b>"
+      },
+      "display_category": "positive",
+      "trigger_stage": "none",
+      "is_stackable": true,
+      "icon": "@divine_blessing"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "divine_blessing",
+      "path": "textures/status_divine_blessing.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "divine_blessing",
+      "path": "textures/status_divine_blessing_tooltip.png"
+    }
+  ]
+}

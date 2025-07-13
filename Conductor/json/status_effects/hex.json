@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "status_effects": [
+    {
+      "id": "hex",
+      "class_name": "@StatusEffectHexState",
+      "names": {
+        "english": "Hex"
+      },
+      "stackable_names": {
+        "english": "Hex {0}"
+      },
+      "card_tooltips": {
+        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not propagate."
+      },
+      "character_tooltips": {
+        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not propagate."
+      },
+      "notifications": {
+        "english": "Hexed"
+      },
+      "replacement_texts": {
+        "english": "<b>Hex</b>"
+      },
+      "display_category": "negative",
+      "trigger_stage": "none",
+      "is_stackable": true,
+      "icon": "@hex"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "hex",
+      "path": "textures/status_hex.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "hex",
+      "path": "textures/status_hex_tooltip.png"
+    }
+  ]
+}
