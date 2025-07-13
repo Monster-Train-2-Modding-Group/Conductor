@@ -1,29 +1,5 @@
 ﻿{
   "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
-  "sprites": [
-    {
-      "id": "Smirk",
-      "path": "textures/status_smirk.png"
-    }
-  ],
-  "atlas_icons": [
-    {
-      "id": "Smirk",
-      "path": "textures/status_smirk_tooltip.png"
-    },
-    {
-      "id": "CardTextSmirk",
-      "path": "textures/trigger_smirk.png"
-    }
-  ],
-  "replacement_texts": [
-    {
-      "key": "smirk_effect",
-      "texts": {
-        "english": "<sprite name=\"Conductor-Sprite-CardTextSmirk\">"
-      }
-    }
-  ],
   "status_effects": [
     {
       "id": "smirk",
@@ -60,6 +36,30 @@
       "exclude_hero_propagation": true,
       "is_stackable": true,
       "icon": "@Smirk"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "Smirk",
+      "path": "textures/status_smirk.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Smirk",
+      "path": "textures/status_smirk_tooltip.png"
+    },
+    {
+      "id": "CardTextSmirk",
+      "path": "textures/trigger_smirk.png"
+    }
+  ],
+  "replacement_texts": [
+    {
+      "key": "smirk_effect",
+      "texts": {
+        "english": "<sprite name=\"Conductor-Sprite-CardTextSmirk\">"
+      }
     }
   ]
 }
