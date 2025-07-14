@@ -36,6 +36,7 @@ namespace Conductor.StatusEffects
             }
             var constructAmount = this.GetConstructAmount(statusEffectStacks);
             inputTriggerParams.associatedCharacter.BuffDamage(constructAmount, null, true);
+            // TODO Decouple this so that Steward Clan doesn't need to specify this.
             var effect = this.relicManager.GetRelicEffect<IConstructStatusArmorModifier>();
             if (effect != null)
             {
