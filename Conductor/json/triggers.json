@@ -17,10 +17,12 @@
     {
       "id": "Accursed",
       "names": {
-        "english": "Accursed"
+        "english": "Accursed",
+        "chinese": "被咒"
       },
       "descriptions": {
-        "english": "Triggers when a Blight or Scourge is played or discarded during your turn."
+        "english": "Triggers when a Blight or Scourge is played or discarded during your turn.",
+        "chinese": "回合结束前在本层打出或舍弃祸患牌或天灾牌时触发。"
       },
       "sprite": "@trigger_accursed"
     },
@@ -51,10 +53,12 @@
     {
       "id": "Penance",
       "names": {
-        "english": "Penance"
+        "english": "Penance",
+        "chinese": "忏悔"
       },
       "descriptions": {
-        "english": "Triggers when a Blight or Scourge is played during your turn."
+        "english": "Triggers when a Blight or Scourge is played during your turn.",
+        "chinese": "在本层打出祸患牌或天灾牌时触发。"
       },
       "sprite": "@trigger_penance"
     },
@@ -66,7 +70,7 @@
       },
       "descriptions": {
         "english": "Triggers when an allied unit is hit by an opposing unit.",
-        "chinese": "友方单位被敌方单位命中时触发。"
+        "chinese": "本层友方单位被敌方单位命中时触发。"
       },
       "sprite": "@trigger_vengeance"
     }
