@@ -5,22 +5,28 @@
       "id": "divine_blessing",
       "class_name": "@StatusEffectDivineBlessingState",
       "names": {
-        "english": "Divine Blessing"
+        "english": "Divine Blessing",
+        "chinese": "神圣祝福"
       },
       "stackable_names": {
-        "english": "Divine Blessing {0}"
+        "english": "Divine Blessing {0}",
+        "chinese": "神圣祝福 {0}"
       },
       "card_tooltips": {
-        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not propagate."
+        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not [propagate].",
+        "chinese": "当获得[buff]时，获得的层数 +[codeint0]，[Conductor_divine_blessing]除外。<br>无法被[propagate]。"
       },
       "character_tooltips": {
-        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not propagate."
+        "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not [propagate].",
+        "chinese": "当获得[buff]时，获得的层数 +[codeint0]，[Conductor_divine_blessing]除外。<br>无法被[propagate]。"
       },
       "notifications": {
-        "english": "Blessed"
+        "english": "Blessed",
+        "chinese": "被施加祝福"
       },
       "replacement_texts": {
-        "english": "<b>Divine Blessing</b>"
+        "english": "<b>Divine Blessing</b>",
+        "chinese": "<b>神圣祝福</b>"
       },
       "display_category": "positive",
       "trigger_stage": "none",
