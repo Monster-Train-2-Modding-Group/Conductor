@@ -31,6 +31,7 @@
       "display_category": "negative",
       "trigger_stage": "none",
       "is_stackable": true,
+      "param_int": 1,
       "icon": "@hex"
     }
   ],

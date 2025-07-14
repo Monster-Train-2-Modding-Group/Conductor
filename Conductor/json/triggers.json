@@ -8,7 +8,7 @@
         "chinese": "废弃"
       },
       "descriptions": {
-        "english": "Triggers when a card (other than this one) is discarded before the end of the turn.",
+        "english": "Triggers when a card (other than this one) is discarded during your turn.",
         "chinese": "回合结束前有其他卡牌被舍弃时触发。"
       }
     }
@@ -21,8 +21,8 @@
         "chinese": "被咒"
       },
       "descriptions": {
-        "english": "Triggers when a Blight or Scourge is played or discarded during your turn.",
-        "chinese": "回合结束前在本层打出或舍弃祸患牌或天灾牌时触发。"
+        "english": "Triggers when, during your turn, a [blight] or [junk] is played or discarded on the floor.",
+        "chinese": "回合结束前在本层打出或舍弃[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_accursed"
     },
@@ -45,7 +45,7 @@
         "chinese": "废弃"
       },
       "descriptions": {
-        "english": "Triggers when a card is discarded before the end of the turn.",
+        "english": "Triggers when, during your turn, a card is discarded on the floor.",
         "chinese": "回合结束前有卡牌被舍弃时触发。"
       },
       "sprite": "@trigger_junk"
@@ -57,8 +57,8 @@
         "chinese": "忏悔"
       },
       "descriptions": {
-        "english": "Triggers when a Blight or Scourge is played during your turn.",
-        "chinese": "在本层打出祸患牌或天灾牌时触发。"
+        "english": "Triggers when a [blight] or [junk] is played on the floor.",
+        "chinese": "在本层打出[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_penance"
     },
