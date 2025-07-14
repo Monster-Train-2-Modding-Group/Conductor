@@ -14,11 +14,11 @@
       },
       "card_tooltips": {
         "english": "Gain +[codeint0][attack] and +[codeint0][health] per stack at the end of turn.<br>Stacks remain across turns.<br>Stats gained don't persist on death.",
-        "chinese": "回合结束时，每有一层构造体，获得 +[codeint0][attack]和[health]。<br>层数会跨回合保留。"
+        "chinese": "回合结束时，每有一层构造体，获得 +[attack]和[health]。<br>层数会跨回合保留。"
       },
       "character_tooltips": {
-        "english": "Gain [codeint0] +[codeint0][attack] and +[codeint0][health] at the end of turn.<br>Stacks remain across turns.<br>Stats gained don't persist on death.",
-        "chinese": "回合结束时，获得 +[codeint0][attack]和[health]。<br>层数会跨回合保留。"
+        "english": "Gain +[codeint0][attack] and +[codeint0][health] at the end of turn.<br>Stacks remain across turns.<br>Stats gained don't persist on death.",
+        "chinese": "回合结束时，获得 +[codeint1][attack]和[health]。<br>层数会跨回合保留。"
       },
       "replacement_texts": {
         "english": "<b>Construct</b>",

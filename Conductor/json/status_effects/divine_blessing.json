@@ -25,6 +25,7 @@
       "display_category": "positive",
       "trigger_stage": "none",
       "is_stackable": true,
+      "param_int": 1,
       "icon": "@divine_blessing"
     }
   ],
