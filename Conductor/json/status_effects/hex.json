@@ -13,11 +13,11 @@
         "chinese": "巫术 {0}"
       },
       "card_tooltips": {
-        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not propagate.",
+        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not [propagate].",
         "chinese": "当获得[debuff]时，获得的层数 +[codeint0]，[Conductor_hex]和[dazed]除外。<br>无法被[propagate]。"
       },
       "character_tooltips": {
-        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not propagate.",
+        "english": "When a [debuff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_hex] and [dazed] are excluded.<br>Does not [propagate].",
         "chinese": "当获得[debuff]时，获得的层数 +[codeint0]，[Conductor_hex]和[dazed]除外。<br>无法被[propagate]。"
       },
       "notifications": {
