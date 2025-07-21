@@ -6,7 +6,7 @@ using System.Text;
 namespace Conductor.CardEffects
 {
     /// <summary>
-    /// Card effect that requires a status threshold on units targetted.
+    /// Card effect that requires a status threshold on units targeted.
     /// The main use-case of this CardEffect is to stop processing effects if this one fails.
     /// 
     /// Test fails if:
@@ -38,8 +38,8 @@ namespace Conductor.CardEffects
         public override PropDescriptions CreateEditorInspectorDescriptions()
         {
             return new PropDescriptions {
-                // TODO instead of requiring just one, allow user to specify a list and have the behaviour be ANY of the status effects.
-                //     If the user wants AND behaviour then just append another instance with the status.
+                // TODO instead of requiring just one, allow user to specify a list and have the behavior be ANY of the status effects.
+                //     If the user wants AND behavior then just append another instance with the status.
                 [CardEffectFieldNames.ParamStatusEffects.GetFieldName()] = new PropDescription("Status Effects Requirement", "First: Requirement."),
                 [CardEffectFieldNames.ParamBool.GetFieldName()] = new PropDescription("All targets required to meet the status effect requirement.")
             };

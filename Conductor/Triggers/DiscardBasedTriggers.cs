@@ -10,22 +10,15 @@ namespace Conductor.Triggers
     {
         public static IEnumerator Postfix(IEnumerator enumerator, CardManager __instance, CombatManager ___combatManager, RoomManager ___roomManager, DiscardCardParams discardCardParams)
         {
-            bool found = false;
             while (enumerator.MoveNext())
             {
                 var currentType = enumerator.Current.GetType();
-                if (currentType.DeclaringType == typeof(RelicManager) && currentType.Name.Contains("ApplyOnDiscardRelicEffects") && !found)
+                if (currentType.DeclaringType == typeof(RelicManager) && currentType.Name.Contains("ApplyOnDiscardRelicEffects"))
                 {
-                    found = true;
                     yield return HandleDiscardTriggers(__instance, ___combatManager, ___roomManager, discardCardParams);
                 }
 
                 yield return enumerator.Current;
-            }
-
-            if (!found)
-            {
-                Plugin.Logger.LogError("DId not find a yield return for relicManager.ApplyOnDiscardRelicEffects. Patch may need to be reworked.");
             }
         }
 

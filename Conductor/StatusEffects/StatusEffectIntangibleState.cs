@@ -13,12 +13,14 @@ namespace Conductor.StatusEffects
         {
             if (inputTriggerParams.attacked == null)
             {
-                Log.Warning(LogGroups.Gameplay, "StatusEffectIntangibleState.OnPreAttacked() attacked character should not be null!");
+                Plugin.Logger.LogError("StatusEffectIntangibleState.OnPreAttacked() attacked character should not be null!");
                 return false;
             }
             if (inputTriggerParams.damage > 0)
             {
+                outputTriggerParams.damageBlocked = inputTriggerParams.damage - 1;
                 outputTriggerParams.damage = 1;
+
                 return true;
             }
             return false;

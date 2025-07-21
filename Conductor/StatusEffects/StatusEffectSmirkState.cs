@@ -49,11 +49,11 @@ namespace Conductor.StatusEffects
             return GetMagnitudePerStack() * stacks;
         }
 
-        public override void OnStacksAdded(CharacterState character, int numStacksAdded, ICoreGameManagers coreGameManagers)
+        public override void OnStacksAdded(CharacterState character, int numStacksAdded, CharacterState.AddStatusEffectParams addStatusEffectParams, ICoreGameManagers coreGameManagers)
         {
             if (character == null)
             {
-                Log.Debug(LogGroups.Gameplay, "StatusEffectSmirkState.OnStackAdded() could not add buff because a NULL character was provided.");
+                Plugin.Logger.LogError("StatusEffectSmirkState.OnStacksAdded() could not add buff because a NULL character was provided.");
             }
             else if (numStacksAdded > 0)
             {
@@ -65,7 +65,7 @@ namespace Conductor.StatusEffects
         {
             if (character == null)
             {
-                Log.Debug(LogGroups.Gameplay, "StatusEffectSmirkState.OnStackRemoved() could not remove buff because a NULL character was provided.");
+                Plugin.Logger.LogError("StatusEffectSmirkState.OnStacksRemoved() could not add buff because a NULL character was provided.");
                 return;
             }
             if (numStacksRemoved > 0)

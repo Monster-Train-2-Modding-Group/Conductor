@@ -2,12 +2,16 @@
 using BepInEx.Logging;
 using Conductor.Triggers;
 using HarmonyLib;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using TrainworksReloaded.Base;
 using TrainworksReloaded.Base.Extensions;
 using TrainworksReloaded.Core;
 using TrainworksReloaded.Core.Extensions;
 using TrainworksReloaded.Core.Interfaces;
+using static CharacterTriggerData;
 
 namespace Conductor
 {
@@ -31,6 +35,7 @@ namespace Conductor
                         "json/status_effects/intangible.json",
                         "json/status_effects/smirk.json",
                         "json/status_effects/construct.json",
+                        //"json/status_effects/curse.json",
                         "json/traits.json",
                         "json/triggers.json",
                         "json/room_modifiers.json"
