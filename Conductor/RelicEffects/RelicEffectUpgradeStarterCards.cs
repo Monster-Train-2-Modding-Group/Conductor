@@ -75,7 +75,7 @@ namespace Conductor.RelicEffects
                 {
                     CardUpgradeState cardUpgradeState = new();
                     cardUpgradeState.Setup(cardUpgrade);
-                    card.Upgrade(cardUpgradeState, relicEffectParams.saveManager, true);
+                    card.ApplyPermanentUpgrade(cardUpgradeState, relicEffectParams.saveManager, true);
                 }
             }
         }

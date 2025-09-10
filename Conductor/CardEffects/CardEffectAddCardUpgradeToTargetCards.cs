@@ -8,8 +8,8 @@ namespace Conductor.CardEffects
     /// Further filtering can be done with the CardUpgrade's UpgradeMaskData. Additionally this CardEffect
     /// allows you to permanently upgrade the cards.
     /// 
-    /// This card effect doesn't suffer the limitations of the afforementioned CardEffect, it can be used in
-    /// Charactere's Trigger effects.
+    /// This card effect doesn't suffer the limitations of the aforementioned CardEffect, it can be used in
+    /// Character's Trigger effects.
     /// 
     /// WARNING if applying a permanent upgrade, You should not modify the CardUpgradeState
     /// via CardTraitState's OnCardBeingUpgrade. Any modifications to the CardUpgrade
@@ -93,7 +93,7 @@ namespace Conductor.CardEffects
             {
                 // CardUpgradeMask filtering
                 bool flag = false;
-                foreach (CardUpgradeMaskData filter in cardEffectState.GetParamCardUpgradeData().GetFilters())
+                foreach (CardUpgradeMaskData filter in cardEffectState.GetParamCardUpgradeData()!.GetFilters())
                 {
                     if (!filter.FilterCard(item, coreGameManagers.GetRelicManager()))
                     {
@@ -135,12 +135,12 @@ namespace Conductor.CardEffects
                 if (cardEffectState.GetParamBool())
                 {
                     // The additional steps seen below are handled in CardState.Upgrade.
-                    item.Upgrade(cardUpgradeState, coreGameManagers.GetSaveManager());
+                    item.ApplyPermanentUpgrade(cardUpgradeState, coreGameManagers.GetSaveManager());
                 }
                 else
                 {
                     item.GetTemporaryCardStateModifiers().AddUpgrade(cardUpgradeState);
-                    item.ReapplyMagicPowerScalingFromTraitsToAllExistingUpgrades(roomManager, cardManager, relicManager);
+                    item.ReapplyMagicPowerScalingFromTraitsToAllExistingUpgrades(coreGameManagers);
                     item.UpdateCardBodyText();
                 }
 

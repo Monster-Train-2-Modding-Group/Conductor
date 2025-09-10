@@ -58,7 +58,7 @@ namespace Conductor.CardEffects
 
         public override IEnumerator ApplyEffect(CardEffectState cardEffectState, CardEffectParams cardEffectParams, ICoreGameManagers coreGameManagers, ISystemManagers systemManagers)
         {
-            StatusEffectStackData statusEffectToGive = cardEffectState.GetParamStatusStack();
+            var statusEffectToGive = cardEffectState.GetParamStatusStack();
             if (statusEffectToGive == null)
             {
                 yield break;

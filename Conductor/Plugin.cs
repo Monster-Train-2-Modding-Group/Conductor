@@ -36,6 +36,7 @@ namespace Conductor
                         "json/status_effects/smirk.json",
                         "json/status_effects/construct.json",
                         //"json/status_effects/curse.json",
+                        //"json/target_modes.json",
                         "json/traits.json",
                         "json/triggers.json",
                         "json/room_modifiers.json"

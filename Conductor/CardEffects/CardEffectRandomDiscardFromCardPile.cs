@@ -218,22 +218,26 @@ namespace Conductor.CardEffects
             CardUpgradeState cardUpgradeState = new();
             cardUpgradeState.Setup(cardUpgradeData);
 
-            foreach (CardTraitState traitState in cardEffectState.GetParentCardState().GetTraitStates())
+            CardState? cardState = cardEffectState.GetParentCardState();
+            if (cardState != null)
             {
-                if (!traitState.OnCardBeingUpgraded(card, cardEffectState.GetParentCardState(), cardUpgradeState, coreGameManagers))
+                foreach (CardTraitState traitState in cardState.GetTraitStates())
                 {
-                    return;
+                    if (!traitState.OnCardBeingUpgraded(card, cardEffectState.GetParentCardState(), cardUpgradeState, coreGameManagers))
+                    {
+                        return;
+                    }
                 }
             }
             if (cardEffectState.GetParamBool())
             {
                 // The additional steps seen below are handled in CardState.Upgrade.
-                card.Upgrade(cardUpgradeState, saveManager);
+                card.ApplyPermanentUpgrade(cardUpgradeState, saveManager);
             }
             else
             {
                 card.GetTemporaryCardStateModifiers().AddUpgrade(cardUpgradeState);
-                card.ReapplyMagicPowerScalingFromTraitsToAllExistingUpgrades(roomManager, cardManager, relicManager);
+                card.ReapplyMagicPowerScalingFromTraitsToAllExistingUpgrades(coreGameManagers);
                 card.UpdateCardBodyText();
             }
         }
