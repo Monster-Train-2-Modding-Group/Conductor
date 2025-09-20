@@ -4,7 +4,7 @@ using static CardManager;
 
 namespace Conductor.Triggers
 {
-    // Junk (character), Junk (card), Penance, Accursed trigger implementations.
+    // Junk (character), Junk (card), 1/2 of Accursed trigger implementations.
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.DiscardCard))]
     class DiscardCharacterTriggerTypePatch
     {
@@ -43,11 +43,11 @@ namespace Conductor.Triggers
             bool flag = discardCardParams.triggeredByCard && discardCardParams.discardCard.HasTrait(typeof(CardTraitTreasure));
             // TODO this code may need to be revisited.
             // triggeredByCard is surely set if wasPlayed == false. However in the future an artifact could discard a card which that field would not be set.
-            if ((discardCardParams.wasPlayed || flag) && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
+            if (flag && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
             {
                 yield return combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Penance, roomManager.GetSelectedRoom());
             }
-            if ((discardCardParams.wasPlayed || discardCardParams.triggeredByCard) && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
+            if (discardCardParams.triggeredByCard && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
             {
                 yield return combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Accursed, roomManager.GetSelectedRoom());
             }

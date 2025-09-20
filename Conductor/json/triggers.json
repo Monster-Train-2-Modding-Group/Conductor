@@ -21,7 +21,7 @@
         "chinese": "被咒"
       },
       "descriptions": {
-        "english": "Triggers when, during your turn, a [blight] or [junk] is played or discarded on the floor.",
+        "english": "Triggers when, during your turn, a <b>Blight</b> or [junk] is played or discarded on the floor.",
         "chinese": "回合结束前在本层打出或舍弃[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_accursed"
@@ -57,7 +57,7 @@
         "chinese": "忏悔"
       },
       "descriptions": {
-        "english": "Triggers when a [blight] or [junk] is played on the floor.",
+        "english": "Triggers when a <b>Blight</b> or [junk] is played on the floor.",
         "chinese": "在本层打出[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_penance"
