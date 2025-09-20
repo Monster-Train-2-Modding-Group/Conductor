@@ -39,7 +39,7 @@ namespace Conductor
                         //"json/target_modes.json",
                         "json/traits.json",
                         "json/triggers.json",
-                        "json/room_modifiers.json",
+                        "json/room_modifiers.json"
                         //"json/test.json"
                     );
                 }
