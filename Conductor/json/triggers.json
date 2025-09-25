@@ -41,10 +41,12 @@
     {
       "id": "Evoke",
       "names": {
-        "english": "Evoke"
+        "english": "Evoke",
+        "chinese": "营造"
       },
       "descriptions": {
-        "english": "Triggers when any unit's ability is activated on this floor."
+        "english": "Triggers when any unit's ability is activated on this floor.",
+        "chinese": "该单位任意盟友的能力激活时触发。"
       },
       "sprite": "@trigger_evoke"
     },
