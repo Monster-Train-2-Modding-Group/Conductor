@@ -7,5 +7,6 @@
         public static CharacterTriggerData.Trigger Encounter;
         public static CharacterTriggerData.Trigger Penance;
         public static CharacterTriggerData.Trigger Accursed;
+        public static CharacterTriggerData.Trigger Evoke;
     }
 }

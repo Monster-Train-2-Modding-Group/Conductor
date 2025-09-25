@@ -1,9 +1,5 @@
 ﻿using HarmonyLib;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using static CardManager;
 
 namespace Conductor.Triggers
 {
@@ -25,28 +21,32 @@ namespace Conductor.Triggers
             }
         }
 
+        // TODO return a Tuple with Trigger, triggerFireCount.
+        // Do not patch.
+        public static CharacterTriggerData.Trigger[] GetCustomTriggersForCardPlayed(CardState playedCard)
+        {
+            if (playedCard.GetCardType() == CardType.Junk || playedCard.GetCardType() == CardType.Blight)
+                return [CharacterTriggers.Penance, CharacterTriggers.Accursed];
+            else if (playedCard.IsUnitAbility())
+                return [CharacterTriggers.Evoke];
+            return Array.Empty<CharacterTriggerData.Trigger>();
+        }
+
         public static IEnumerator HandlePlayedCardTriggers(CardManager instance, CombatManager combatManager, RoomManager roomManager, ICharacterManager characterManager, CardState playedCard, int playedRoomIndex, List<CharacterState> overrideCharacterList, CharacterState characterThatActivatedAbility)
         {
+            var triggersToFire = GetCustomTriggersForCardPlayed(playedCard);
             for (int c = 0; c < characterManager.GetNumCharacters(); c++)
             {
                 var charState = characterManager.GetCharacter(c);
-                if (playedCard.GetCardType() == CardType.Junk || playedCard.GetCardType() == CardType.Blight)
+                if (charState == null)
                 {
-                    if (charState != null)
+                    continue;
+                }
+                if ((overrideCharacterList == null || (!charState.IsDestroyed && charState.IsAlive && overrideCharacterList.Contains(charState))) && playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
+                {
+                    foreach (var trigger in triggersToFire)
                     {
-                        if (overrideCharacterList != null)
-                        {
-                            if (!charState.IsDestroyed && charState.IsAlive && overrideCharacterList.Contains(charState) && playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
-                            {
-                                combatManager.QueueTrigger(charState, CharacterTriggers.Penance, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
-                                combatManager.QueueTrigger(charState, CharacterTriggers.Accursed, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
-                            }
-                        }
-                        else if (playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
-                        {
-                            combatManager.QueueTrigger(charState, CharacterTriggers.Penance, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
-                            combatManager.QueueTrigger(charState, CharacterTriggers.Accursed, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
-                        }
+                        combatManager.QueueTrigger(charState, trigger, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
                     }
                 }
             }

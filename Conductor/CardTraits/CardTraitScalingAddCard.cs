@@ -50,13 +50,8 @@ namespace Conductor.CardTraits
             };  
         }
 
-        public override IEnumerator OnCardDiscarded(CardManager.DiscardCardParams discardCardParams, ICoreGameManagers coreGameManagers)
+        public override IEnumerator OnCardPlayed(CardState card, ICoreGameManagers coreGameManagers)
         {
-            if (!discardCardParams.wasPlayed || discardCardParams.discardCard == null)
-            {
-                yield break;
-            }
-
             bool permanent = false;
             bool ignoreTempUpgrades = true;
             bool copyModifiersFromSource = true;

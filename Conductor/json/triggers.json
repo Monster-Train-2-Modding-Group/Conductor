@@ -39,6 +39,16 @@
       "sprite": "@trigger_encounter"
     },
     {
+      "id": "Evoke",
+      "names": {
+        "english": "Evoke"
+      },
+      "descriptions": {
+        "english": "Triggers when any unit's ability is activated on this floor."
+      },
+      "sprite": "@trigger_evoke"
+    },
+    {
       "id": "Junk",
       "names": {
         "english": "Junk",
@@ -77,46 +87,54 @@
   ],
   "sprites": [
     {
-      "id": "trigger_vengeance",
-      "path": "textures/trigger_vengeance.png"
-    },
-    {
-      "id": "trigger_junk",
-      "path": "textures/trigger_junk.png"
+      "id": "trigger_accursed",
+      "path": "textures/trigger_accursed.png"
     },
     {
       "id": "trigger_encounter",
       "path": "textures/trigger_encounter.png"
     },
     {
-      "id": "trigger_accursed",
-      "path": "textures/trigger_accursed.png"
+      "id": "trigger_evoke",
+      "path": "textures/trigger_evoke.png"
+    },
+    {
+      "id": "trigger_junk",
+      "path": "textures/trigger_junk.png"
     },
     {
       "id": "trigger_penance",
       "path": "textures/trigger_penance.png"
+    },
+    {
+      "id": "trigger_vengeance",
+      "path": "textures/trigger_vengeance.png"
     }
   ],
   "atlas_icons": [
     {
-      "id": "trigger_vengeance",
-      "path": "textures/trigger_vengeance.png"
-    },
-    {
-      "id": "trigger_junk",
-      "path": "textures/trigger_junk.png"
+      "id": "trigger_accursed",
+      "path": "textures/trigger_accursed.png"
     },
     {
       "id": "trigger_encounter",
       "path": "textures/trigger_encounter.png"
     },
     {
-      "id": "trigger_accursed",
-      "path": "textures/trigger_accursed.png"
+      "id": "trigger_evoke",
+      "path": "textures/trigger_evoke.png"
+    },
+    {
+      "id": "trigger_junk",
+      "path": "textures/trigger_junk.png"
     },
     {
       "id": "trigger_penance",
       "path": "textures/trigger_penance.png"
+    },
+    {
+      "id": "trigger_vengeance",
+      "path": "textures/trigger_vengeance.png"
     }
   ]
 }

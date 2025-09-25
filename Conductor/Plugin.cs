@@ -67,6 +67,9 @@ namespace Conductor
                     id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Accursed");
                     CharacterTriggers.Accursed = manager.GetValueOrDefault(id);
 
+                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Evoke");
+                    CharacterTriggers.Evoke = manager.GetValueOrDefault(id);
+
                     id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, "Junk");
                     CardTriggers.Junk = triggerManager.GetValueOrDefault(id);
                 }

@@ -26,8 +26,8 @@
     </PackageReference>
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
     <PackageReference Include="MonsterTrain2.Api" Version="2.1.20021685" />
-    <PackageReference Include="TrainworksReloaded.Base" Version="0.5.3" />
-    <PackageReference Include="TrainworksReloaded.Core" Version="0.5.3" />
+    <PackageReference Include="TrainworksReloaded.Base" Version="0.5.4" />
+    <PackageReference Include="TrainworksReloaded.Core" Version="0.5.4" />
   </ItemGroup>
 
   <ItemGroup>
