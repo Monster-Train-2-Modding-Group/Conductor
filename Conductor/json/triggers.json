@@ -116,7 +116,7 @@
   "atlas_icons": [
     {
       "id": "trigger_accursed",
-      "path": "textures/trigger_accursed.png"
+      "path": "textures/trigger_accursed_tooltip.png"
     },
     {
       "id": "trigger_encounter",
