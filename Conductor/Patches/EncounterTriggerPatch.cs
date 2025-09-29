@@ -1,7 +1,8 @@
-﻿using HarmonyLib;
+﻿using Conductor.Triggers;
+using HarmonyLib;
 using System.Collections;
 
-namespace Conductor.Triggers
+namespace Conductor.Patches
 {
     // Handles the case where a new encounterer unit is summoned to the room.
     [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.OnSpawn))]

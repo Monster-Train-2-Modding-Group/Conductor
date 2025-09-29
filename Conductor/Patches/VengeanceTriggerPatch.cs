@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
+﻿using Conductor.Triggers;
+using HarmonyLib;
 using ShinyShoe.Logging;
 using System.Collections;
 
-namespace Conductor.Triggers
+namespace Conductor.Patches
 {
     [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.ApplyDamage))]
     class OnOtherMonsterHitPatch

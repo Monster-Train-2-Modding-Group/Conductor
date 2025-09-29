@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "character_trigger_types": [
+    {
+      "id": "OnBuffed",
+      "hidden": true
+    },
+    {
+      "id": "OnDebuffed",
+      "hidden": true
+    }
+  ]
+}
