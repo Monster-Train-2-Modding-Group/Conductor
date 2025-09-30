@@ -14,7 +14,7 @@
       },
       "card_tooltips": {
         "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not [propagate].",
-        "chinese": "当获得[buff]时，获得的层数 +[codeint0]，[Conductor_divine_blessing]除外。<br>无法被[propagate]。"
+        "chinese": "当获得[buff]时，单位获得的层数 +[codeint0]，[Conductor_divine_blessing]除外。<br>无法被[propagate]。"
       },
       "character_tooltips": {
         "english": "When a [buff] is applied to this unit, it gains an additional +[codeint0] stacks.<br>[Conductor_divine_blessing] is excluded.<br>Does not [propagate].",
