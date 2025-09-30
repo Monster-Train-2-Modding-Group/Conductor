@@ -14,7 +14,7 @@
       },
       "card_tooltips": {
         "english": "Gain +[codeint0][attack] and +[codeint0][health] per stack at the end of turn.<br>Stacks remain across turns.<br>Stats gained don't persist on death.",
-        "chinese": "回合结束时，每有一层[Conductor_construct]，获得 +[codeint0][attack] 和 +[codeint0][health]。<br>层数会跨回合保留，但不会死后保留。"
+        "chinese": "回合结束时，每有一层[Conductor_construct]，单位获得 +[codeint0][attack] 和 +[codeint0][health]。<br>层数会跨回合保留，但不会死后保留。"
       },
       "character_tooltips": {
         "english": "Gain +[codeint0][attack] and +[codeint0][health] at the end of turn.<br>Stacks remain across turns.<br>Stats gained don't persist on death.",
