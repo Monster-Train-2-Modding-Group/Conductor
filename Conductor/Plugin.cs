@@ -38,9 +38,11 @@ namespace Conductor
                         //"json/status_effects/curse.json",
                         //"json/target_modes.json",
                         "json/traits.json",
+                        "json/event_triggers.json",
                         "json/triggers.json",
                         "json/room_modifiers.json"
-                        //"json/test.json"
+                        //,"json/test.json"
+                        //,"json/test2.json"
                     );
                 }
             );
@@ -50,28 +52,28 @@ namespace Conductor
                 {
                     var manager = c.GetInstance<IRegister<CharacterTriggerData.Trigger>>();
                     var triggerManager = c.GetInstance<IRegister<CardTriggerType>>();
-                    string id;
 
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Vengeance");
-                    CharacterTriggers.Vengeance = manager.GetValueOrDefault(id);
+                    CharacterTriggerData.Trigger GetTrigger(string id)
+                    {
+                        return manager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, id));
+                    }
 
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Junk");
-                    CharacterTriggers.Junk = manager.GetValueOrDefault(id);
+                    CardTriggerType GetCardTrigger(string id)
+                    {
+                        return triggerManager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, id));
+                    }
 
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Encounter");
-                    CharacterTriggers.Encounter = manager.GetValueOrDefault(id);
+                    CharacterTriggers.Vengeance = GetTrigger("Vengeance");
+                    CharacterTriggers.Junk = GetTrigger("Junk");
+                    CharacterTriggers.Encounter = GetTrigger("Encounter");
+                    CharacterTriggers.Penance = GetTrigger("Penance");
+                    CharacterTriggers.Accursed = GetTrigger("Accursed");
+                    CharacterTriggers.Evoke = GetTrigger("Evoke");
 
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Penance");
-                    CharacterTriggers.Penance = manager.GetValueOrDefault(id);
+                    CharacterTriggers.OnBuffed = GetTrigger("OnBuffed");
+                    CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed");
 
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Accursed");
-                    CharacterTriggers.Accursed = manager.GetValueOrDefault(id);
-
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, "Evoke");
-                    CharacterTriggers.Evoke = manager.GetValueOrDefault(id);
-
-                    id = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, "Junk");
-                    CardTriggers.Junk = triggerManager.GetValueOrDefault(id);
+                    CardTriggers.Junk = GetCardTrigger("Junk");
                 }
             );
             Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());

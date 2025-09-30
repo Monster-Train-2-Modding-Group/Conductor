@@ -1,7 +1,8 @@
-﻿using HarmonyLib;
+﻿using Conductor.Triggers;
+using HarmonyLib;
 using System.Collections;
 
-namespace Conductor.Triggers
+namespace Conductor.Patches
 {
     // Implementation of Penance and the other half of Accursed.
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.FireUnitTriggersForCardPlayed))]
@@ -42,7 +43,7 @@ namespace Conductor.Triggers
                 {
                     continue;
                 }
-                if ((overrideCharacterList == null || (!charState.IsDestroyed && charState.IsAlive && overrideCharacterList.Contains(charState))) && playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
+                if ((overrideCharacterList == null || !charState.IsDestroyed && charState.IsAlive && overrideCharacterList.Contains(charState)) && playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
                 {
                     foreach (var trigger in triggersToFire)
                     {

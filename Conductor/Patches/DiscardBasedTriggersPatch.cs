@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
+﻿using Conductor.Triggers;
+using HarmonyLib;
 using System.Collections;
 using static CardManager;
 
-namespace Conductor.Triggers
+namespace Conductor.Patches
 {
     // Junk (character), Junk (card), 1/2 of Accursed trigger implementations.
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.DiscardCard))]
