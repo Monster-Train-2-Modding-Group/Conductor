@@ -63,6 +63,16 @@
       "sprite": "@trigger_junk"
     },
     {
+      "id": "Mobilize",
+      "names": {
+        "english": "Mobilize"
+      },
+      "descriptions": {
+        "english": "Triggers when a unit is spawned on this floor."
+      },
+      "sprite": "@trigger_mobilize"
+    },
+    {
       "id": "Penance",
       "names": {
         "english": "Penance",
@@ -103,6 +113,10 @@
     {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
+    },
+    {
+      "id": "trigger_mobilize",
+      "path": "textures/trigger_mobilize.png"
     },
     {
       "id": "trigger_penance",
