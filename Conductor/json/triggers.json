@@ -68,7 +68,7 @@
         "english": "Mobilize"
       },
       "descriptions": {
-        "english": "Triggers when a unit is spawned on this floor."
+        "english": "Triggers when an allied unit is spawned on this floor."
       },
       "sprite": "@trigger_mobilize"
     },
