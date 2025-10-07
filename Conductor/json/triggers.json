@@ -69,7 +69,7 @@
         "chinese": "动员"
       },
       "descriptions": {
-        "english": "Triggers when a unit is spawned on this floor.",
+        "english": "Triggers when an allied unit is spawned on this floor.",
         "chinese": "在本层有单位被生成时触发。"
       },
       "sprite": "@trigger_mobilize"
