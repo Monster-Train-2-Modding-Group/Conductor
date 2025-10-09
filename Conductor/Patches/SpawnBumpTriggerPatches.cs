@@ -40,6 +40,7 @@ namespace Conductor.Patches
                     }
                     ___combatManager.QueueTrigger(__instance, CharacterTriggers.Encounter, fireTriggersData: new CharacterState.FireTriggersData
                     {
+                        paramInt = outCharacters.Count,
                         overrideTargetCharacter = character,
                     });
                 }
@@ -64,9 +65,10 @@ namespace Conductor.Patches
                 yield break;
             }
 
+            int numCharacters = __instance.GetCurrentRoom()?.GetNumCharacters(__instance.GetTeamType()) ?? 0;
             ___combatManager.QueueTrigger(__instance, CharacterTriggers.Mobilize, fireTriggersData: new CharacterState.FireTriggersData
             {
-                paramInt = __instance.GetCurrentRoom()?.GetNumCharacters(__instance.GetTeamType()) ?? 0,
+                paramInt = numCharacters,
                 overrideTargetCharacter = otherCharacter,
             });
 
@@ -90,6 +92,7 @@ namespace Conductor.Patches
             // Encounter has already been triggered for otherCharacter/__instance in OnSpawned. so trigger the opposite case
             ___combatManager.QueueTrigger(__instance, CharacterTriggers.Encounter, fireTriggersData: new CharacterState.FireTriggersData
             {
+                paramInt = numCharacters,
                 overrideTargetCharacter = otherCharacter,
             });
 
@@ -134,12 +137,14 @@ namespace Conductor.Patches
                         }
                         combatManager.QueueTrigger(other, CharacterTriggers.Encounter, fireTriggersData: new CharacterState.FireTriggersData
                         {
-                            paramInt = 1,
+                            paramInt = outCharacters.Count,
+                            paramInt2 = 1,
                             overrideTargetCharacter = character,
                         });
                         combatManager.QueueTrigger(character, CharacterTriggers.Encounter, fireTriggersData: new CharacterState.FireTriggersData
                         {
-                             paramInt = 1,
+                             paramInt = outCharacters.Count,
+                             paramInt2 = 1,
                              overrideTargetCharacter = other,
                         });
                     }

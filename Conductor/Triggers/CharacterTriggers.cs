@@ -77,7 +77,8 @@ namespace Conductor.Triggers
         /// <summary>
         /// Triggers when any card is discarded by an effect before end of turn.
         /// Parameters
-        ///   paramInt: The card's CardType as an int.
+        ///   paramInt: Max Hand Size - Hand size.
+        ///   paramInt2: The card's CardType as an int.
         /// </summary>
         public static CharacterTriggerData.Trigger Junk;
         internal static bool OnDiscardedAnyCard(TriggerOnCardDiscardedParams data, out QueueTriggerParams? triggerQueueData)
@@ -85,11 +86,13 @@ namespace Conductor.Triggers
             DiscardCardParams discardCardParams = data.DiscardCardParams;
             if (!discardCardParams.wasPlayed || (discardCardParams.triggeredByCard && discardCardParams.discardCard.HasTrait(typeof(CardTraitTreasure))))
             {
+                var cardManager = data.CoreGameManagers.GetCardManager();
                 triggerQueueData = new QueueTriggerParams
                 {
                     fireTriggersData = new FireTriggersData
                     {
-                        paramInt = (int) discardCardParams.discardCard.GetCardType()
+                        paramInt = cardManager.GetMaxHandSize() - cardManager.GetNumCardsInHand(),
+                        paramInt2 = (int) discardCardParams.discardCard.GetCardType()
                     }
                 };
                 return true;
@@ -104,7 +107,8 @@ namespace Conductor.Triggers
         /// 2. When unit relocates (up/down floor) triggers once per other allied unit.
         /// 
         /// Parameters
-        ///   paramInt: 0 if triggered as a result of unit spawning, 1 otherwise.
+        ///   paramInt: Number of allied units in the room
+        ///   paramInt2: 0 if triggered as a result of unit spawning, 1 otherwise.
         ///   overrideTargetCharacter: the other allied unit.
         /// </summary>
         public static CharacterTriggerData.Trigger Encounter;
