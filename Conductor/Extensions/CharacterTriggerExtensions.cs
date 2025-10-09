@@ -173,8 +173,8 @@ namespace Conductor.Extensions
         /// FireTriggersData. Optional, but if set, it will sets various trigger properties with this.
         /// Notably,
         ///    paramInt is used for CharacterTriggerData.triggerAtThreshold which powers Fel's Unchained III effect.
-        ///    overrideTargetCharacter can be used indirectly with some TargetModes and is also forwarded to CardEffectParams.overrideTargetCharacter
-        ///    any other parameters can be used in RelicEffect implementations.
+        ///    overrideTargetCharacter can be used indirectly with TargetMode (LastAttackedCharacter if effect used within a CharacterTrigger) and is also forwarded to CardEffectParams.overrideTargetCharacter
+        ///    any other parameters can be used in RelicEffect implementations particularly effects implementing the ICharacterActionRelicEffect interface.
         /// </summary>
         public CharacterState.FireTriggersData? fireTriggersData = null;
         /// <summary>
