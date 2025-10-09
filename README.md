@@ -4,30 +4,86 @@
 [![Trainworks Reloaded](https://img.shields.io/badge/framework-Trainworks--Reloaded-blue?logo=github)](https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded)
 [![License](https://img.shields.io/github/license/Monster-Train-2-Modding-Group/Conductor?color=lightgrey)](https://github.com/Monster-Train-2-Modding-Group/Conductor/blob/main/LICENSE)
 
-Central library of reusable custom effects, statuses, and keywords to make modding in monster train 2 safer and easier.
+---
+
+### Overview
+
+**Conductor** is a modding library for **Monster Train 2**, providing a growing collection of reusable effects, status effects, triggers, and keywords.  
+It’s designed to make modding **safer, cleaner, and easier** by abstracting away repetitive or risky code.
+
+Conductor builds on top of [**Trainworks-Reloaded**](https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded) and adds additional utilities, APIs, and hooks for advanced mod development.
+
+---
 
 ## Installation
 
-Firstly add Conductor to your dependencies in your thunderstore.toml file 
+### For Players
 
-If testing locally be sure grab a copy from releases and extract the contents of the folder to your `BepinEx/plugins` folder.
+If you install a mod that depends on **Conductor**, it will automatically be downloaded by your mod manager (e.g. r2modman).  
+No manual setup is needed.
 
-(Coming shortly) If using Conductor's utility functions a dependency must be added in your csproj file along with installing the nuget package.
+### For Developers
+
+1. Add **Conductor** to your dependencies in `thunderstore.toml`:
+
+   ```toml
+   [package.dependencies]
+   Conductor-Conductor = "0.1.9"
+   ```
+
+2. If testing locally, download the latest release and extract it into your `BepInEx/plugins` folder.
+
+3. *(Coming soon)* If you’re using Conductor’s utility functions as part of your build:
+
+   * Add a package reference to your `.csproj`:
+
+     ```xml
+     <PackageReference Include="Conductor" Version="0.1.9" />
+     ```
+   * Install the NuGet package once published.
+
+---
 
 ## Usage
 
-To learn what Conductor can do for you, be sure to check our [wiki](https://github.com/Monster-Train-2-Modding-Group/Conductor/wiki). This library is meant to be used as a dependency for other mods. 
+Check out the [**Conductor Wiki**](https://github.com/Monster-Train-2-Modding-Group/Conductor/wiki) for setup guides, API references, and examples.
 
-**Do not copy code or json from any file in this repository as it won't work in your own project**! Instead, reference the effects and classes from within your own json files.
+>  **Important:**
+> Do **not** copy any code or JSON directly from this repository.
+> Many assets depend on Conductor internals and will not function standalone.
+> Instead, **reference** Conductor’s effects, statuses, and utilities within your own project.
+
+---
+
+## Features at a Glance
+
+* Ready-to-use custom **effects**, **statuses**, and **keywords**
+* Quality-of-life APIs to simplify **mod logic**
+* Extensible systems built for **integration with Trainworks-Reloaded**
+* Future NuGet support for **direct library usage**
+
+---
 
 ## Attribution
 
-- Vengeance icon: <a href="https://www.flaticon.com/free-icons/knight" title="knight icons">Knight icons created by Freepik - Flaticon</a>
+Icons used in this project are credited as follows:
 
-- Encounter icon: [Find icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/find "find icons")
+* **Vengeance icon:** [Knight icons created by Freepik – Flaticon](https://www.flaticon.com/free-icons/knight)
+* **Encounter icon:** [Find icons created by Freepik – Flaticon](https://www.flaticon.com/free-icons/find)
+* **Junk icon:** [Recycle bin icons created by cah nggunung – Flaticon](https://www.flaticon.com/free-icons/recycle-bin)
+* **Intangible icon:** [Ghost icons created by Aldo Cervantes – Flaticon](https://www.flaticon.com/free-icons/ghost)
+* **Smirk icon:** [*Smirk* | Megami Tensei Wiki | Fandom](https://megamitensei.fandom.com/wiki/Smirk)
 
-- Junk icon: [Recycle bin icons created by cah nggunung - Flaticon](https://www.flaticon.com/free-icons/recycle-bin "recycle bin icons")
+---
 
-- Intangible icon: [Ghost icons created by Aldo Cervantes - Flaticon](https://www.flaticon.com/free-icons/ghost "ghost icons")
+## Contributing
 
-- Smirk icon: from SMT IV. [Smirk | Megami Tensei Wiki | Fandom](https://megamitensei.fandom.com/wiki/Smirk)
+Contributions and pull requests are always welcome!
+If you’d like to help expand Conductor’s features or documentation:
+
+* Open an issue with feature requests or bug reports
+* Submit a pull request
+* Join the discussion on the MT2 Discord [#mt2-modding](https://discord.com/channels/336546996779483136/1377778943674810368) channel.
+
+---
+
