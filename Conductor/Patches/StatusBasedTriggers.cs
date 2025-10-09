@@ -1,4 +1,5 @@
-﻿using Conductor.Interfaces;
+﻿using Conductor.Extensions;
+using Conductor.Interfaces;
 using Conductor.Triggers;
 using HarmonyLib;
 using ShinyShoe;
@@ -12,9 +13,6 @@ namespace Conductor.Patches
     [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.AddStatusEffect), [typeof(string), typeof(int), typeof(CharacterState.AddStatusEffectParams), typeof(CharacterState), typeof(bool), typeof(bool), typeof(bool), typeof(bool)])]
     class CharacterState_AddStatusEffect_StatusBasedTriggers
     {
-        static readonly MethodInfo ModifyStatusCountByOtherStatusMethod = typeof(CharacterState_AddStatusEffect_SelfPropagatingStatusEffectImplementationPatch).GetMethod("ModifyStatusCountByOtherStatus", BindingFlags.Static | BindingFlags.Public);
-        static readonly MethodInfo GetRoomStateModifiedStatusEffectCount = typeof(RoomState).GetMethod("GetRoomStateModifiedStatusEffectCount");
-
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var codes = new List<CodeInstruction>(instructions);
@@ -23,7 +21,6 @@ namespace Conductor.Patches
             for (int i = codes.Count - 1; i >= 0; i--)
             {
                 var instruction = codes[i];
-                Plugin.Logger.LogError($"{i}: {instruction}");
                 if (codes[i].opcode == OpCodes.Ldarg_1 &&
                     codes[i + 1].opcode == OpCodes.Ldstr && (string) codes[i + 1].operand == "silenced" &&
                     codes[i + 2].opcode == OpCodes.Call && codes[i + 2].operand is MethodInfo m && m.Name == "op_Equality" &&
@@ -45,7 +42,7 @@ namespace Conductor.Patches
             }
 
             var additionalStatusBasedTriggersMethod = AccessTools.Method(typeof(CharacterState_AddStatusEffect_StatusBasedTriggers), "AdditionalStatusBasedTriggers");
-            var combatManagerField = AccessTools.Field(typeof(CharacterState), "combatManager");
+            var allGameManagersField = AccessTools.Field(typeof(CharacterState), "allGameManagers");
 
             List<CodeInstruction> newInstructions = [
                 new CodeInstruction(OpCodes.Ldarg_0),                                    // CharacterState character
@@ -53,8 +50,8 @@ namespace Conductor.Patches
                 new CodeInstruction(OpCodes.Ldarg_2),                                    // int numStacks
                 new CodeInstruction(OpCodes.Ldloc_S, 2),                                 // StatusEffectStack value2
                 new CodeInstruction(OpCodes.Ldarg_0),
-                new CodeInstruction(OpCodes.Ldfld, combatManagerField),                  // CombatManager
-                new CodeInstruction(OpCodes.Call, additionalStatusBasedTriggersMethod),  // ModifyStatusCountByOtherStatus(CharacterState, string, int, StatusEffectStack, CombatManager)
+                new CodeInstruction(OpCodes.Ldfld, allGameManagersField),                // AllGameManagers
+                new CodeInstruction(OpCodes.Call, additionalStatusBasedTriggersMethod),  // ModifyStatusCountByOtherStatus(CharacterState, string, int, StatusEffectStack, AllGameManagers)
             ];
 
             newInstructions[0].labels.AddRange(codes[index].labels);
@@ -65,19 +62,42 @@ namespace Conductor.Patches
             return codes;
         }
 
-        public static void AdditionalStatusBasedTriggers(CharacterState character, string statusId, int numStacks, StatusEffectStack statusEffect, CombatManager combatManager)
+        public static void AdditionalStatusBasedTriggers(CharacterState character, string statusId, int numStacks, StatusEffectStack statusEffect, AllGameManagers allGameManagers)
         {
-            if (statusEffect.State.GetDisplayCategory() == StatusEffectData.DisplayCategory.Positive)
+            TriggerOnStatusAddedParams triggerParams = new()
             {
-                int num = character.GetNumberUniqueStatusEffectsInCategory(StatusEffectData.DisplayCategory.Positive, true);
-                combatManager.QueueTrigger(character, CharacterTriggers.OnBuffed, fireTriggersData: new FireTriggersData { paramString = statusId, paramInt = num, paramInt2 = statusEffect.Count });
-            }
-            if (statusEffect.State.GetDisplayCategory() == StatusEffectData.DisplayCategory.Negative)
+                StatusId = statusId,
+                Character = character,
+                NumStacks = numStacks,
+                StatusEffectStack = statusEffect,
+                Room = character.GetCurrentRoom(),
+                RoomIndex = character.GetCurrentRoomIndex(),
+                CoreGameManagers = allGameManagers.GetCoreManagers()
+            };
+            
+            foreach (var trigger_func in CharacterTriggerExtensions.TriggersOnStatusAdded)
             {
-                int num = character.GetNumberUniqueStatusEffectsInCategory(StatusEffectData.DisplayCategory.Negative, true);
-                combatManager.QueueTrigger(character, CharacterTriggers.OnDebuffed, fireTriggersData: new FireTriggersData { paramString = statusId, paramInt = num, paramInt2 = statusEffect.Count });
+                if (trigger_func.Value(triggerParams, out var queueTriggerParams))
+                {
+                    allGameManagers.GetCombatManager()!.QueueCustomTrigger(character, trigger_func.Key, queueTriggerParams);
+                }
             }
-            // TODO add hook for other folks to register a Trigger as a status based trigger.
+        }
+    }
+
+    [HarmonyPatch(typeof(StatusEffectManager), nameof(StatusEffectManager.ShouldTriggerStatusEffectOnUnit))]
+    public class StatusEffectManager_ShouldTriggerStatusBasedTriggerOnUnit
+    {
+        public static void Postfix(ref bool __result, CharacterTriggerData.Trigger triggerType, StatusEffectData.TriggerStage triggerStage)
+        {
+            if (__result)
+                return;
+
+            if (triggerStage != StatusEffectData.TriggerStage.OnPreCharacterTrigger)
+                return;
+
+            if (CharacterTriggerExtensions.PreCharacterTriggerAllowedTriggers.Contains(triggerType))
+                __result = true;
         }
     }
 }

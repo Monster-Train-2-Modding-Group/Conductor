@@ -15,6 +15,7 @@
     <None Remove="TargetModes\**" />
   </ItemGroup>
 
+
   <ItemGroup>
     <None Remove="json\target_modes.json" />
   </ItemGroup>

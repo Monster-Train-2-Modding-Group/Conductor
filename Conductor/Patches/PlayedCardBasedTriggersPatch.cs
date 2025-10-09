@@ -1,6 +1,8 @@
-﻿using Conductor.Triggers;
+﻿using Conductor.Extensions;
+using Conductor.Triggers;
 using HarmonyLib;
 using System.Collections;
+using static CharacterTriggerData;
 
 namespace Conductor.Patches
 {
@@ -8,7 +10,7 @@ namespace Conductor.Patches
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.FireUnitTriggersForCardPlayed))]
     public class PlayedCardCharacterTriggerTypePatch
     {
-        public static IEnumerator Postfix(IEnumerator enumerator, CardManager __instance, CombatManager ___combatManager, RoomManager ___roomManager,
+        public static IEnumerator Postfix(IEnumerator enumerator, CardManager __instance, CombatManager ___combatManager, RoomManager ___roomManager, AllGameManagers ___allGameManagers,
                                           ICharacterManager characterManager, CardState playedCard, int playedRoomIndex, List<CharacterState> overrideCharacterList, CharacterState characterThatActivatedAbility)
         {
             while (enumerator.MoveNext())
@@ -16,26 +18,23 @@ namespace Conductor.Patches
                 var currentType = enumerator.Current.GetType();
                 if (currentType.DeclaringType == typeof(CombatManager) && currentType.Name.Contains("RunTriggerQueue"))
                 {
-                    yield return HandlePlayedCardTriggers(__instance, ___combatManager, ___roomManager, characterManager, playedCard, playedRoomIndex, overrideCharacterList, characterThatActivatedAbility);
+                    yield return HandlePlayedCardTriggers(__instance, ___combatManager, ___roomManager, ___allGameManagers, characterManager, playedCard, playedRoomIndex, overrideCharacterList, characterThatActivatedAbility);
                 }
                 yield return enumerator.Current;
             }
         }
 
-        // TODO return a Tuple with Trigger, triggerFireCount.
-        // Do not patch.
-        public static CharacterTriggerData.Trigger[] GetCustomTriggersForCardPlayed(CardState playedCard)
+        internal static IEnumerator HandlePlayedCardTriggers(CardManager instance, CombatManager combatManager, RoomManager roomManager, AllGameManagers allGameManagers, ICharacterManager characterManager, CardState playedCard, int playedRoomIndex, List<CharacterState> overrideCharacterList, CharacterState characterThatActivatedAbility)
         {
-            if (playedCard.GetCardType() == CardType.Junk || playedCard.GetCardType() == CardType.Blight)
-                return [CharacterTriggers.Penance, CharacterTriggers.Accursed];
-            else if (playedCard.IsUnitAbility())
-                return [CharacterTriggers.Evoke];
-            return Array.Empty<CharacterTriggerData.Trigger>();
-        }
+            var triggerOnCardPlayedParams = new TriggerOnCardPlayedParams
+            {
+                Card = playedCard,
+                RoomIndex = playedRoomIndex,
+                Room = roomManager.GetRoom(playedRoomIndex),
+                CharacterThatActivatedAbility = characterThatActivatedAbility,
+                CoreGameManagers = allGameManagers.GetCoreManagers()
+            };
 
-        public static IEnumerator HandlePlayedCardTriggers(CardManager instance, CombatManager combatManager, RoomManager roomManager, ICharacterManager characterManager, CardState playedCard, int playedRoomIndex, List<CharacterState> overrideCharacterList, CharacterState characterThatActivatedAbility)
-        {
-            var triggersToFire = GetCustomTriggersForCardPlayed(playedCard);
             for (int c = 0; c < characterManager.GetNumCharacters(); c++)
             {
                 var charState = characterManager.GetCharacter(c);
@@ -45,13 +44,17 @@ namespace Conductor.Patches
                 }
                 if ((overrideCharacterList == null || !charState.IsDestroyed && charState.IsAlive && overrideCharacterList.Contains(charState)) && playedCard.CharacterInRoomAtTimeOfCardPlay(charState))
                 {
-                    foreach (var trigger in triggersToFire)
+                    triggerOnCardPlayedParams.Character = charState;
+                    foreach (var trigger_test in CharacterTriggerExtensions.TriggersOnCardPlayed)
                     {
-                        combatManager.QueueTrigger(charState, trigger, null, canAttackOrHeal: true, canFireTriggers: true, null, 1);
+                        if (trigger_test.Value(triggerOnCardPlayedParams, out var queueTriggerParams))
+                        {
+                            combatManager.QueueCustomTrigger(charState, trigger_test.Key, queueTriggerParams);
+                        }
                     }
                 }
             }
-            yield break;
+            yield return combatManager.RunTriggerQueue();
         }
     }
 }

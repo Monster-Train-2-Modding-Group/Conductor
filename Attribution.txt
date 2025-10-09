@@ -7,3 +7,6 @@ Construct icon: <a href="https://www.flaticon.com/free-icons/gears" title="gears
 Halo icon: <a href="https://www.flaticon.com/free-icons/halo" title="halo icons">Halo icons created by Freepik - Flaticon</a>
 prayer icon: <a href="https://www.flaticon.com/free-icons/pray" title="pray icons">Pray icons created by Aranagraphics - Flaticon</a>
 skull icon: <a href="https://www.flaticon.com/free-icons/skull" title="skull icons">Skull icons created by muhammad atho' - Flaticon</a>
+star icon: <a href="https://www.flaticon.com/free-icons/star" title="star icons">Star icons created by Freepik - Flaticon</a>
+sniper icon: <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by Smashicons - Flaticon</a>
+piercing icon: <a href="https://www.flaticon.com/free-icons/rpg-game" title="rpg game icons">Rpg game icons created by afif fudin - Flaticon</a>

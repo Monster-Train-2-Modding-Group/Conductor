@@ -2,16 +2,16 @@
 using BepInEx.Logging;
 using Conductor.Triggers;
 using HarmonyLib;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
+using Conductor.Extensions;
 using TrainworksReloaded.Base;
 using TrainworksReloaded.Base.Extensions;
 using TrainworksReloaded.Core;
 using TrainworksReloaded.Core.Extensions;
 using TrainworksReloaded.Core.Interfaces;
 using static CharacterTriggerData;
+using UnityEngine;
+using UnityEngine.U2D;
 
 namespace Conductor
 {
@@ -19,6 +19,12 @@ namespace Conductor
     public class Plugin : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger = new(MyPluginInfo.PLUGIN_GUID);
+
+        public static void Log(string message)
+        {
+            var timestamp = DateTime.UtcNow.ToString("HH:mm:ss.ffffff");
+            Logger.LogError($"[{timestamp}] {message}");
+        }
 
         public void Awake()
         {
@@ -35,6 +41,8 @@ namespace Conductor
                         "json/status_effects/intangible.json",
                         "json/status_effects/smirk.json",
                         "json/status_effects/construct.json",
+                        //"json/status_effects/test.json",
+                        "json/status_effects/other_sprites.json",
                         //"json/status_effects/curse.json",
                         //"json/target_modes.json",
                         "json/traits.json",
@@ -63,17 +71,43 @@ namespace Conductor
                         return triggerManager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, id));
                     }
 
-                    CharacterTriggers.Vengeance = GetTrigger("Vengeance");
-                    CharacterTriggers.Junk = GetTrigger("Junk");
-                    CharacterTriggers.Encounter = GetTrigger("Encounter");
-                    CharacterTriggers.Penance = GetTrigger("Penance");
-                    CharacterTriggers.Accursed = GetTrigger("Accursed");
-                    CharacterTriggers.Evoke = GetTrigger("Evoke");
+                    CharacterTriggers.Vengeance = GetTrigger("Vengeance").SetToTriggerOnCharacterHit(CharacterTriggers.OnAlliedCharacterHit);
+                    CharacterTriggers.Swarm = GetTrigger("Swarm").SetToTriggerOnCharacterHit(CharacterTriggers.OnOpposingCharacterHitNonSpell);
+                    CharacterTriggers.Junk = GetTrigger("Junk").SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedAnyCard);
+                    CharacterTriggers.Penance = GetTrigger("Penance").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge);
+                    CharacterTriggers.Accursed = GetTrigger("Accursed").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge).SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedBlightOrScourge);
+                    CharacterTriggers.Evoke = GetTrigger("Evoke").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedUnitAbility);
+                    CharacterTriggers.OnBuffed = GetTrigger("OnBuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedABuff).AllowTriggerToFirePreCharacterTriggerStatus();
+                    CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedADebuff).AllowTriggerToFirePreCharacterTriggerStatus();
 
-                    CharacterTriggers.OnBuffed = GetTrigger("OnBuffed");
-                    CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed");
+                    // Implementations of Mobilize/Encounter is in EncounterTriggerPatches.
+                    CharacterTriggers.Mobilize = GetTrigger("Mobilize");
+                    CharacterTriggers.Encounter = GetTrigger("Encounter");
 
                     CardTriggers.Junk = GetCardTrigger("Junk");
+
+
+                    // Set sprites for abandoned tech
+                    var spriteManager = c.GetInstance<IRegister<Sprite>>();
+                    var iconField = AccessTools.Field(typeof(StatusEffectData), "icon");
+                    Sprite? GetSprite(string id)
+                    {
+                        return spriteManager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.Sprite, id));
+                    }
+
+                    // Piercing status not fully implemented.
+                    /* 
+                    var piercing = StatusEffectManager.Instance.GetStatusEffectDataById("piercing");
+                    if (piercing != null && piercing.GetIcon() == null)
+                    {
+                        Logger.LogError("Set Piercing----------------------------------");
+                        iconField.SetValue(piercing, GetSprite("Piercing"));
+                    }*/
+                    var sniper = StatusEffectManager.Instance.GetStatusEffectDataById("sniper");
+                    if (sniper != null && sniper.GetIcon() == null)
+                    {
+                        iconField.SetValue(sniper, GetSprite("Sniper"));
+                    }
                 }
             );
             Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());

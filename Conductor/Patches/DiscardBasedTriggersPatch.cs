@@ -1,7 +1,11 @@
-﻿using Conductor.Triggers;
+﻿using Conductor.Extensions;
+using Conductor.Triggers;
 using HarmonyLib;
+using ShinyShoe;
+using SickDev.DevConsole.Example;
 using System.Collections;
 using static CardManager;
+using static CharacterTriggerData;
 
 namespace Conductor.Patches
 {
@@ -9,21 +13,21 @@ namespace Conductor.Patches
     [HarmonyPatch(typeof(CardManager), nameof(CardManager.DiscardCard))]
     class DiscardCharacterTriggerTypePatch
     {
-        public static IEnumerator Postfix(IEnumerator enumerator, CardManager __instance, CombatManager ___combatManager, RoomManager ___roomManager, DiscardCardParams discardCardParams)
+        public static IEnumerator Postfix(IEnumerator enumerator, CardManager __instance, CombatManager ___combatManager, RoomManager ___roomManager, AllGameManagers ___allGameManagers, DiscardCardParams discardCardParams)
         {
             while (enumerator.MoveNext())
             {
                 var currentType = enumerator.Current.GetType();
                 if (currentType.DeclaringType == typeof(RelicManager) && currentType.Name.Contains("ApplyOnDiscardRelicEffects"))
                 {
-                    yield return HandleDiscardTriggers(__instance, ___combatManager, ___roomManager, discardCardParams);
+                    yield return HandleDiscardTriggers(__instance, ___combatManager, ___roomManager, ___allGameManagers.GetCoreManagers(), discardCardParams);
                 }
 
                 yield return enumerator.Current;
             }
         }
 
-        public static IEnumerator HandleDiscardTriggers(CardManager cardManager, CombatManager combatManager, RoomManager roomManager, DiscardCardParams discardCardParams)
+        public static IEnumerator HandleDiscardTriggers(CardManager cardManager, CombatManager combatManager, RoomManager roomManager, ICoreGameManagers coreGameManagers, DiscardCardParams discardCardParams)
         {
             // End of turn discard all cards from hand.
             if (discardCardParams.handDiscarded)
@@ -41,22 +45,57 @@ namespace Conductor.Patches
                 }
             }
 
+            var room = roomManager.GetRoom(roomManager.GetSelectedRoom());
+            var data = new TriggerOnCardDiscardedParams
+            {
+                DiscardCardParams = discardCardParams,
+                RoomIndex = roomManager.GetSelectedRoom(),
+                Room = room,
+                CoreGameManagers = coreGameManagers
+            };
+
+            List<CharacterState> outCharacters;
+            using (GenericPools.GetList(out outCharacters))
+            {
+                room.AddCharactersToList(outCharacters, Team.Type.Monsters);
+                foreach (CharacterState item in outCharacters)
+                {
+                    foreach (var trigger_func in CharacterTriggerExtensions.TriggersOnCardDiscarded)
+                    {
+                        var trigger = trigger_func.Key;
+                        data.Character = item;
+                        if (trigger_func.Value(data, out var queueTriggerParams))
+                        {
+                            combatManager.QueueCustomTrigger(item, trigger, queueTriggerParams);
+                        }
+                    }                    
+                }
+                yield return combatManager.RunTriggerQueue();
+
+                outCharacters.Clear();
+
+                room.AddCharactersToList(outCharacters, Team.Type.Heroes);
+                foreach (CharacterState item2 in outCharacters)
+                {
+                    data.Character = item2;
+                    foreach (var trigger_func in CharacterTriggerExtensions.TriggersOnCardDiscarded)
+                    {
+                        var trigger = trigger_func.Key;
+                        if (trigger_func.Value(data, out var queueTriggerParams))
+                        {
+                            combatManager.QueueCustomTrigger(item2, trigger, queueTriggerParams);
+                        }
+                    }
+                }
+                yield return combatManager.RunTriggerQueue();
+            }
+
+            // TODO abstract out card trigger.
             bool flag = discardCardParams.triggeredByCard && discardCardParams.discardCard.HasTrait(typeof(CardTraitTreasure));
-            // TODO this code may need to be revisited.
-            // triggeredByCard is surely set if wasPlayed == false. However in the future an artifact could discard a card which that field would not be set.
-            if (flag && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
-            {
-                yield return combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Penance, roomManager.GetSelectedRoom());
-            }
-            if (discardCardParams.triggeredByCard && (discardCardParams.discardCard.GetCardType() == CardType.Junk || discardCardParams.discardCard.GetCardType() == CardType.Blight))
-            {
-                yield return combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Accursed, roomManager.GetSelectedRoom());
-            }
             if (!discardCardParams.wasPlayed || flag)
             {
-                yield return combatManager.ApplyCharacterEffectsForRoom(CharacterTriggers.Junk, roomManager.GetSelectedRoom());
-
-                foreach (var card in cardManager.GetHand(shouldCopy: true))
+                var hand = cardManager.GetHand(shouldCopy: true);
+                foreach (var card in hand)
                 {
                     yield return combatManager.ApplyCardTriggers(CardTriggers.Junk, card, fireAllMonsterTriggersInRoom: false, roomManager.GetSelectedRoom());
                 }

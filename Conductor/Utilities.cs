@@ -5,10 +5,13 @@ namespace Conductor
 {
     public static class Utilities
     {
+        internal static FieldInfo TraitsSupportedInTooltips = AccessTools.Field(typeof(TooltipContainer), "TraitsSupportedInTooltips");
+        internal static FieldInfo StatesSupportedInTooltips = AccessTools.Field(typeof(TooltipContainer), "StatesSupportedInTooltips");
+
         /// <summary>
         /// CardTraits have to be whitelisted to display a tooltip.
         /// </summary>
-        /// <param name="assembly">Optional assembly to pass in. If not specified the caller's assesmbly is assumed</param>
+        /// <param name="assembly">Optional assembly to pass in. If not specified the caller's assembly is assumed</param>
         public static void SetupTraitTooltips(Assembly? assembly)
         {
             assembly = assembly ?? Assembly.GetCallingAssembly();
@@ -18,7 +21,7 @@ namespace Conductor
                 // CardTraits that have a tooltip.
                 if (type.IsSubclassOf(typeof(CardTraitState)))
                 {
-                    bool needsATooltip = type.GetMethod("GetCardTooltipText").DeclaringType == type;
+                    bool needsATooltip = AccessTools.Method(type, "GetCardTooltipText").DeclaringType == type;
                     if (needsATooltip)
                     {
                         cardTraitNames.Add(type.Name);
@@ -27,7 +30,7 @@ namespace Conductor
 
                 }
             }
-            var traits = (HashSet<string>)AccessTools.Field(typeof(TooltipContainer), "TraitsSupportedInTooltips").GetValue(null);
+            var traits = (HashSet<string>)TraitsSupportedInTooltips.GetValue(null);
             traits.UnionWith(cardTraitNames);
         }
 
@@ -35,7 +38,7 @@ namespace Conductor
         /// CardEffects have to be whitelisted to display a tooltip.
         /// 
         /// </summary>
-        /// <param name="assembly">Optional assembly to pass in. If not specified the caller's assesmbly is assumed</param>
+        /// <param name="assembly">Optional assembly to pass in. If not specified the caller's assembly is assumed</param>
         public static void SetupCardEffectTooltips(Assembly? assembly = null)
         {
             assembly = assembly ?? Assembly.GetCallingAssembly();
@@ -45,14 +48,14 @@ namespace Conductor
                 // CardEffects that have a tooltip.
                 if (type.IsSubclassOf(typeof(CardEffectBase)))
                 {
-                    bool needsATooltip = type.GetMethod("CreateAdditionalTooltips").DeclaringType == type;
+                    bool needsATooltip = AccessTools.Method(type, "CreateAdditionalTooltips").DeclaringType == type;
                     if (needsATooltip)
                     {
                         cardTraitNames.Add(type.AssemblyQualifiedName);
                     }
                 }
             }
-            var states = (List<string>)AccessTools.Field(typeof(TooltipContainer), "StatesSupportedInTooltips").GetValue(null);
+            var states = (List<string>)StatesSupportedInTooltips.GetValue(null);
             states.AddRange(cardTraitNames);
         }
     }
