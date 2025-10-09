@@ -1,5 +1,9 @@
 # Conductor
 
+[![GitHub Release](https://img.shields.io/github/v/release/Monster-Train-2-Modding-Group/Conductor?color=4CAF50&label=latest)](https://github.com/Monster-Train-2-Modding-Group/Conductor/releases)
+[![Trainworks Reloaded](https://img.shields.io/badge/framework-Trainworks--Reloaded-blue?logo=github)](https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded)
+[![License](https://img.shields.io/github/license/Monster-Train-2-Modding-Group/Conductor?color=lightgrey)](https://github.com/Monster-Train-2-Modding-Group/Conductor/blob/main/LICENSE)
+
 Central library of reusable custom effects, statuses, and keywords to make modding in monster train 2 safer and easier.
 
 ## Installation
