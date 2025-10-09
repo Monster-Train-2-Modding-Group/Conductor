@@ -87,13 +87,25 @@
       "sprite": "@trigger_penance"
     },
     {
+      "id": "Swarm",
+      "names": {
+        "english": "Swarm",
+        "chinese": ""
+      },
+      "descriptions": {
+        "english": "Triggers when an opposing unit is hit by an ally of this unit.",
+        "chinese": ""
+      },
+      "sprite": "@trigger_swarm"
+    },
+    {
       "id": "Vengeance",
       "names": {
         "english": "Vengeance",
         "chinese": "复仇（盟友）"
       },
       "descriptions": {
-        "english": "Triggers when an allied unit is hit by an opposing unit.",
+        "english": "Triggers when an allied unit is hit by an opposing unit or spell.",
         "chinese": "本层友方单位被敌方单位命中时触发。"
       },
       "sprite": "@trigger_vengeance"
