@@ -6,9 +6,6 @@ using static CharacterState;
 
 namespace Conductor.Extensions
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public struct TriggerOnStatusAddedParams
     {
         /// <summary>
@@ -186,8 +183,13 @@ namespace Conductor.Extensions
         /// </summary>
         public int triggerCount = 1;
         /// <summary>
-        /// Use of this param is unknown at the time I wrote this. Setting this prevents other triggers of same CharacterTriggerData.Trigger type from firing
+        /// Rarely used. Setting this prevents other triggers of same CharacterTriggerData.Trigger type from firing
         /// if it is not exactly this specific CharacterTriggerState.
+        /// 
+        /// The current use of this is to run a Deathwish lost (Vanguard cancel) trigger when the trigger is removed.
+        /// 
+        /// I'd suggest not depending on this working as in a rare case if the trigger gets requeued this param is not forwarded.
+        /// Best to not use at all, since it is an internal parameter.
         /// </summary>
         public CharacterTriggerState? exclusiveTrigger = null;
         public QueueTriggerParams() {}
