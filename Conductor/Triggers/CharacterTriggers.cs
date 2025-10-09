@@ -42,21 +42,24 @@ namespace Conductor.Triggers
 
         /// <summary>
         /// Triggers when any opposing unit is hit by an allied unit.
-        /// Does not include damage from a spells or status effects.
+        /// Does not include damage from spells or status effects.
         /// 
         /// Parameters
         ///   paramInt: Original damage dealt before shields and titanskin.
         ///   paramInt2: DamageType casted to int.
         ///   overrideTargetCharacter: Last attacker character (can not be pyre).
         /// </summary>
-        public static CharacterTriggerData.Trigger Swarm;
-        internal static bool OnOpposingCharacterHitNonSpell(TriggerOnCharacterHitParams data, out QueueTriggerParams? queueTriggerParams)
+        public static CharacterTriggerData.Trigger FollowUp;
+        internal static bool OnOpposingCharacterHitByDirectAttack(TriggerOnCharacterHitParams data, out QueueTriggerParams? queueTriggerParams)
         {
             // 1. The character damaged is an opposing unit.
             // 2. The damage source has to be from a unit.
             // 3. The character who is being triggered has to be an allied unit.
             // 4. The character being triggered can not be the unit who successfully attacked.
-            if (data.DamagedCharacter.GetTeamType() != data.Character.GetTeamType() && data.DamageParams.attacker != null && data.DamageParams.attacker.GetTeamType() == data.Character.GetTeamType() && data.Character != data.DamageParams.attacker)
+            // 5. The damage must be from a direct attack, trample, or splash (unused) or from a Unit Ability. [this excludes damage from status effects and spells]
+            if (data.DamagedCharacter.GetTeamType() != data.Character.GetTeamType() && data.DamageParams.attacker != null && data.DamageParams.attacker.GetTeamType() == data.Character.GetTeamType() && data.Character != data.DamageParams.attacker &&
+                (data.DamageParams.damageType == Damage.Type.DirectAttack || data.DamageParams.damageType == Damage.Type.Trample || data.DamageParams.damageType == Damage.Type.Splash || (data.DamageParams.damageSourceCard != null && data.DamageParams.damageSourceCard.IsUnitAbility())) 
+                )
             {
                 queueTriggerParams = new QueueTriggerParams
                 {
