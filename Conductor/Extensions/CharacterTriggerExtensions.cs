@@ -223,7 +223,6 @@ namespace Conductor.Extensions
 
         /// <summary>
         /// Sets the trigger to fire in CharacterState.AddStatusEffect after the status effect is added to the character
-        /// 
         /// </summary>
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being added.</param>
@@ -237,7 +236,6 @@ namespace Conductor.Extensions
 
         /// <summary>
         /// Sets the trigger to fire in CardManager.FireTriggersForCardPlayed based on the result of func.
-        /// 
         /// </summary>
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being added.</param>
@@ -265,12 +263,11 @@ namespace Conductor.Extensions
         /// <summary>
         /// Sets the trigger to fire in CharacterState.OnOtherCharacterSpawned based on the result of func.
         /// 
-        /// Note that the aforementioned function is called when a allied unit is spawned.
-        /// 
+        /// Note that the aforementioned function is called only when a allied unit is spawned.
         /// </summary>
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of another character being spawned</param>
-        /// <returns></returns>
+        /// <returns>The trigger</returns>
         public static CharacterTriggerData.Trigger SetToTriggerOnCharacterSpawned(this CharacterTriggerData.Trigger trigger, TriggerOnAnotherSpawnDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -280,11 +277,10 @@ namespace Conductor.Extensions
 
         /// <summary>
         /// Sets the trigger to fire in CharacterState.ApplyDamage based on the result of func.
-        /// 
         /// </summary>
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of another character being hit</param>
-        /// <returns></returns>
+        /// <returns>The trigger</returns>
         public static CharacterTriggerData.Trigger SetToTriggerOnCharacterHit(this CharacterTriggerData.Trigger trigger, TriggerOnCharacterHitDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -315,28 +311,6 @@ namespace Conductor.Extensions
             combatManager.QueueTrigger(character, trigger, dyingCharacter: data?.dyingCharacter, canAttackOrHeal: data?.canAttackOrHeal ?? true,
                                        canFireTriggers: data?.canFireTriggers ?? true, fireTriggersData: data?.fireTriggersData, triggerCount: data?.triggerCount ?? 1,
                                        exclusiveTrigger: data?.exclusiveTrigger);
-        }
-
-        internal static IEnumerator ApplyCustomCharacterEffectsForRoom(this CombatManager combatManager, CharacterTriggerData.Trigger trigger, RoomState? room, QueueTriggerParams? queueTriggerParams)
-        {
-            if (room == null)
-            {
-                yield break;
-            }
-            List<CharacterState> applyRoomCharacterEffects = [];
-            room.AddCharactersToList(applyRoomCharacterEffects, Team.Type.Monsters);
-            foreach (CharacterState item in applyRoomCharacterEffects)
-            {
-                combatManager.QueueCustomTrigger(item, trigger, queueTriggerParams);
-            }
-            yield return combatManager.RunTriggerQueue();
-            applyRoomCharacterEffects.Clear();
-            room.AddCharactersToList(applyRoomCharacterEffects, Team.Type.Heroes);
-            foreach (CharacterState item2 in applyRoomCharacterEffects)
-            {
-                combatManager.QueueCustomTrigger(item2, trigger, queueTriggerParams);
-            }
-            yield return combatManager.RunTriggerQueue();
         }
     }
 }
