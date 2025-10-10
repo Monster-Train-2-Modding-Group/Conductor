@@ -34,7 +34,7 @@
       },
       "descriptions": {
         "english": "Triggers when this unit encounters another friendly unit.",
-        "chinese": "遇到其他盟友时触发。"
+        "chinese": "遇到其他友方单位时触发。"
       },
       "sprite": "@trigger_encounter"
     },
@@ -46,7 +46,7 @@
       },
       "descriptions": {
         "english": "Triggers when any unit's ability is activated on this floor.",
-        "chinese": "该单位任意盟友的能力激活时触发。"
+        "chinese": "本层任意单位的能力激活时触发。"
       },
       "sprite": "@trigger_evoke"
     },
@@ -54,11 +54,11 @@
       "id": "FollowUp",
       "names": {
         "english": "Follow-up",
-        "chinese": ""
+        "chinese": "连携"
       },
       "descriptions": {
         "english": "Triggers when an opposing unit is directly hit by an ally of this unit.",
-        "chinese": ""
+        "chinese": "本层对方单位被盟友单位直接命中时触发。"
       },
       "sprite": "@trigger_followup"
     },
@@ -82,7 +82,7 @@
       },
       "descriptions": {
         "english": "Triggers when an allied unit is spawned on this floor.",
-        "chinese": "在本层有单位被生成时触发。"
+        "chinese": "在本层有盟友单位被生成时触发。"
       },
       "sprite": "@trigger_mobilize"
     },
@@ -106,7 +106,7 @@
       },
       "descriptions": {
         "english": "Triggers when an allied unit is hit by an opposing unit or spell.",
-        "chinese": "本层友方单位被敌方单位命中时触发。"
+        "chinese": "本层盟友单位被对方单位或法术命中时触发。"
       },
       "sprite": "@trigger_vengeance"
     }
