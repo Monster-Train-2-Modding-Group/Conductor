@@ -1,0 +1,82 @@
+name: Package
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+  workflow_dispatch:  # Allow manual runs
+
+env:
+  base_version: '0.1.0'
+  nuget_source: 'https://nuget.pkg.github.com/Monster-Train-2-Modding-Group/index.json'
+
+permissions:
+  packages: write
+
+jobs:
+  build:
+    name: Build and Pack NuGet Packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Release]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Branch Name
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          PACKAGE_PREFIX=$(echo $BRANCH_NAME | rev | cut -d/ -f1 | rev | tr '_' '-')
+          [[ "$BRANCH_NAME" == "main" ]] && PACKAGE_PREFIX="preview"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          echo "PACKAGE_PREFIX=$PACKAGE_PREFIX" >> $GITHUB_ENV
+          
+      - name: Set VERSION Variable
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            TAG_NAME=${GITHUB_REF#refs/tags/}
+            echo "VERSION=$TAG_NAME" >> $GITHUB_ENV
+          else
+            echo "VERSION=${{ env.base_version }}-preview.${{ github.run_number }}" >> $GITHUB_ENV
+          fi
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup NuGet Credentials
+        run: |
+          dotnet nuget update source monster-train-packages -u USERNAME -p ${{ secrets.NUGET_TOKEN }} --store-password-in-clear-text
+      
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Solution
+        run: dotnet build --configuration ${{ matrix.configuration }} --no-restore
+
+      - name: Pack NuGet Packages
+        run: dotnet pack Conductor/Conductor.csproj --configuration ${{ matrix.configuration }} --output ./artifacts /p:Version=${VERSION}
+
+      - name: Upload NuGet Packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: ./artifacts/*.nupkg
+
+  publish:
+    name: Publish NuGet Packages
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/') }}
+    steps:
+      - name: Download Packages
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget-packages
+
+      - name: Publish to NuGet Registry
+        run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_TOKEN }} -s ${{ env.nuget_source }} --skip-duplicate
