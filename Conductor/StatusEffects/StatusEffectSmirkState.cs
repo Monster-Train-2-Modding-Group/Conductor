@@ -8,8 +8,6 @@ namespace Conductor.StatusEffects
     /// </summary>
     class StatusEffectSmirkState : StatusEffectState
     {
-        public const string StatusId = "conductor_smirk";
-
         public override bool TestTrigger(InputTriggerParams inputTriggerParams, OutputTriggerParams outputTriggerParams, ICoreGameManagers coreGameManagers)
         {
             if (inputTriggerParams.attacked == null)
@@ -81,7 +79,7 @@ namespace Conductor.StatusEffects
 
         public override int GetMagnitudePerStack()
         {
-            return GetParamInt() + relicManager.GetModifiedStatusMagnitudePerStack(StatusId, GetAssociatedCharacter().GetTeamType());
+            return GetParamInt() + relicManager.GetModifiedStatusMagnitudePerStack(GetStatusId(), GetAssociatedCharacter().GetTeamType());
         }
     }
 }

@@ -9,8 +9,6 @@ namespace Conductor.StatusEffects
 
     public sealed class StatusEffectConstructState : StatusEffectState
     {
-        public const string StatusId = "conductor_construct";
-
         public override int GetTriggerOrder()
         {
             return 1;
@@ -55,7 +53,7 @@ namespace Conductor.StatusEffects
 
         private int GetConstructAmount(int stacks)
         {
-            return (base.GetParamInt() + this.relicManager.GetModifiedStatusMagnitudePerStack("construct", base.GetAssociatedCharacter().GetTeamType())) * stacks;
+            return (base.GetParamInt() + this.relicManager.GetModifiedStatusMagnitudePerStack(GetStatusId(), base.GetAssociatedCharacter().GetTeamType())) * stacks;
         }
     }
 }

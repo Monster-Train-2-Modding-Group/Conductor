@@ -4,11 +4,9 @@ namespace Conductor.StatusEffects
 {
     class StatusEffectHexState : StatusEffectState, IOnOtherStatusEffectAdded
     {
-        public const string StatusId = "conductor_hex";
-
         public int OnOtherStatusEffectBeingAdded(int myStacks, string statusId, int numStacks)
         {
-            if (statusId == StatusId)
+            if (statusId == GetStatusId())
             {
                 return numStacks;
             }

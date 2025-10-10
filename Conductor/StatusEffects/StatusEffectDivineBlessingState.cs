@@ -4,11 +4,9 @@ namespace Conductor.StatusEffects
 {
     class StatusEffectDivineBlessingState : StatusEffectState, IOnOtherStatusEffectAdded
     {
-        public const string StatusId = "conductor_divine_blessing";
-
         public int OnOtherStatusEffectBeingAdded(int myStacks, string statusId, int numStacks)
         {
-            if (statusId == StatusId)
+            if (statusId == GetStatusId())
             {
                 return numStacks;
             }
