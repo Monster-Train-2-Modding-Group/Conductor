@@ -51,6 +51,18 @@
       "sprite": "@trigger_evoke"
     },
     {
+      "id": "FollowUp",
+      "names": {
+        "english": "Follow-up",
+        "chinese": "连携"
+      },
+      "descriptions": {
+        "english": "Triggers when an opposing unit is directly hit by an ally of this unit.",
+        "chinese": "本层对方单位被盟友单位直接命中时触发。"
+      },
+      "sprite": "@trigger_followup"
+    },
+    {
       "id": "Junk",
       "names": {
         "english": "Junk",
@@ -85,18 +97,6 @@
         "chinese": "在本层打出[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_penance"
-    },
-    {
-      "id": "Swarm",
-      "names": {
-        "english": "Swarm",
-        "chinese": "连携"
-      },
-      "descriptions": {
-        "english": "Triggers when an opposing unit is hit by an ally of this unit.",
-        "chinese": "本层对方单位被盟友单位命中时触发。"
-      },
-      "sprite": "@trigger_swarm"
     },
     {
       "id": "Vengeance",
@@ -137,6 +137,10 @@
       "path": "textures/trigger_penance.png"
     },
     {
+      "id": "trigger_followup",
+      "path": "textures/trigger_swarm.png"
+    },
+    {
       "id": "trigger_vengeance",
       "path": "textures/trigger_vengeance.png"
     }
@@ -161,6 +165,10 @@
     {
       "id": "trigger_penance",
       "path": "textures/trigger_penance.png"
+    },
+    {
+      "id": "trigger_followup",
+      "path": "textures/trigger_followup.png"
     },
     {
       "id": "trigger_vengeance",
