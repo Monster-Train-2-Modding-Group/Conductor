@@ -50,7 +50,7 @@ jobs:
 
       - name: Setup NuGet Credentials
         run: |
-          dotnet nuget update source monster-train-packages -u USERNAME -p ${{ secrets.GH_AUTH_TOKEN }} --store-password-in-clear-text
+          dotnet nuget update source monster-train-packages -u USERNAME -p ${{ secrets.NUGET_TOKEN }} --store-password-in-clear-text
       
       - name: Restore Dependencies
         run: dotnet restore
@@ -79,4 +79,4 @@ jobs:
           name: nuget-packages
 
       - name: Publish to NuGet Registry
-        run: dotnet nuget push *.nupkg -k ${{ secrets.GH_AUTH_TOKEN }} -s ${{ env.nuget_source }} --skip-duplicate
+        run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_TOKEN }} -s ${{ env.nuget_source }} --skip-duplicate
