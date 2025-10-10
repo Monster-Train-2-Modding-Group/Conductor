@@ -72,7 +72,7 @@ namespace Conductor
                     }
 
                     CharacterTriggers.Vengeance = GetTrigger("Vengeance").SetToTriggerOnCharacterHit(CharacterTriggers.OnAlliedCharacterHit);
-                    CharacterTriggers.Swarm = GetTrigger("Swarm").SetToTriggerOnCharacterHit(CharacterTriggers.OnOpposingCharacterHitNonSpell);
+                    CharacterTriggers.FollowUp = GetTrigger("FollowUp").SetToTriggerOnCharacterHit(CharacterTriggers.OnOpposingCharacterHitByDirectAttack);
                     CharacterTriggers.Junk = GetTrigger("Junk").SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedAnyCard);
                     CharacterTriggers.Penance = GetTrigger("Penance").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge);
                     CharacterTriggers.Accursed = GetTrigger("Accursed").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge).SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedBlightOrScourge);
@@ -80,12 +80,12 @@ namespace Conductor
                     CharacterTriggers.OnBuffed = GetTrigger("OnBuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedABuff).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedADebuff).AllowTriggerToFirePreCharacterTriggerStatus();
 
-                    // Implementations of Mobilize/Encounter is in EncounterTriggerPatches.
+                    // Implementations of Mobilize/Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Mobilize = GetTrigger("Mobilize");
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
+                    // Implementation is in DiscardBasedTriggersPatch.cs
                     CardTriggers.Junk = GetCardTrigger("Junk");
-
 
                     // Set sprites for abandoned tech
                     var spriteManager = c.GetInstance<IRegister<Sprite>>();
@@ -100,7 +100,6 @@ namespace Conductor
                     var piercing = StatusEffectManager.Instance.GetStatusEffectDataById("piercing");
                     if (piercing != null && piercing.GetIcon() == null)
                     {
-                        Logger.LogError("Set Piercing----------------------------------");
                         iconField.SetValue(piercing, GetSprite("Piercing"));
                     }*/
                     var sniper = StatusEffectManager.Instance.GetStatusEffectDataById("sniper");
