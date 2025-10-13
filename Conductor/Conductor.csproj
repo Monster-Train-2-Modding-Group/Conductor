@@ -10,25 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="TargetModes\**" />
-    <EmbeddedResource Remove="TargetModes\**" />
-    <None Remove="TargetModes\**" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <None Remove="json\target_modes.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-    <PackageReference Include="MonsterTrain2.Api" Version="2.1.20021685" />
-    <PackageReference Include="TrainworksReloaded.Base" Version="0.5.4" />
-    <PackageReference Include="TrainworksReloaded.Core" Version="0.5.4" />
+    <PackageReference Include="MonsterTrain2.Api" Version="2.1.20112166" />
+    <PackageReference Include="TrainworksReloaded.Base" Version="0.5.5" />
+    <PackageReference Include="TrainworksReloaded.Core" Version="0.5.5" />
   </ItemGroup>
 
   <ItemGroup>

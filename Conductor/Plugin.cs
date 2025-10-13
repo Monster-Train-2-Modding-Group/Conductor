@@ -12,6 +12,8 @@ using TrainworksReloaded.Core.Interfaces;
 using static CharacterTriggerData;
 using UnityEngine;
 using UnityEngine.U2D;
+using Conductor.TargetModes;
+using TrainworksReloaded.Base.Enums;
 
 namespace Conductor
 {
@@ -44,7 +46,7 @@ namespace Conductor
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",
                         //"json/status_effects/curse.json",
-                        //"json/target_modes.json",
+                        "json/target_modes.json",
                         "json/traits.json",
                         "json/event_triggers.json",
                         "json/triggers.json",
@@ -107,8 +109,28 @@ namespace Conductor
                     {
                         iconField.SetValue(sniper, GetSprite("Sniper"));
                     }
+
+                    // Target Mode implementation wiring.
+                    var targetModeRegister = c.GetInstance<IRegister<TargetMode>>();
+                    TargetMode GetTargetMode(string id)
+                    {
+                        return targetModeRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TargetModeEnum, id));
+                    }
+
+                    GetTargetMode("played_card").SetTargetModeSelector(new PlayedCard());
+                    GetTargetMode("override_target_character").SetTargetModeSelector(new OverrideTargetCharacter());
+                    GetTargetMode("in_front_of_self").SetTargetModeSelector(new InFrontOfSelf());
+                    GetTargetMode("behind_self").SetTargetModeSelector(new BehindSelf());
+                    GetTargetMode("around_self").SetTargetModeSelector(new AroundSelf());
+                    GetTargetMode("strongest").SetTargetModeSelector(new Strongest());
+                    GetTargetMode("highest_attack").SetTargetModeSelector(new HighestAttack());
+                    GetTargetMode("lowest_attack").SetTargetModeSelector(new LowestAttack());
+                    GetTargetMode("highest_attack_all_rooms").SetTargetModeSelector(new HighestAttackAllRooms());
+                    GetTargetMode("lowest_attack_all_rooms").SetTargetModeSelector(new LowestAttackAllRooms());
+                    GetTargetMode("highest_attack_excluding_self").SetTargetModeSelector(new HighestAttackExcludingSelf());
                 }
             );
+
             Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
