@@ -4,7 +4,7 @@ namespace Conductor.StatusEffects
 {
     public interface IConstructStatusArmorModifier : IRelicEffect
     {
-        RelicState SourceRelicState { get; set; }
+        RelicState SourceRelicState { get; }
     }
 
     public sealed class StatusEffectConstructState : StatusEffectState
@@ -34,7 +34,7 @@ namespace Conductor.StatusEffects
             }
             var constructAmount = this.GetConstructAmount(statusEffectStacks);
             inputTriggerParams.associatedCharacter.BuffDamage(constructAmount, null, true);
-            // TODO Decouple this so that Steward Clan doesn't need to specify this.
+
             var effect = this.relicManager.GetRelicEffect<IConstructStatusArmorModifier>();
             if (effect != null)
             {
