@@ -1,0 +1,38 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "target_modes": [
+    {
+      "id": "played_card"
+    },
+    {
+      "id": "override_target_character"
+    },
+    {
+      "id": "in_front_of_self"
+    },
+    {
+      "id": "behind_self"
+    },
+    {
+      "id": "around_self"
+    },
+    {
+      "id": "strongest"
+    },
+    {
+      "id": "highest_attack"
+    },
+    {
+      "id": "lowest_attack"
+    },
+    {
+      "id": "highest_attack_all_rooms"
+    },
+    {
+      "id": "lowest_attack_all_rooms"
+    },
+    {
+      "id": "highest_attack_excluding_self"
+    }
+  ]
+}
