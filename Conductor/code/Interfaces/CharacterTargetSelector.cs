@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
-using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using static TargetHelper;
 
 namespace Conductor.Interfaces
@@ -17,6 +18,8 @@ namespace Conductor.Interfaces
     {
         private static MethodInfo MethodApplyTargetFilters = AccessTools.Method(typeof(TargetHelper), "ApplyTargetFilters", 
             [typeof(List<CharacterState>),typeof(List<string>),typeof(CardEffectData.HealthFilter),typeof(bool),typeof(bool),typeof(bool),typeof(bool), typeof(SubtypeData),typeof(List<SubtypeData>),typeof(bool),typeof(bool?)]);
+        private static readonly List<string> statusEffectFilterEmpty = new List<string>();
+        private static readonly List<SubtypeData> excludedSubtypesListEmpty = new List<SubtypeData>();
 
         /// <summary>
         /// The associated CardTargetMode used for CardUpgradeMaskData filtering.
@@ -57,16 +60,16 @@ namespace Conductor.Interfaces
         /// <summary>
         /// Function should ONLY be implemented if the target mode targets characters in multiple rooms (that is the custom target mode has the property targets_multiple_rooms set to true)
         /// Return ALL characters in the rooms that you are targeting, not just the ones being targeted by the target mode.
-        /// The default behavior returns all characters in the current room. Again if you are just targeting characters in a singular room you don't need to implement this as it won't get called.
+        /// The default behavior selects all characters in the current room. Again if you are just targeting characters in a singular room you don't need to implement this as it won't get called.
         /// (See the function of same name in TargetHelper)
         /// </summary>
         /// <param name="card">Card current;y being played</param>
         /// <param name="roomManager">RoomManager instance</param>
         /// <param name="room">Current room being focused</param>
-        /// <param name="previewTargets">Selected characters for the target mode preview. Should be all targets for team in the rooms being targeted.</param>
+        /// <param name="previewTargets">Selected characters for the target mode preview. Should be all targets for team in the rooms being targeted. Default implemnention puts all characters in current room in this parameter</param>
         public virtual void CollectPreviewTargets(CardState? card, RoomManager roomManager, RoomState room, List<CharacterState> previewTargets)
         {
-
+            room.AddCharactersToList(previewTargets, Team.Type.Heroes | Team.Type.Monsters);
         }
 
         /// <summary>
@@ -93,6 +96,11 @@ namespace Conductor.Interfaces
         /// <param name="targets">List of potential targets</param>
         protected void ApplyTargetFilters(CollectTargetsData data, List<CharacterState> targets)
         {
+            DoApplyTargetFilters(data, targets);
+        }
+
+        internal static void DoApplyTargetFilters(CollectTargetsData data, List<CharacterState> targets)
+        {
             if (MethodApplyTargetFilters == null)
             {
                 Plugin.Logger.LogError("-------------------------------------------------------------------------------------------");
@@ -100,7 +108,7 @@ namespace Conductor.Interfaces
                 Plugin.Logger.LogError("-------------------------------------------------------------------------------------------");
                 return;
             }
-            MethodApplyTargetFilters?.Invoke(null, [targets, data.targetModeStatusEffectsFilter, data.targetModeHealthFilter, data.targetIgnoreBosses, data.ignorePyre, data.inCombat, data.ignoreDead, data.targetSubtype, data.targetExcludedSubtypesFilter, data.includeUntouchable, data.mustHaveEquipment]);
+            MethodApplyTargetFilters?.Invoke(null, [targets, data.targetModeStatusEffectsFilter ?? statusEffectFilterEmpty, data.targetModeHealthFilter, data.targetIgnoreBosses, data.ignorePyre, data.inCombat, data.ignoreDead, data.targetSubtype, data.targetExcludedSubtypesFilter ?? excludedSubtypesListEmpty, data.includeUntouchable, data.mustHaveEquipment]);
         }
     }
 }
