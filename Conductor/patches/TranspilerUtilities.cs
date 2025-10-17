@@ -18,7 +18,6 @@ namespace Conductor.Patches
             // operand could be a byte, int, or LocalBuilder
             if (op == OpCodes.Ldloc_S || op == OpCodes.Ldloc)
             {
-                
                 if (ci.operand is byte b) return b;
                 if (ci.operand is int i) return i;
                 if (ci.operand is LocalBuilder lb) return lb.LocalIndex;
