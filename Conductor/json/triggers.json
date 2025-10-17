@@ -99,6 +99,18 @@
       "sprite": "@trigger_penance"
     },
     {
+      "id": "Resonance",
+      "names": {
+        "english": "Resonance",
+        "chinese": ""
+      },
+      "descriptions": {
+        "english": "Triggers when the pyre is hit.",
+        "chinese": ""
+      },
+      "sprite": "@trigger_resonance"
+    },
+    {
       "id": "Vengeance",
       "names": {
         "english": "Vengeance",
@@ -125,6 +137,10 @@
       "path": "textures/trigger_evoke.png"
     },
     {
+      "id": "trigger_followup",
+      "path": "textures/trigger_followup.png"
+    },
+    {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
     },
@@ -137,8 +153,8 @@
       "path": "textures/trigger_penance.png"
     },
     {
-      "id": "trigger_followup",
-      "path": "textures/trigger_swarm.png"
+      "id": "trigger_resonance",
+      "path": "textures/trigger_resonance.png"
     },
     {
       "id": "trigger_vengeance",
@@ -159,6 +175,10 @@
       "path": "textures/trigger_evoke.png"
     },
     {
+      "id": "trigger_followup",
+      "path": "textures/trigger_followup.png"
+    },
+    {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
     },
@@ -167,8 +187,8 @@
       "path": "textures/trigger_penance.png"
     },
     {
-      "id": "trigger_followup",
-      "path": "textures/trigger_followup.png"
+      "id": "trigger_resonance",
+      "path": "textures/trigger_resonance.png"
     },
     {
       "id": "trigger_vengeance",
