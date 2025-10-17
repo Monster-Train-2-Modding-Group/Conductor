@@ -147,6 +147,27 @@ namespace Conductor.Extensions
         public ICoreGameManagers CoreGameManagers { get; init; }
     }
 
+    public struct TriggerOnPyreDamageParams
+    {
+        public CharacterState Pyre {  get; init; }
+        /// <summary>
+        /// The character whose trigger is being considered to fire.
+        /// </summary>
+        public CharacterState Character { get; internal set; }
+        /// <summary>
+        /// Amount of Pyre damage taken.
+        /// </summary>
+        public int Damage { get; init; }
+        /// <summary>
+        /// ApplyDamageParams (will contain the parameters of damage including the attacker among other things).
+        /// </summary>
+        public ApplyDamageParams DamageParams { get; init; }
+        /// <summary>
+        /// CoreGameManagers (available if you wish to modify other game state if the trigger is fired).
+        /// </summary>
+        public ICoreGameManagers CoreGameManagers { get; init; }
+    }
+
     /// <summary>
     /// Parameters forwarded to CombatManager.QueueTrigger
     /// 
@@ -200,6 +221,7 @@ namespace Conductor.Extensions
     public delegate bool TriggerOnCardDiscardedDelegate(TriggerOnCardDiscardedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnAnotherSpawnDelegate(TriggerOnAnotherSpawnParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCharacterHitDelegate(TriggerOnCharacterHitParams data, out QueueTriggerParams? outParam);
+    public delegate bool TriggerOnPyreDamageDelegate(TriggerOnPyreDamageParams data, out QueueTriggerParams? outParam);
 
     public static class CharacterTriggerExtensions
     {
@@ -210,6 +232,7 @@ namespace Conductor.Extensions
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardDiscardedDelegate> TriggersOnCardDiscarded = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnAnotherSpawnDelegate> TriggersOnAnotherSpawn = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCharacterHitDelegate> TriggersOnCharacterHit = [];
+        internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnPyreDamageDelegate> TriggersOnPyreDamage = [];
 
         private static bool IsVanillaTrigger(CharacterTriggerData.Trigger trigger)
         {
@@ -285,6 +308,19 @@ namespace Conductor.Extensions
         {
             if (IsVanillaTrigger(trigger)) return trigger;
             TriggersOnCharacterHit.Add(trigger, func);
+            return trigger;
+        }
+
+        /// <summary>
+        /// Sets the trigger to fire in RelicManager.ApplyTowerDamageTakenRelicEffects based on the result of func.
+        /// </summary>
+        /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
+        /// <param name="func">Function to call to determine if the trigger should be fired as a result of the pyre taking damage.</param>
+        /// <returns>The trigger</returns>
+        public static CharacterTriggerData.Trigger SetToTriggerOnPyreDamage(this CharacterTriggerData.Trigger trigger, TriggerOnPyreDamageDelegate func)
+        {
+            if (IsVanillaTrigger(trigger)) return trigger;
+            TriggersOnPyreDamage.Add(trigger, func);
             return trigger;
         }
 

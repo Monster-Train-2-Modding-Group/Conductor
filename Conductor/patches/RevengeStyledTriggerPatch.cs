@@ -37,6 +37,10 @@ namespace Conductor.Patches
                         continue;
                     }
                     yield return HandleOnHitTriggers(__instance, damage, damageParams, ___allGameManagers.GetCoreManagers());
+                    if (__instance.IsPyreHeart())
+                    {
+                        yield return HandleOnPyreDamageTriggers(__instance, damage, damageParams, ___allGameManagers.GetCoreManagers());
+                    }
                     queueAndRunTriggerFound = true;
                     continue;
                 }
@@ -81,6 +85,47 @@ namespace Conductor.Patches
 
                 yield return coreGameManagers.GetCombatManager().RunTriggerQueue();
             }
+        }
+
+        public static IEnumerator HandleOnPyreDamageTriggers(CharacterState pyre, int damage, ApplyDamageParams damageParams, ICoreGameManagers coreGameManagers)
+        {
+            var data = new TriggerOnPyreDamageParams
+            {
+                Pyre = pyre,
+                Damage = damage,
+                DamageParams = damageParams,
+                CoreGameManagers = coreGameManagers,
+            };
+            
+            var monsterManager = coreGameManagers.GetMonsterManager();
+            var heroManager = coreGameManagers.GetHeroManager();
+            var combatManager = coreGameManagers.GetCombatManager();
+
+            for (int i = 0; i < monsterManager.GetNumCharacters(); i++)
+            {
+                var character = monsterManager.GetCharacter(i);
+                data.Character = character;
+                foreach (var trigger_test in CharacterTriggerExtensions.TriggersOnPyreDamage)
+                {
+                    if (trigger_test.Value(data, out var queueTriggerParams))
+                    {
+                        combatManager.QueueCustomTrigger(character, trigger_test.Key, queueTriggerParams);
+                    }
+                }
+            }
+            for (int i = 0; i < heroManager.GetNumCharacters(); i++)
+            {
+                var character = heroManager.GetCharacter(i);
+                data.Character = character;
+                foreach (var trigger_test in CharacterTriggerExtensions.TriggersOnPyreDamage)
+                {
+                    if (trigger_test.Value(data, out var queueTriggerParams))
+                    {
+                        combatManager.QueueCustomTrigger(character, trigger_test.Key, queueTriggerParams);
+                    }
+                }
+            }
+            yield return combatManager.RunTriggerQueue();
         }
     }
 }

@@ -210,6 +210,30 @@ namespace Conductor.Triggers
             return false;
         }
 
+        public static CharacterTriggerData.Trigger Resonance;
+        internal static bool OnPyreTakeDamage(TriggerOnPyreDamageParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            // Shouldn't need to do this generally (since it is done when the trigger is fired on the character),
+            // but only trigger this trigger if the character has the trigger to begin with
+            // Just to save on allocations
+            if (data.Character.HasEffectTrigger(Resonance))
+            {
+                triggerQueueData = new QueueTriggerParams
+                {
+                    fireTriggersData = new FireTriggersData
+                    {
+                        // Note not the exact damage done.
+                        paramInt = data.Damage,
+                        paramInt2 = data.CoreGameManagers.GetPlayerManager().GetTowerHP()
+                    }
+                };
+                return true;
+            }
+
+            triggerQueueData = null;
+            return true;
+        }
+
         // The following a Silent event triggers, if using set hideVisualAndIgnoreSilence on all CharacterTriggers.
 
         /// <summary>
