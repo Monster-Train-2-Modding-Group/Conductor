@@ -102,11 +102,11 @@
       "id": "Resonance",
       "names": {
         "english": "Resonance",
-        "chinese": ""
+        "chinese": "共鸣"
       },
       "descriptions": {
         "english": "Triggers when the pyre is hit.",
-        "chinese": ""
+        "chinese": "薪火受到伤害时触发。"
       },
       "sprite": "@trigger_resonance"
     },
