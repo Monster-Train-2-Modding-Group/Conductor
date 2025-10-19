@@ -1,0 +1,8 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "tracked_value_types": [
+    {
+      "id": "BlightsAndScourgesInDeck"
+    }
+  ]
+}

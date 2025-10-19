@@ -9,11 +9,9 @@ using TrainworksReloaded.Base.Extensions;
 using TrainworksReloaded.Core;
 using TrainworksReloaded.Core.Extensions;
 using TrainworksReloaded.Core.Interfaces;
-using static CharacterTriggerData;
 using UnityEngine;
-using UnityEngine.U2D;
 using Conductor.TargetModes;
-using TrainworksReloaded.Base.Enums;
+using Conductor.TrackedValues;
 
 namespace Conductor
 {
@@ -50,6 +48,7 @@ namespace Conductor
                         "json/traits.json",
                         "json/event_triggers.json",
                         "json/triggers.json",
+                        "json/tracked_values.json",
                         "json/room_modifiers.json"
                         //,"json/test.json"
                         //,"json/test2.json"
@@ -129,12 +128,18 @@ namespace Conductor
                     GetTargetMode("highest_attack_all_rooms").SetTargetModeSelector(new HighestAttackAllRooms());
                     GetTargetMode("lowest_attack_all_rooms").SetTargetModeSelector(new LowestAttackAllRooms());
                     GetTargetMode("highest_attack_excluding_self").SetTargetModeSelector(new HighestAttackExcludingSelf());
+
+                    var trackedValueRegister = c.GetInstance<IRegister<CardStatistics.TrackedValueType>>();
+                    CardStatistics.TrackedValueType GetTrackedValueType(string id)
+                    {
+                        return trackedValueRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TrackedValueTypeEnum, id));
+                    }
+                    GetTrackedValueType("BlightsAndScourgesInDeck").SetIsValidOutsideBattle().SetTrackedValueGetter(TrackedValueFunctions.CountBlightsAndScourgesInDeck);
                 }
             );
 
             Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
-
 
             var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
             harmony.PatchAll();
