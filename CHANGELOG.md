@@ -1,3 +1,6 @@
+## v0.2.3
+- Changed overrideTargetCharacter for FollowUp and Vengeance to the character that was damaged which caused the trigger to fire. The attacking character can still be gotten by last_attacker_character, the damaged character can not. 
+
 ## v0.2.2
 - Add API for Custom TrackedValues.
 - Add TrackedValue BlightsAndScourgesInDeck

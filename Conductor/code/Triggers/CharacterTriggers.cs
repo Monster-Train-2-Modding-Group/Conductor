@@ -16,7 +16,7 @@ namespace Conductor.Triggers
         /// Parameters
         ///   paramInt: Original damage dealt before shields and titanskin.
         ///   paramInt2: DamageType casted to int.
-        ///   overrideTargetCharacter: Last attacker character (can not be pyre).
+        ///   overrideTargetCharacter: Character who was damaged by the action.
         /// </summary>
         public static CharacterTriggerData.Trigger Vengeance;
         internal static bool OnAlliedCharacterHit(TriggerOnCharacterHitParams data, out QueueTriggerParams? queueTriggerParams)
@@ -30,8 +30,7 @@ namespace Conductor.Triggers
                         // TODO pass the actual amount of damage done.
                         paramInt = data.OriginalDamage,
                         paramInt2 = (int)data.DamageParams.damageType,
-                        /* GetLastAttackerCharacter is the same as damageParams.attacker except it won't be the pyre. */
-                        overrideTargetCharacter = data.DamagedCharacter.GetLastAttackerCharacter()
+                        overrideTargetCharacter = data.DamagedCharacter
                     }
                 };
                 return true;
@@ -47,7 +46,7 @@ namespace Conductor.Triggers
         /// Parameters
         ///   paramInt: Original damage dealt before shields and titanskin.
         ///   paramInt2: DamageType casted to int.
-        ///   overrideTargetCharacter: Last attacker character (can not be pyre).
+        ///   overrideTargetCharacter: Character who was damaged by the action.
         /// </summary>
         public static CharacterTriggerData.Trigger FollowUp;
         internal static bool OnOpposingCharacterHitByDirectAttack(TriggerOnCharacterHitParams data, out QueueTriggerParams? queueTriggerParams)
@@ -67,8 +66,7 @@ namespace Conductor.Triggers
                     {
                         paramInt = data.OriginalDamage,
                         paramInt2 = (int)data.DamageParams.damageType,
-                        /* GetLastAttackerCharacter is the same as damageParams.attacker except it won't be the pyre. */
-                        overrideTargetCharacter = data.DamagedCharacter.GetLastAttackerCharacter()
+                        overrideTargetCharacter = data.DamagedCharacter
                     }
                 };
                 return true;
