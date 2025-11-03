@@ -1,0 +1,47 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/base.json",
+  "status_effects": [
+    {
+      "id": "heroic",
+      "class_name": "@StatusEffectHeroicState",
+      "names": {
+        "english": "Heroic",
+        "chinese": ""
+      },
+      "stackable_names": {
+        "english": "Heroic {0}",
+        "chinese": " {0}"
+      },
+      "card_tooltips": {
+        "english": "Allied units have +[codeint0][attack] per stack.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "Allied units have +[codeint0][attack] (+[codeint1][attack] per stack).",
+        "chinese": ""
+      },
+      "replacement_texts": {
+        "english": "<b>Heroic</b>",
+        "chinese": "<b></b>"
+      },
+      "param_int": 1,
+      "is_propagatable": true,
+      "display_category": "positive",
+      "exclude_hero_propagation": true,
+      "is_stackable": true,
+      "icon": "@Heroic"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "Heroic",
+      "path": "textures/status_heroic.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Heroic",
+      "path": "textures/status_heroic_tooltip.png"
+    }
+  ]
+}
