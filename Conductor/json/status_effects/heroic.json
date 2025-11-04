@@ -6,23 +6,23 @@
       "class_name": "@StatusEffectHeroicState",
       "names": {
         "english": "Heroic",
-        "chinese": ""
+        "chinese": "英雄行为"
       },
       "stackable_names": {
         "english": "Heroic {0}",
-        "chinese": " {0}"
+        "chinese": "英雄行为 {0}"
       },
       "card_tooltips": {
         "english": "Allied units have +[codeint0][attack] per stack.",
-        "chinese": ""
+        "chinese": "每有一层[Conductor_heroic]，盟友单位获得 +[codeint0][attack]。"
       },
       "character_tooltips": {
         "english": "Allied units have +[codeint0][attack] (+[codeint1][attack] per stack).",
-        "chinese": ""
+        "chinese": "盟友单位获得 +[codeint0][attack]（每一层 +[codeint1][attack]）。"
       },
       "replacement_texts": {
         "english": "<b>Heroic</b>",
-        "chinese": "<b></b>"
+        "chinese": "<b>英雄行为</b>"
       },
       "param_int": 1,
       "is_propagatable": true,
