@@ -20,7 +20,7 @@ namespace Conductor.CardEffects
     ///   }
     /// ]
     /// </summary>
-    class CardEffectShuffleUnits : CardEffectBase
+    class CardEffectShuffleUnits : CardEffectBase, ICardEffectChangesUnitPosition
     {
         public override bool CanPlayAfterBossDead => false;
         public override bool CanApplyInPreviewMode => false;
