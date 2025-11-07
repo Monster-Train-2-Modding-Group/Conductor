@@ -4,12 +4,20 @@
     {
       "id": "Sniper",
       "path": "textures/status_sniper.png"
+    },
+    {
+      "id": "Piercing",
+      "path": "textures/status_piercing.png"
     }
   ],
   "atlas_icons": [
     {
       "id": "Sniper",
       "path": "textures/status_sniper_tooltip.png"
+    },
+    {
+      "id": "Piercing",
+      "path": "textures/status_piercing_tooltip.png"
     }
   ]
 }
