@@ -4,7 +4,7 @@
 - new Status effect Heroic. Allied units have +1 attack for each stack.
 - Expose abandoned Piercing status.
 - OnShift StatusEffectTriggerStage
-
+- Rounded tooltip edges for tooltip status effect icons
 
 ## v0.2.3
 - Changed overrideTargetCharacter for FollowUp and Vengeance to the character that was damaged which caused the trigger to fire. The attacking character can still be gotten by last_attacker_character, the damaged character can not. 
