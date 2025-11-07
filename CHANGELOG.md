@@ -1,3 +1,10 @@
+## v0.2.4
+- TargetModes support for Abyssal Prism
+- Essence processing and storage.
+- new Status effect Heroic. Allied units have +1 attack for each stack.
+- OnShift StatusEffectTriggerStage
+
+
 ## v0.2.3
 - Changed overrideTargetCharacter for FollowUp and Vengeance to the character that was damaged which caused the trigger to fire. The attacking character can still be gotten by last_attacker_character, the damaged character can not. 
 
