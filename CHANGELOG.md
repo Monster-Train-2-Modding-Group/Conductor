@@ -2,6 +2,7 @@
 - TargetModes support for Abyssal Prism
 - Essence processing and storage.
 - new Status effect Heroic. Allied units have +1 attack for each stack.
+- Expose abandoned Piercing status.
 - OnShift StatusEffectTriggerStage
 
 
