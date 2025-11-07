@@ -34,9 +34,8 @@ namespace Conductor.CardEffects
             return new PropDescriptions
             {
                 [CardEffectFieldNames.ParamBool.GetFieldName()] = new PropDescription("Strict Target Checking", "TRUE - Always Fail Test if Zero Targets\nFALSE - Zero Targets allowed unless Target Mode is 'Drop Target'."),
-                [CardEffectFieldNames.ParamStatusEffects.GetFieldName()] = new PropDescription("Singular Status Effect To Add only provide one status effect."),
-                [CardEffectFieldNames.ParamInt.GetFieldName()] = new PropDescription("Maximum amount of status the targets can have."),
-                [CardEffectFieldNames.ParamSubtype.GetFieldName()] = new PropDescription("Target Subtype.")
+                [CardEffectFieldNames.ParamStatusEffects.GetFieldName()] = new PropDescription("Singular status effect to add. Only provide one status effect."),
+                [CardEffectFieldNames.ParamInt.GetFieldName()] = new PropDescription("Maximum amount of stacks the targets can have."),
             };
         }
 
