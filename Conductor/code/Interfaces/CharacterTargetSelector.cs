@@ -18,11 +18,15 @@ namespace Conductor.Interfaces
     {
         private static MethodInfo MethodApplyTargetFilters = AccessTools.Method(typeof(TargetHelper), "ApplyTargetFilters", 
             [typeof(List<CharacterState>),typeof(List<string>),typeof(CardEffectData.HealthFilter),typeof(bool),typeof(bool),typeof(bool),typeof(bool), typeof(SubtypeData),typeof(List<SubtypeData>),typeof(bool),typeof(bool?)]);
+        //ApplyTargetFilters(List<CharacterState> targets, List<string> targetModeStatusEffectsFilter, CardEffectData.HealthFilter targetModeHealthFilter,
+        //bool targetIgnoreBosses, bool targetIgnorePyre, bool inCombat, bool ignoreDead,
+        //SubtypeData targetSubtype, List<SubtypeData> targetExcludedSubtypesFilter, bool includeUntouchable, bool? requireEquipment = null)
         private static readonly List<string> statusEffectFilterEmpty = new List<string>();
         private static readonly List<SubtypeData> excludedSubtypesListEmpty = new List<SubtypeData>();
 
         /// <summary>
         /// The associated CardTargetMode used for CardUpgradeMaskData filtering.
+        /// This is how the TargetMode chooses a target from user input. See TargetModeExtensions.GetCardTargetMode.
         /// </summary>
         public virtual CardTargetMode CardTargetMode { get; } = CardTargetMode.Other;
 
@@ -34,6 +38,10 @@ namespace Conductor.Interfaces
         /// Does the target mode target characters in multiple rooms.
         /// </summary>
         public virtual bool TargetsMultipleRooms { get; } = false;
+        /// <summary>
+        /// Does the target mode resolve to a single target.
+        /// </summary>
+        public virtual bool ResolvesToSingleTarget { get; } = false;
          
 
         /// <see cref=">ITargetSelector"/>

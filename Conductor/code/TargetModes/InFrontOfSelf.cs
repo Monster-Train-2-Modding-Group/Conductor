@@ -9,6 +9,7 @@ namespace Conductor.TargetModes
     class InFrontOfSelf : CharacterTargetSelector
     {
         public override bool TargetsRoom => true;
+        public override bool ResolvesToSingleTarget => true;
 
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
 

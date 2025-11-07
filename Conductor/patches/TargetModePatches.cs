@@ -509,4 +509,19 @@ namespace Conductor.Patches
             __result = targetSelector.CardTargetMode;
         }
     }
+
+    [HarmonyPatch(typeof(TargetModeExtensions), nameof(TargetModeExtensions.GetResolvesToSingleTarget))]
+    class TargetMode_GetResolvesToSingleTarget_Patch
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Method Declaration", "Harmony003:Harmony non-ref patch parameters modified", Justification = "<Pending>")]
+        public static void Postfix(TargetMode targetMode, ref bool __result)
+        {
+            var targetSelector = targetMode.GetTargetSelector();
+            if (targetSelector == null) return;
+            if (targetSelector is not CharacterTargetSelector characterTargetSelector)
+                return;
+
+            __result = characterTargetSelector.ResolvesToSingleTarget;
+        }
+    }
 }

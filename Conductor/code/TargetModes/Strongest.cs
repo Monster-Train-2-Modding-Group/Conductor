@@ -10,6 +10,7 @@ namespace Conductor.TargetModes
     class Strongest : CharacterTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
+        public override bool ResolvesToSingleTarget => true;
 
         public override bool TargetsRoom => true;
 

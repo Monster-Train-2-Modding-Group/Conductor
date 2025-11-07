@@ -11,6 +11,7 @@ namespace Conductor.TargetModes
     class LowestAttackAllRooms : CharacterTargetSelector
     {
         public override bool TargetsMultipleRooms => true;
+        public override bool ResolvesToSingleTarget => true;
 
         public override void CollectPreviewTargets(CardState? card, RoomManager roomManager, RoomState room, List<CharacterState> previewTargets)
         {

@@ -9,6 +9,7 @@ namespace Conductor.TargetModes
     class BehindSelf : CharacterTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
+        public override bool ResolvesToSingleTarget => true;
 
         public override void FilterTargets(CollectTargetsData data, ICoreGameManagers coreGameManagers, IReadOnlyList<CharacterState> allValidTargets, List<CharacterState> chosenTargets)
         {

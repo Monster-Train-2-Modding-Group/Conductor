@@ -10,6 +10,7 @@ namespace Conductor.TargetModes
     class LowestAttack : CharacterTargetSelector
     {
         public override bool TargetsRoom => true;
+        public override bool ResolvesToSingleTarget => true;
 
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
 

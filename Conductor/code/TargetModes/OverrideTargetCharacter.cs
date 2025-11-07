@@ -11,6 +11,7 @@ namespace Conductor.TargetModes
     public class OverrideTargetCharacter : CharacterTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
+        public override bool ResolvesToSingleTarget => true;
 
         public override bool CollectTargets(CollectTargetsData data, ICoreGameManagers coreGameManagers, List<CharacterState> targetsOut)
         {
