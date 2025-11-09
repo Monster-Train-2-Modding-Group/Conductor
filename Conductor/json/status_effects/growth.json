@@ -1,0 +1,57 @@
+﻿{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "growth",
+      "class_name": "@StatusEffectGrowthState",
+      "names": {
+        "english": "Growth",
+        "chinese": ""
+      },
+      "stackable_names": {
+        "english": "Growth {0}",
+        "chinese": "奸笑 {0}"
+      },
+      "card_tooltips": {
+        "english": "+[codeint0] max health per stack.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "+[codeint0] max health (+[codeint1] max health per stack).",
+        "chinese": ""
+      },
+      "replacement_texts": {
+        "english": "<b>Growth</b>",
+        "chinese": ""
+      },
+      "param_int": 1,
+      "is_propagatable": true,
+      "display_category": "positive",
+      "trigger_stage": "on_pre_character_trigger",
+      "exclude_hero_propagation": true,
+      "is_stackable": true,
+      "icon": "@Growth"
+    },
+    {
+      "id": "growth_inactive",
+      "class_name": "@StatusEffectGrowthInactiveState",
+      "trigger_stage": "on_pre_character_trigger",
+      "display_category": "persistent",
+      "is_stackable": false,
+      "is_propagatable": false,
+      "hidden": true
+    }
+  ],
+  "sprites": [
+    {
+      "id": "Growth",
+      "path": "textures/status_growth.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Growth",
+      "path": "textures/status_growth_tooltip.png"
+    }
+  ]
+}

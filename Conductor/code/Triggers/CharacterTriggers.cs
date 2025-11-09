@@ -1,4 +1,5 @@
 ﻿using Conductor.Extensions;
+using Conductor.StatusEffects;
 using System;
 using UnityEngine.TextCore.Text;
 using static CardManager;
@@ -281,6 +282,45 @@ namespace Conductor.Triggers
                     {
                         paramString = data.StatusId,
                         paramInt = data.Character.GetNumberUniqueStatusEffectsInCategory(StatusEffectData.DisplayCategory.Negative, true),
+                        paramInt2 = data.StatusEffectStack.Count
+                    }
+                };
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
+        }
+
+        public static CharacterTriggerData.Trigger OnGrowthGained;
+        internal static bool OnGainedGrowth(TriggerOnStatusAddedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            if (data.StatusEffectStack.State is StatusEffectGrowthState)
+            {
+                triggerQueueData = new QueueTriggerParams
+                {
+                    fireTriggersData = new FireTriggersData
+                    {
+                        paramString = data.StatusId,
+                        paramInt = data.NumStacks,
+                        paramInt2 = data.StatusEffectStack.Count
+                    }
+                };
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
+        }
+        public static CharacterTriggerData.Trigger OnGrowthLost;
+        internal static bool OnLostGrowth(TriggerOnStatusRemovedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            if (data.StatusEffectStack.State is StatusEffectGrowthState)
+            {
+                triggerQueueData = new QueueTriggerParams
+                {
+                    fireTriggersData = new FireTriggersData
+                    {
+                        paramString = data.StatusId,
+                        paramInt = data.NumStacks,
                         paramInt2 = data.StatusEffectStack.Count
                     }
                 };

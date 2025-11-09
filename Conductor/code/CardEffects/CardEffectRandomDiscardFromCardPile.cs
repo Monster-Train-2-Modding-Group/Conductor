@@ -32,7 +32,7 @@ namespace Conductor.CardEffects
     ///   }
     /// ]
     /// </summary>
-    public sealed class CardEffectRandomDiscardFromCardPile : CardEffectBase
+    public sealed class CardEffectRandomDiscardFromCardPile : CardEffectBase, ICardEffectDiscards
     {
         public override bool CanPlayAfterBossDead => false;
         public override bool CanApplyInPreviewMode => false;

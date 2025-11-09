@@ -26,11 +26,52 @@ namespace Conductor.Extensions
         /// </summary>
         public CharacterState.StatusEffectStack StatusEffectStack { get; init; }
         /// <summary>
+        /// The remove status effect params.
+        /// </summary>
+        public CharacterState.AddStatusEffectParams AddParams { get; init; }
+        /// <summary>
         /// The Room Index where the card was played.
         /// </summary>
         public int RoomIndex { get; init; }
         /// <summary>
         /// The room where the card was played.
+        /// </summary>
+        public RoomState Room { get; init; }
+        /// <summary>
+        /// CoreGameManagers (available if you wish to modify other game state if the trigger is fired).
+        /// </summary>
+        public ICoreGameManagers CoreGameManagers { get; init; }
+    }
+
+    public struct TriggerOnStatusRemovedParams
+    {
+        /// <summary>
+        /// The character who is losing the status effect (and whose trigger is being considered to fire).
+        /// </summary>
+        public CharacterState Character { get; init; }
+        /// <summary>
+        /// The status effect that was removed.
+        /// </summary>
+        public string StatusId { get; init; }
+        /// <summary>
+        /// The number of stacks of status effect that was removed.
+        /// </summary>
+        public int NumStacks { get; init; }
+        /// <summary>
+        /// The status effect stack data. This contains the StatusEffectState subclass.
+        /// The current count of status effect that the character has among other things.
+        /// </summary>
+        public CharacterState.StatusEffectStack StatusEffectStack { get; init; }
+        /// <summary>
+        /// The remove status effect params.
+        /// </summary>
+        public CharacterState.RemoveStatusEffectParams RemoveParams { get; init; }
+        /// <summary>
+        /// The Room Index where the removal happened.
+        /// </summary>
+        public int RoomIndex { get; init; }
+        /// <summary>
+        /// The room where the removal happened.
         /// </summary>
         public RoomState Room { get; init; }
         /// <summary>
@@ -217,6 +258,7 @@ namespace Conductor.Extensions
     }
 
     public delegate bool TriggerOnStatusAddedDelegate(TriggerOnStatusAddedParams data, out QueueTriggerParams? outParam);
+    public delegate bool TriggerOnStatusRemovedDelegate(TriggerOnStatusRemovedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCardPlayedDelegate(TriggerOnCardPlayedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCardDiscardedDelegate(TriggerOnCardDiscardedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnAnotherSpawnDelegate(TriggerOnAnotherSpawnParams data, out QueueTriggerParams? outParam);
@@ -228,6 +270,7 @@ namespace Conductor.Extensions
         internal readonly static HashSet<CharacterTriggerData.Trigger> PreCharacterTriggerAllowedTriggers = [];
 
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnStatusAddedDelegate> TriggersOnStatusAdded = [];
+        internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnStatusRemovedDelegate> TriggersOnStatusRemoved = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardPlayedDelegate> TriggersOnCardPlayed = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardDiscardedDelegate> TriggersOnCardDiscarded = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnAnotherSpawnDelegate> TriggersOnAnotherSpawn = [];
@@ -254,6 +297,19 @@ namespace Conductor.Extensions
         {
             if (IsVanillaTrigger(trigger)) return trigger;
             TriggersOnStatusAdded.Add(trigger, func);
+            return trigger;
+        }
+
+        /// <summary>
+        /// Sets the trigger to fire in CharacterState.RemoveStatusEffect after the status effect is removed from the character
+        /// </summary>
+        /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
+        /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being removed.</param>
+        /// <returns>The trigger</returns>
+        public static CharacterTriggerData.Trigger SetToTriggerOnStatusEffectRemoved(this CharacterTriggerData.Trigger trigger, TriggerOnStatusRemovedDelegate func)
+        {
+            if (IsVanillaTrigger(trigger)) return trigger;
+            TriggersOnStatusRemoved.Add(trigger, func);
             return trigger;
         }
 

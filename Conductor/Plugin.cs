@@ -39,6 +39,7 @@ namespace Conductor
                 {
                     c.AddMergedJsonFile(
                         "json/status_effects/divine_blessing.json",
+                        "json/status_effects/growth.json",
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
                         "json/status_effects/intangible.json",
@@ -54,7 +55,7 @@ namespace Conductor
                         "json/tracked_values.json",
                         "json/room_modifiers.json"
                         //,"json/test.json"
-                        //,"json/test2.json"
+                        ,"json/test2.json"
                     );
                 }
             );
@@ -89,6 +90,8 @@ namespace Conductor
                     CharacterTriggers.Evoke = GetTrigger("Evoke").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedUnitAbility);
                     CharacterTriggers.OnBuffed = GetTrigger("OnBuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedABuff).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedADebuff).AllowTriggerToFirePreCharacterTriggerStatus();
+                    CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
+                    CharacterTriggers.OnGrowthLost = GetTrigger("OnGrowthLost").SetToTriggerOnStatusEffectRemoved(CharacterTriggers.OnLostGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     // Implementations of Mobilize/Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Mobilize = GetTrigger("Mobilize");
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
