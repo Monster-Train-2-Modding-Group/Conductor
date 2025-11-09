@@ -11,4 +11,5 @@ star icon: <a href="https://www.flaticon.com/free-icons/star" title="star icons"
 sniper icon: <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by Smashicons - Flaticon</a>
 follow-up icon: <a href="https://www.flaticon.com/free-icons/pvp" title="pvp icons">Pvp icons created by cah nggunung - Flaticon</a>
 heroic icon: https://game-icons.net/1x1/delapouite/cape.html
+growth icon: https://game-icons.net/1x1/lorc/sprout.html
 piercing icon: https://game-icons.net/1x1/lorc/pierced-heart.html (modified)
