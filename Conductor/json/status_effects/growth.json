@@ -6,23 +6,23 @@
       "class_name": "@StatusEffectGrowthState",
       "names": {
         "english": "Growth",
-        "chinese": ""
+        "chinese": "生长"
       },
       "stackable_names": {
         "english": "Growth {0}",
-        "chinese": "奸笑 {0}"
+        "chinese": "生长 {0}"
       },
       "card_tooltips": {
         "english": "+[codeint0] max health per stack.",
-        "chinese": ""
+        "chinese": "每一层 +[codeint0] 点最大生命值。"
       },
       "character_tooltips": {
         "english": "+[codeint0] max health (+[codeint1] max health per stack).",
-        "chinese": ""
+        "chinese": "+[codeint0] 点最大生命值（每一层 +[codeint1] 点最大生命值）。"
       },
       "replacement_texts": {
         "english": "<b>Growth</b>",
-        "chinese": ""
+        "chinese": "<b>生长</b>"
       },
       "param_int": 1,
       "is_propagatable": true,
