@@ -2,6 +2,7 @@
 - TargetModes support for Abyssal Prism
 - Essence processing and storage.
 - new Status effect Heroic. Allied units have +1 attack for each stack.
+- new Status effect Growth. Unit has +1 max health per stack.
 - Expose abandoned Piercing status.
 - OnShift StatusEffectTriggerStage
 - Rounded tooltip edges for tooltip status effect icons
