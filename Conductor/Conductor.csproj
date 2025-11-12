@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Conductor</RootNamespace>
     <LangVersion>latest</LangVersion>
-    <Version>0.2.4</Version>
+    <Version>0.2.5</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-    <PackageReference Include="MonsterTrain2.Api" Version="3.0.20682986" />
+    <PackageReference Include="MonsterTrain2.Api" Version="3.1.20760211" />
     <PackageReference Include="TrainworksReloaded.Base" Version="0.6.1" />
     <PackageReference Include="TrainworksReloaded.Core" Version="0.6.1" />
   </ItemGroup>

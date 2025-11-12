@@ -1,5 +1,8 @@
+## v0.2.5
+- Just a rebuild against MonsterTrain2 v1.3.1
+
 ## v0.2.4
-- TargetModes support for Abyssal Prism
+- TargetModes support for Abyssal Prism. Adds ResolvesToSingleTarget to CharacterTargetSelector.
 - Essence processing and storage.
 - new Status effect Heroic. Allied units have +1 attack for each stack.
 - new Status effect Growth. Unit has +1 max health per stack.
