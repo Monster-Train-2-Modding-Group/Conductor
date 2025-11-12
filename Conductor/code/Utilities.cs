@@ -20,7 +20,7 @@ namespace Conductor
         /// CardTraits have to be whitelisted to display a tooltip. This function enables that.
         /// </summary>
         /// <param name="assembly">Optional assembly to pass in. If not specified the caller's assembly is assumed</param>
-        public static void SetupTraitTooltips(Assembly? assembly)
+        public static void SetupTraitTooltips(Assembly? assembly = null)
         {
             assembly = assembly ?? Assembly.GetCallingAssembly();
             List<string> cardTraitNames = [];

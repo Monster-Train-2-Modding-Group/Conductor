@@ -1,3 +1,6 @@
+## v0.2.6
+- Fix Utilities.SetupTraitTooltips assembly is optional.
+
 ## v0.2.5
 - Just a rebuild against MonsterTrain2 v1.3.1
 
