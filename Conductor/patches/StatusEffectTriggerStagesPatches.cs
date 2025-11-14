@@ -23,4 +23,24 @@ namespace Conductor.Patches
             yield return ___statusEffectManager.TriggerStatusEffectOnUnit(StatusEffectTriggerStages.OnShift, charState, inputTriggerParams, outputTriggerParams);
         }
     }
+
+    [HarmonyPatch(typeof(HeroManager), "PostAscensionCharacterTriggers")]
+    public class OnShiftStatusEffectTriggerStagePostAscension
+    {
+        public static IEnumerator Postfix(IEnumerator __result, List<CharacterState> characters, StatusEffectManager ___statusEffectManager)
+        {
+            while (__result.MoveNext())
+                yield return __result.Current;
+
+            foreach (CharacterState character in characters)
+            { 
+                StatusEffectState.InputTriggerParams inputTriggerParams = new()
+                {
+                    associatedCharacter = character
+                };
+                StatusEffectState.OutputTriggerParams outputTriggerParams = new();
+                yield return ___statusEffectManager.TriggerStatusEffectOnUnit(StatusEffectTriggerStages.OnShift, character, inputTriggerParams, outputTriggerParams);
+            }
+        }
+    }
 }
