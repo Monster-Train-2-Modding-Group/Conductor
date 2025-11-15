@@ -1,6 +1,9 @@
+## v0.2.8
+- Fix Heroic status dealing double the effects damage.
+
 ## v0.2.7
 - Fix on_shift not being present as an identifier
-- Fix on_shift not triggering on normal enemy ascending._
+- Fix on_shift not triggering on normal enemy ascending.
 
 ## v0.2.6
 - Fix Utilities.SetupTraitTooltips assembly is optional.
