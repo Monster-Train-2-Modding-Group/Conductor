@@ -1,0 +1,48 @@
+{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "brambles",
+      "class_name": "@StatusEffectBramblesState",
+      "names": {
+        "english": "Brambles",
+        "chinese": ""
+      },
+      "stackable_names": {
+        "english": "Brambles {0}",
+        "chinese": " {0}"
+      },
+      "card_tooltips": {
+        "english": "Unit takes 3 damage per stack when the unit moves.<br>Stacks remain across turns.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "Takes [codeint0] damage when the unit moves.<br>Stacks remain across turns.",
+        "chinese": ""
+      },
+      "replacement_texts": {
+        "english": "<b>Brambles</b>",
+        "chinese": "<b></b>"
+      },
+      "is_propagatable": true,
+      "exclude_monster_propagation": true,
+      "display_category": "negative",
+      "trigger_stage": "@on_shift",
+      "is_stackable": true,
+      "param_int": 3,
+      "icon": "@brambles"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "brambles",
+      "path": "textures/status_brambles.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "brambles",
+      "path": "textures/status_brambles_tooltip.png"
+    }
+  ]
+}

@@ -38,6 +38,7 @@ namespace Conductor
                 c =>
                 {
                     c.AddMergedJsonFile(
+                        "json/status_effects/brambles.json",
                         "json/status_effects/divine_blessing.json",
                         "json/status_effects/growth.json",
                         "json/status_effects/heroic.json",
