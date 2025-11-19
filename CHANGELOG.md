@@ -1,3 +1,10 @@
+## v0.2.9
+- Ability to alias or combine triggers.
+- Added CardEffectEnchant and AfterSpawnBetterEnchant triggers
+- Added Brambles status effect
+- Added Utilities.AddCardEffectDisplay for a CardEffect to replace a trigger icon.
+- Allowed AllowTriggerToFirePreCharacterTriggerStatus to be called on Vanilla Triggers.
+
 ## v0.2.8
 - Fix Heroic status dealing double the effects damage.
 

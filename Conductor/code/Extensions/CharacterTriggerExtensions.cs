@@ -399,8 +399,8 @@ namespace Conductor.Extensions
         /// <summary>
         /// Makes this custom trigger an alias of another trigger type.
         /// </summary>
-        /// <param name="trigger"></param>
-        /// <returns></returns>
+        /// <param name="otherTrigger">Existing trigger to alias the custom one to.</param>
+        /// <returns>The Custom Trigger</returns>
         public static CharacterTriggerData.Trigger AliasOfTriggerType(this CharacterTriggerData.Trigger customTrigger, CharacterTriggerData.Trigger otherTrigger)
         {
             if (IsVanillaTrigger(customTrigger)) return customTrigger;
