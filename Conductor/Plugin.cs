@@ -14,6 +14,7 @@ using Conductor.TargetModes;
 using Conductor.TrackedValues;
 using Conductor.Data.Processors;
 using Conductor.Data.Registers;
+using Conductor.CardEffects;
 
 namespace Conductor
 {
@@ -39,13 +40,15 @@ namespace Conductor
                 {
                     c.AddMergedJsonFile(
                         "json/status_effects/brambles.json",
+                        "json/status_effects/construct.json",
                         "json/status_effects/divine_blessing.json",
                         "json/status_effects/growth.json",
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
                         "json/status_effects/intangible.json",
+                        //"json/status_effects/portal.json",
                         "json/status_effects/smirk.json",
-                        "json/status_effects/construct.json",
+                        
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",
                         //"json/status_effects/curse.json",
@@ -90,6 +93,7 @@ namespace Conductor
                     CharacterTriggers.Accursed = GetTrigger("Accursed").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge).SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedBlightOrScourge);
                     CharacterTriggers.Resonance = GetTrigger("Resonance").SetToTriggerOnPyreDamage(CharacterTriggers.OnPyreTakeDamage);
                     CharacterTriggers.Evoke = GetTrigger("Evoke").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedUnitAbility);
+                    CharacterTriggers.AfterSpawnBetterEnchant = GetTrigger("AfterSpawnBetterEnchant").AliasOfTriggerType(CharacterTriggerData.Trigger.AfterSpawnEnchant);
                     CharacterTriggers.OnBuffed = GetTrigger("OnBuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedABuff).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedADebuff).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
@@ -98,6 +102,10 @@ namespace Conductor
                     CharacterTriggers.Mobilize = GetTrigger("Mobilize");
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
+                    
+                    /*// Less annoying way to implement Portal.
+                    CharacterTriggerData.Trigger.OnTrainRoomLoop.AllowTriggerToFirePreCharacterTriggerStatus();
+                    */
 
                     // Setup Card Triggers.
                     var triggerManager = c.GetInstance<IRegister<CardTriggerType>>();
@@ -127,6 +135,8 @@ namespace Conductor
                         iconField.SetValue(sniper, GetSprite("Sniper"));
                     }
 
+                    // Trigger Displays
+                    Utilities.AddCardEffectDisplay(typeof(Conductor.CardEffects.CardEffectEnchant), GetSprite("trigger_enchant")!, CharacterTriggerData.DisplayCategory.StateModifier, ColorDisplayData.ColorType.StateModifier);
 
                     // Target Mode implementation wiring.
                     var targetModeRegister = c.GetInstance<IRegister<TargetMode>>();
@@ -174,3 +184,4 @@ namespace Conductor
         }
     }
 }
+

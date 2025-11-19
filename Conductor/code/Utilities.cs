@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using System.Reflection;
+using UnityEngine;
 
 namespace Conductor
 {
@@ -7,6 +8,8 @@ namespace Conductor
     {
         internal static FieldInfo TraitsSupportedInTooltips = AccessTools.Field(typeof(TooltipContainer), "TraitsSupportedInTooltips");
         internal static FieldInfo StatesSupportedInTooltips = AccessTools.Field(typeof(TooltipContainer), "StatesSupportedInTooltips");
+        internal static FieldInfo StatusEffectManager_displayDataField = AccessTools.Field(typeof(StatusEffectManager), "displayData");
+        internal static FieldInfo StatusEffectsDisplayData_cardEffectDisplayDataField = AccessTools.Field(typeof(StatusEffectsDisplayData), "cardEffectDisplayData");
 
         internal static MethodInfo CreateAdditionalTooltips1 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectState), typeof(TooltipContainer), typeof(SaveManager)]);
@@ -65,6 +68,29 @@ namespace Conductor
             }
             var states = (List<string>)StatesSupportedInTooltips.GetValue(null);
             states.AddRange(cardTraitNames);
+        }
+
+        /// <summary>
+        /// Overrides the Trigger Icon of a particular special CardEffect.
+        /// Examples of this in the Vanilla game are:
+        ///   Healers, PostBattleHealing trigger w/ CardEffectHeal
+        ///   Enchanters AfterSpawnEnchant w/ CardEffectEnchant.
+        /// </summary>
+        /// <param name="cardEffectClass">Type of a Custom Card Effect class. Must be a Custom Card Effect class.</param>
+        /// <param name="icon">Sprite to use</param>
+        /// <param name="displayCategory">DisplayCategory for the trigger.</param>
+        /// <param name="colorType">ColorType for the trigger.</param>
+        public static void AddCardEffectDisplay(Type cardEffectClass, Sprite icon, CharacterTriggerData.DisplayCategory displayCategory, ColorDisplayData.ColorType colorType)
+        {
+            StatusEffectManager manager = StatusEffectManager.Instance;
+            var displayData = StatusEffectManager_displayDataField.GetValue(manager) as StatusEffectsDisplayData;
+            var cardEffectDictionary = StatusEffectsDisplayData_cardEffectDisplayDataField.GetValue(displayData) as StatusEffectsDisplayData.CardEffectDictionary;
+            cardEffectDictionary!.Add(cardEffectClass.AssemblyQualifiedName, new StatusEffectsDisplayData.CardEffectDisplayData()
+            {
+                icon = icon,
+                displayCategory = displayCategory,
+                colorType = colorType
+            });
         }
 
         internal static bool HasOverride(Type type, MethodInfo baseMethod)

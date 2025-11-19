@@ -276,6 +276,8 @@ namespace Conductor.Extensions
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnAnotherSpawnDelegate> TriggersOnAnotherSpawn = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCharacterHitDelegate> TriggersOnCharacterHit = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnPyreDamageDelegate> TriggersOnPyreDamage = [];
+        internal readonly static Dictionary<CharacterTriggerData.Trigger, List<CharacterTriggerData.Trigger>> TriggerAliases = [];
+        internal readonly static Dictionary<CharacterTriggerData.Trigger, List<CharacterTriggerData.Trigger>> ReverseTriggerAliases = [];
 
         private static bool IsVanillaTrigger(CharacterTriggerData.Trigger trigger)
         {
@@ -386,16 +388,41 @@ namespace Conductor.Extensions
         /// 
         /// This function makes it so that if CharacterTrigger fires it always triggers the "PreCharacterTrigger" trigger stage status effects.
         /// </summary>
-        /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
+        /// <param name="trigger">A CharacterTriggerData.Trigger.</param>
         /// <returns>The trigger</returns>
         public static CharacterTriggerData.Trigger AllowTriggerToFirePreCharacterTriggerStatus(this CharacterTriggerData.Trigger trigger)
         {
-            if ((int)trigger <= (from int x in Enum.GetValues(typeof(CharacterTriggerData.Trigger)).AsQueryable() select x).Max())
-            {
-                Plugin.Logger.LogError($"Attempt to redefine vanilla trigger {trigger.ToString()}, you probably didn't mean to do this?");
-            }
             PreCharacterTriggerAllowedTriggers.Add(trigger);
             return trigger;
+        }
+
+        /// <summary>
+        /// Makes this custom trigger an alias of another trigger type.
+        /// </summary>
+        /// <param name="trigger"></param>
+        /// <returns></returns>
+        public static CharacterTriggerData.Trigger AliasOfTriggerType(this CharacterTriggerData.Trigger customTrigger, CharacterTriggerData.Trigger otherTrigger)
+        {
+            if (IsVanillaTrigger(customTrigger)) return customTrigger;
+            if (ReverseTriggerAliases.TryGetValue(customTrigger, out var aliases))
+            {
+                Plugin.Logger.LogWarning($"Attempt to alias an already aliased trigger, mapping this trigger to the triggers this trigger aliases.");
+                Plugin.Logger.LogDebug($"{System.Environment.StackTrace}");
+                List<CharacterTriggerData.Trigger> copy = [..aliases];
+                ReverseTriggerAliases[customTrigger] = copy;
+                foreach (CharacterTriggerData.Trigger trigger in copy)
+                {
+                    TriggerAliases[trigger]!.Add(customTrigger);
+                }
+                return customTrigger;
+            }
+            if (!TriggerAliases.ContainsKey(otherTrigger))
+                TriggerAliases.Add(otherTrigger, []);
+            TriggerAliases[otherTrigger].Add(customTrigger);
+            if (!ReverseTriggerAliases.ContainsKey(customTrigger))
+                ReverseTriggerAliases.Add(customTrigger, []);
+            ReverseTriggerAliases[customTrigger].Add(otherTrigger);
+            return customTrigger;
         }
 
         internal static void QueueCustomTrigger(this CombatManager combatManager, CharacterState character, CharacterTriggerData.Trigger trigger, QueueTriggerParams? data)

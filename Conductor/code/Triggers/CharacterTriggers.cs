@@ -11,6 +11,8 @@ namespace Conductor.Triggers
 {
     public static class CharacterTriggers
     {
+        public static CharacterTriggerData.Trigger AfterSpawnBetterEnchant;
+
         /// <summary>
         /// Triggers when any allied unit takes damage from any source.
         /// 

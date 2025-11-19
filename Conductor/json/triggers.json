@@ -27,6 +27,34 @@
       "sprite": "@trigger_accursed"
     },
     {
+      "id": "AfterSpawnBetterEnchant",
+      "names": {
+        "english": "Enchant",
+        "french": "Enchantement",
+        "german": "Begeisterung",
+        "russian": "Усиление",
+        "portuguese": "Encantamento",
+        "chinese": "附魔",
+        "spanish": "Encantamiento",
+        "chinese_traditional": "附魔",
+        "korean": "마법 부여",
+        "japanese": "エンチャント"
+      },
+      "descriptions": {
+        "english": "Specified units gain a bonus.",
+        "french": "Les unités spécifiées obtiennent un bonus.",
+        "german": "Bestimmte Einheiten erhalten einen Bonus.",
+        "russian": "Указанные подразделения получают бонус.",
+        "portuguese": "Unidades especificadas recebem um bônus.",
+        "chinese": "指定单位将获得奖金。",
+        "spanish": "Las unidades especificadas obtienen una bonificación.",
+        "chinese_traditional": "指定單位獲得加成。",
+        "korean": "지정된 유닛은 보너스를 얻습니다.",
+        "japanese": "指定されたユニットにボーナスが付与されます。"
+      },
+      "sprite": "@trigger_enchant"
+    },
+    {
       "id": "Encounter",
       "names": {
         "english": "Encounter",
@@ -129,6 +157,10 @@
       "path": "textures/trigger_accursed.png"
     },
     {
+      "id": "trigger_enchant",
+      "path": "textures/trigger_enchant.png"
+    },
+    {
       "id": "trigger_encounter",
       "path": "textures/trigger_encounter.png"
     },
@@ -165,6 +197,10 @@
     {
       "id": "trigger_accursed",
       "path": "textures/trigger_accursed_tooltip.png"
+    },
+    {
+      "id": "trigger_enchant",
+      "path": "textures/trigger_enchant.png"
     },
     {
       "id": "trigger_encounter",
