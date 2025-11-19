@@ -52,7 +52,8 @@
         "korean": "지정된 유닛은 보너스를 얻습니다.",
         "japanese": "指定されたユニットにボーナスが付与されます。"
       },
-      "sprite": "@trigger_enchant"
+      "sprite": "@trigger_enchant",
+      "is_state_modifier": true
     },
     {
       "id": "Encounter",
