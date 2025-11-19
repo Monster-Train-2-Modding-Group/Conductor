@@ -2,11 +2,14 @@
 using HarmonyLib;
 using System.Reflection;
 using System.Reflection.Emit;
+using UnityEngine.TextCore.Text;
+using static CharacterState;
+using static CharacterTriggerData;
 using static CombatManager;
 
 namespace Conductor.Patches
 {
-    [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.QueueTrigger))]
+    [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.QueueTrigger), [typeof(CharacterState), typeof(CharacterTriggerData.Trigger), typeof(CharacterState), typeof(bool), typeof(bool), typeof(CharacterState.FireTriggersData), typeof(int), typeof(CharacterTriggerState)])]
     public class AliasTriggersPatch
     {
         static MethodInfo enqueueMethod =
