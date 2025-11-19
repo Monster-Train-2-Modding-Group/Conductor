@@ -31,9 +31,7 @@ namespace Conductor.Patches
                 var inst = list[i];
                 yield return inst;
 
-                if (inst.opcode == OpCodes.Callvirt &&
-                    inst.operand is MethodInfo mi &&
-                    mi == enqueueMethod)
+                if (inst.opcode == OpCodes.Callvirt && inst.operand is MethodInfo mi && mi == enqueueMethod)
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0); // __instance
                     yield return new CodeInstruction(OpCodes.Ldarg_1); // character
@@ -80,6 +78,62 @@ namespace Conductor.Patches
                     fireTriggersData = fireTriggersData,
                     triggerCount = triggerCount,
                     exclusiveTrigger = exclusiveTrigger
+                });
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(CombatManager), nameof(CombatManager.QueueTrigger), [typeof(TriggerQueueData)])]
+    public class AliasTriggersPatch2
+    {
+        static MethodInfo enqueueMethod =
+            AccessTools.Method(typeof(Queue<TriggerQueueData>), nameof(Queue<TriggerQueueData>.Enqueue));
+
+        static MethodInfo handlerMethod =
+            AccessTools.Method(typeof(AliasTriggersPatch2), nameof(AliasTriggersPatch2.OnQueueTrigger));
+
+        static readonly MethodInfo get_TriggerQueue =
+            AccessTools.PropertyGetter(typeof(CombatManager), "TriggerQueue");
+
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var list = new List<CodeInstruction>(instructions);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                var inst = list[i];
+                yield return inst;
+
+                if (inst.opcode == OpCodes.Callvirt && inst.operand is MethodInfo mi && mi == enqueueMethod)
+                {
+                    yield return new CodeInstruction(OpCodes.Ldarg_0); // __instance
+                    yield return new CodeInstruction(OpCodes.Ldarg_1); // triggerQueueData
+                    yield return new CodeInstruction(OpCodes.Call, handlerMethod);
+                }
+            }
+        }
+
+        internal static void OnQueueTrigger(CombatManager combatManager, TriggerQueueData data)
+        {
+            var triggerQueue = (Queue<TriggerQueueData>)get_TriggerQueue.Invoke(combatManager, null);
+
+            var aliases = CharacterTriggerExtensions.TriggerAliases.GetValueOrDefault(data.trigger, null);
+            if (aliases == null)
+                return;
+
+            foreach (var aliasedTrigger in aliases)
+            {
+                triggerQueue.Enqueue(new TriggerQueueData
+                {
+                    character = data.character,
+                    dyingCharacter = data.dyingCharacter,
+                    trigger = aliasedTrigger,
+                    canAttackOrHeal = data.canAttackOrHeal,
+                    canFireTriggers = data.canFireTriggers,
+                    fireTriggersData = data.fireTriggersData,
+                    triggerCount = data.triggerCount,
+                    exclusiveTrigger = data.exclusiveTrigger
                 });
             }
         }
