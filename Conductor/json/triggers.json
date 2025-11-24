@@ -35,7 +35,7 @@
         "russian": "Усиление",
         "portuguese": "Encantamento",
         "chinese": "附魔",
-        "spanish": "Hechizar",
+        "spanish": "Encantamiento",
         "chinese_traditional": "附魔",
         "korean": "마법 부여",
         "japanese": "エンチャント"
@@ -232,4 +232,5 @@
       "path": "textures/trigger_vengeance.png"
     }
   ]
+
 }
