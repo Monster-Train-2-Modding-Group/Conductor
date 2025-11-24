@@ -46,7 +46,7 @@
         "german": "Bestimmte Einheiten erhalten einen Bonus.",
         "russian": "Указанные подразделения получают бонус.",
         "portuguese": "Unidades especificadas recebem um bônus.",
-        "chinese": "指定单位将获得奖金。",
+        "chinese": "指定单位会获得加成。",
         "spanish": "Las unidades especificadas obtienen una bonificación.",
         "chinese_traditional": "指定單位獲得加成。",
         "korean": "지정된 유닛은 보너스를 얻습니다.",
@@ -232,4 +232,5 @@
       "path": "textures/trigger_vengeance.png"
     }
   ]
+
 }

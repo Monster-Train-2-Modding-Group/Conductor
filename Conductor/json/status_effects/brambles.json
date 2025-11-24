@@ -6,23 +6,23 @@
       "class_name": "@StatusEffectBramblesState",
       "names": {
         "english": "Brambles",
-        "chinese": ""
+        "chinese": "荆棘"
       },
       "stackable_names": {
         "english": "Brambles {0}",
-        "chinese": " {0}"
+        "chinese": "荆棘 {0}"
       },
       "card_tooltips": {
         "english": "Unit takes 3 damage per stack when the unit moves.<br>Stacks remain across turns.",
-        "chinese": ""
+        "chinese": "当单位移动时，每有一层[Conductor_brambles]，对其造成 [codeint0] 点伤害。<br>层数会跨回合保留。"
       },
       "character_tooltips": {
         "english": "Takes [codeint0] damage when the unit moves.<br>Stacks remain across turns.",
-        "chinese": ""
+        "chinese": "当单位移动时，对其造成 [codeint0] 点伤害。<br>层数会跨回合保留。"
       },
       "replacement_texts": {
         "english": "<b>Brambles</b>",
-        "chinese": "<b></b>"
+        "chinese": "<b>荆棘</b>"
       },
       "is_propagatable": true,
       "exclude_monster_propagation": true,
