@@ -1,5 +1,4 @@
-﻿using Conductor.Interfaces;
-using ShinyShoe;
+﻿using ShinyShoe;
 using static TargetHelper;
 
 namespace Conductor.TargetModes

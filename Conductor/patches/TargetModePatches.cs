@@ -1,12 +1,7 @@
 ﻿using Conductor.Extensions;
-using Conductor.Interfaces;
+using Conductor.TargetModes;
 using HarmonyLib;
 using ShinyShoe;
-using ShinyShoe.Logging;
-using SickDev.DevConsole.Example;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
 using System.Reflection.Emit;
 using static TargetHelper;

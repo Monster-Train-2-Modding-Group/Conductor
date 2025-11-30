@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Conductor.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using static TargetHelper;
 
-namespace Conductor.Interfaces
+namespace Conductor.TargetModes
 {
     /// <summary>
     /// Class implementing a custom card target mode.

@@ -1,4 +1,5 @@
-﻿using Conductor.Interfaces;
+﻿using Conductor.TargetModes;
+using Conductor.Interfaces;
 using TrainworksReloaded.Base.Enums;
 
 namespace Conductor.Extensions

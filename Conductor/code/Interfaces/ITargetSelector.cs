@@ -6,6 +6,7 @@ namespace Conductor.Interfaces
 {
     /// <summary>
     /// Common Interface for Target Selectors. Users should inherit from either CardTargetSelector or CharacterTargetSelector.
+    /// Not intended to be used directly.
     /// </summary>
     public interface ITargetSelector
     {

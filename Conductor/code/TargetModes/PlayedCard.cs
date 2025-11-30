@@ -1,6 +1,4 @@
-﻿using Conductor.Interfaces;
-
-namespace Conductor.TargetModes
+﻿namespace Conductor.TargetModes
 {
     /// <summary>
     /// Target Mode that sets targetCards to the card being played.

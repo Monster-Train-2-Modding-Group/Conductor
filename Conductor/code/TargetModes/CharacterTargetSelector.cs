@@ -1,10 +1,11 @@
-﻿using HarmonyLib;
+﻿using Conductor.Interfaces;
+using HarmonyLib;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using static TargetHelper;
 
-namespace Conductor.Interfaces
+namespace Conductor.TargetModes
 {
     /// <summary>
     /// Class implementing a custom unit target mode.

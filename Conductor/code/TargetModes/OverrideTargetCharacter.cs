@@ -1,5 +1,4 @@
-﻿using Conductor.Interfaces;
-using static TargetHelper;
+﻿using static TargetHelper;
 
 namespace Conductor.TargetModes
 {
