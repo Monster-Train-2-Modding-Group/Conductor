@@ -12,6 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Package", "Package", "{02EA
 		thunderstore.toml = thunderstore.toml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "schemas", "schemas", "{CB75CE04-4300-4179-BFE7-00E713FBAF74}"
+	ProjectSection(SolutionItems) = preProject
+		schemas\hud.json = schemas\hud.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

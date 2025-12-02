@@ -211,7 +211,7 @@ namespace Conductor.UI
         }
 
         /// <summary>
-        /// Refreshes the HUD. Called when the main HUD refreshes state.
+        /// Refreshes the HUD. This function is only called when the main HUD refreshes state. Default implementation does nothing.
         /// </summary>
         /// <param name="saveManager">SaveManager instance.</param>
         /// <param name="playerManager">PlayerManager instance.</param>
@@ -231,7 +231,7 @@ namespace Conductor.UI
         }
 
         /// <summary>
-        /// Listener function.
+        /// Listener function. Only sets the text for the countLabel. If you want to refresh the HUD call Refresh manually.
         /// </summary>
         /// <param name="changedParams">TrackedValue changed params.</param>
         protected virtual void HandleValueChanged(TrackedValueChangedParams changedParams)
@@ -242,6 +242,9 @@ namespace Conductor.UI
                 ChangeCount(changedParams.value);
         }
 
+        /// <summary>
+        /// Prevents animation if the game is replaying/undo turn.
+        /// </summary>
         protected override void DoChangeAnimation(int prevCount, int newCount)
         {
             var replayManager = AllGameManagers.Instance?.GetReplayManager();
