@@ -1,3 +1,8 @@
+## v0.3.0
+- Breaking change: Conductor.Interfaces.ITrackedValueHandler is private, users should switch to inheriting Conductor.TrackedValues.AbstractTrackedValueHandler
+- Breaking change: Conductor.Interfaces.CharacterTargetSelector and Conductor.Interfaces.CardTargetSelector moved to Conductor.TargetModes namespace.
+- Ability to create ClassMechanicHUDs.
+
 ## v0.2.9
 - Ability to alias or combine triggers.
 - Added CardEffectEnchant and AfterSpawnBetterEnchant triggers
