@@ -3,63 +3,66 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
     "huds": {
-      "type": "object",
-      "properties": {
-        "additional_texts": {
-          "type": "array",
-          "items": {
-            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "additional_texts": {
+            "type": "array",
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json"
+            },
+            "description": "Additional localizations if necessary. Only useful for Large HUDs if the label text changes."
           },
-          "description": "Additional localizations if necessary. Only useful for Large HUDs if the label text changes."
-        },
-        "background": {
-          "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/reference.json",
-          "description": "Background image of the HUD. For Large style HUDs this should be 124x236. For Small style HUDs this should be 124x172."
-        },
-        "class": {
-          "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/classes.json",
-          "description": "Optional, If set restricts the HUD to display only when this clan is primary or allied.",
-          "default": null
-        },
-        "display": {
-          "type": "string",
-          "enum": [ "battle_only", "run" ],
-          "description": "Controls when the HUD displays.",
-          "default": "battle_only"
-        },
-        "icons": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/reference.json"
+          "background": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/reference.json",
+            "description": "Background image of the HUD. For Large style HUDs this should be 124x236. For Small style HUDs this should be 124x172."
           },
-          "description": "Icons to display within the HUD. For Large Style HUDs this should be 92x92. For Small Style HUDs this should be 72x88. Index 0 is the displayed icon. If you provide more than you must subclass ClassMechanicHud and use a SpriteSwapper (or equivalent) to switch icons. Specifying more is provided as a convienence in implementation."
-        },
-        "id": {
-          "type": "string",
-          "minLength": 1,
-          "description": "Unique ID."
-        },
-        "label_texts": {
-          "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
-          "description": "Default label text"
-        },
-        "name": {
-          "type": "string",
-          "description": "(Optional) Name of class in your mod inheriting from ClassMechanicHud. If not provided will be an instance of ClassMechanicHud."
-        },
-        "tooltip_texts": {
-          "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
-          "description": "Tooltip body text when mousing over the HUD."
-        },
-        "tooltip_titles": {
-          "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
-          "description": "Tooltip title text when mousing over the HUD."
-        },
-        "type": {
-          "type": "string",
-          "enum": [ "small", "large", "custom" ],
-          "description": "Controls the type of HUD. Large HUDs have an associated label."
+          "class": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/classes.json",
+            "description": "Optional, If set restricts the HUD to display only when this clan is primary or allied.",
+            "default": null
+          },
+          "display": {
+            "type": "string",
+            "enum": [ "battle_only", "run" ],
+            "description": "Controls when the HUD displays.",
+            "default": "battle_only"
+          },
+          "icons": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/reference.json"
+            },
+            "description": "Icons to display within the HUD. For Large Style HUDs this should be 92x92. For Small Style HUDs this should be 72x88. Index 0 is the displayed icon. If you provide more than you must subclass ClassMechanicHud and use a SpriteSwapper (or equivalent) to switch icons. Specifying more is provided as a convienence in implementation."
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique ID."
+          },
+          "label_texts": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
+            "description": "Default label text"
+          },
+          "name": {
+            "type": "string",
+            "description": "(Optional) Name of class in your mod inheriting from ClassMechanicHud. If not provided will be an instance of ClassMechanicHud."
+          },
+          "tooltip_texts": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
+            "description": "Tooltip body text when mousing over the HUD."
+          },
+          "tooltip_titles": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/parse_term.json",
+            "description": "Tooltip title text when mousing over the HUD."
+          },
+          "type": {
+            "type": "string",
+            "enum": [ "small", "large", "custom" ],
+            "description": "Controls the type of HUD. Large HUDs have an associated label."
+          }
         }
       }
     },

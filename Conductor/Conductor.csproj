@@ -33,5 +33,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="schemas\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 </Project>
