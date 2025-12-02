@@ -1,21 +1,21 @@
-﻿using Conductor.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Conductor.TrackedValues;
 
 namespace Conductor.Extensions
 {
+    public delegate int TrackedValueGetter(CardStatistics.StatValueData statValueData, IReadOnlyDictionary<CardState, CardStatsEntry> deckStats, ICoreGameManagers coreGameManagers);
+
     public static class TrackedValueTypeExtensions
     {
-        internal readonly static Dictionary<CardStatistics.TrackedValueType, ITrackedValueHandler> TrackedValueHandlers = [];
-        internal readonly static Dictionary<CardStatistics.TrackedValueType, Func<CardStatistics.StatValueData, IReadOnlyDictionary<CardState, CardStatsEntry>, ICoreGameManagers, int>> TrackedValueGetters = [];
+        
+        internal readonly static Dictionary<CardStatistics.TrackedValueType, AbstractTrackedValueHandler> TrackedValueHandlers = [];
+        internal readonly static Dictionary<CardStatistics.TrackedValueType, TrackedValueGetter> TrackedValueGetters = [];
         internal readonly static ISet<CardStatistics.TrackedValueType> TrackedValuesValidOutsideBattle = new HashSet<CardStatistics.TrackedValueType>();
 
         private static bool IsVanillaTrackedValue(CardStatistics.TrackedValueType trackedValue)
         {
             if ((int)trackedValue <= (from int x in Enum.GetValues(typeof(CardStatistics.TrackedValueType)).AsQueryable() select x).Max())
             {
-                Plugin.Logger.LogError($"Attempt to redefine vanilla target mode {trackedValue.ToString()}, you probably didn't mean to do this?");
+                Plugin.Logger.LogError($"Attempt to redefine vanilla trackedValue {trackedValue}, you probably didn't mean to do this?");
                 return true;
             }
             return false;
@@ -33,7 +33,7 @@ namespace Conductor.Extensions
         /// <param name="trackedValue">A custom TrackedValue enum</param>
         /// <param name="handler">Handler class for the TrackedValue.</param>
         /// <returns>The TrackedValue</returns>
-        public static CardStatistics.TrackedValueType SetTrackedValueHandler(this CardStatistics.TrackedValueType trackedValue, ITrackedValueHandler handler)
+        public static CardStatistics.TrackedValueType SetTrackedValueHandler(this CardStatistics.TrackedValueType trackedValue, AbstractTrackedValueHandler handler)
         {
             if (IsVanillaTrackedValue(trackedValue)) return trackedValue;
             if (TrackedValueGetters.ContainsKey(trackedValue))
@@ -58,7 +58,7 @@ namespace Conductor.Extensions
         /// <param name="trackedValue">A custom TrackedValue enum</param>
         /// <param name="handler">Handler function for the TrackedValue. Takes a StatValueData and ICoreGameManagers and returns an int for the TrackedValue.</param>
         /// <returns>The TrackedValue</returns>
-        public static CardStatistics.TrackedValueType SetTrackedValueGetter(this CardStatistics.TrackedValueType trackedValue, Func<CardStatistics.StatValueData, IReadOnlyDictionary<CardState, CardStatsEntry>, ICoreGameManagers, int> handler)
+        public static CardStatistics.TrackedValueType SetTrackedValueGetter(this CardStatistics.TrackedValueType trackedValue, TrackedValueGetter handler)
         {
             if (IsVanillaTrackedValue(trackedValue)) return trackedValue;
             if (TrackedValueHandlers.ContainsKey(trackedValue))

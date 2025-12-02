@@ -69,6 +69,7 @@ namespace Conductor
                 c =>
                 {
                     c.RegisterSingleton<UnitEssenceProcessor, UnitEssenceProcessor>();
+                    c.RegisterSingleton<HudProcessor, HudProcessor>();
                     c.RegisterSingleton<UnitEssenceRegistry, UnitEssenceRegistry>();
                 }
             );
@@ -77,8 +78,8 @@ namespace Conductor
                 c =>
                 {
                     // Parse Essences.
-                    var finalizer = c.GetInstance<UnitEssenceProcessor>();
-                    finalizer.Run();
+                    c.GetInstance<UnitEssenceProcessor>().Run();
+                    c.GetInstance<HudProcessor>().Run();
 
                     // Wire Implementations of CharacterTriggers
                     var manager = c.GetInstance<IRegister<CharacterTriggerData.Trigger>>();

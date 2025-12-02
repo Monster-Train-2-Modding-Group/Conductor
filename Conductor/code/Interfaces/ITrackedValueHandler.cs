@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Conductor.TrackedValues;
+using ShinyShoe;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using static CardStatistics;
@@ -7,11 +9,8 @@ namespace Conductor.Interfaces
 {
     /// <summary>
     /// Main interface for a custom tracked value implementation.
-    /// 
-    /// Note that if your TrackedValue is associated with a card you need not make a class as
-    /// the default behavior of a TrackedValue is to track a particular stat about a card.
     /// </summary>
-    public interface ITrackedValueHandler
+    internal interface ITrackedValueHandler
     {
         /// <summary>
         /// Called at the start of a run to completely reset state.
@@ -46,5 +45,9 @@ namespace Conductor.Interfaces
         /// You can just call Reset here.
         /// </summary>
         void OnBattleEnd();
+        /// <summary>
+        /// Optional signal for anyone interested in getting a notification when the value changes.
+        /// </summary>
+        public Signal<TrackedValueChangedParams>? ValueChangedSignal { get; }
     }
 }

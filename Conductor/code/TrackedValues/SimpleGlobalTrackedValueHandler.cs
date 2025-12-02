@@ -1,4 +1,5 @@
 ﻿using Conductor.Interfaces;
+using ShinyShoe;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,13 +16,18 @@ namespace Conductor.TrackedValues
     /// If you need to increment the stat you can do so with a call to CardStatistics.IncrementStat.
     /// 
     /// </summary>
-    public class SimpleGlobalTrackedValueHandler : ITrackedValueHandler
+    public class SimpleGlobalTrackedValueHandler : AbstractTrackedValueHandler
     {
         private int thisTurn;
         private int previousTurn;
         private int thisBattle;
 
-        public int GetValue(CardStatistics.StatValueData statValueData)
+        /// <summary>
+        /// Get the value for this tracked value.
+        /// </summary>
+        /// <param name="statValueData">StatValueData object.</param>
+        /// <returns>Current value of the tracked value for the specified StatValueData.</returns>
+        public override int GetValue(CardStatistics.StatValueData statValueData)
         {
             return statValueData.entryDuration switch
             {
@@ -35,22 +41,32 @@ namespace Conductor.TrackedValues
         /// <summary>
         /// Increment the stat value. This function is not intended to be called directly.
         /// If you do then be sure to call the function both EntryDuration.ThisTurn and ThisBattle.
-        /// 
         /// </summary>
-        public void IncrementValue(CardState? _, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn)
+        public override void IncrementValue(CardState? card, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn)
         {
+            int previous;
+            int current;
             switch (entryDuration)
             {
                 case CardStatistics.EntryDuration.ThisTurn:
+                    previous = thisTurn;
                     thisTurn += amount;
+                    current = thisTurn;
                     break;
                 case CardStatistics.EntryDuration.PreviousTurn:
+                    previous = previousTurn;
                     previousTurn += amount;
+                    current = previousTurn;
                     break;
                 case CardStatistics.EntryDuration.ThisBattle:
+                    previous = thisBattle;
                     thisBattle += amount;
+                    current = thisBattle;
                     break;
+                default:
+                    return;
             }
+            ValueChanged(current, previous, card, entryDuration);
         }
 
         /// <summary>
@@ -58,42 +74,49 @@ namespace Conductor.TrackedValues
         /// </summary>
         /// <param name="amount">Set the current value for EntryDuration.</param>
         /// <param name="entryDuration">EntryDuration to modify.</param>
-        public void SetValue(CardState? _, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn)
+        public void SetValue(CardState? card, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn, bool notify = true)
         {
+            int current = amount;
+            int previous;
             switch (entryDuration)
             {
                 case CardStatistics.EntryDuration.ThisTurn:
+                    previous = thisTurn;
                     thisTurn = amount;
                     break;
                 case CardStatistics.EntryDuration.PreviousTurn:
+                    previous = previousTurn;
                     previousTurn = amount;
                     break;
                 case CardStatistics.EntryDuration.ThisBattle:
+                    previous = thisBattle;
                     thisBattle = amount;
                     break;
+                default:
+                    return;
             }
+            if (notify)
+                ValueChanged(current, previous, card, entryDuration);
         }
 
-        public void OnBattleEnd()
+        public override void OnBattleEnd()
         {
             Reset();
         }
 
-        public void Reset()
+        public override void Reset()
         {
             thisTurn = 0;
             previousTurn = 0;
             thisBattle = 0;
+            ValueChanged(thisTurn, previousTurn, updateUI: TrackedValueChangedParams.UiUpdateMode.Instant);
         }
 
-        public void UpdateStatsForNextTurn()
+        public override void UpdateStatsForNextTurn()
         {
             previousTurn = thisTurn;
             thisTurn = 0;
-        }
-
-        public void UpdateStatsForFirstTurn()
-        {
+            ValueChanged(thisTurn, previousTurn, updateUI: TrackedValueChangedParams.UiUpdateMode.Instant);
         }
     }
 }
