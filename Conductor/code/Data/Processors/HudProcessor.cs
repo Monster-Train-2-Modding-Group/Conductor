@@ -78,9 +78,12 @@ namespace Conductor.Data.Processors
 
         private void ProcessHUD(string key, IConfiguration config)
         {
+            
             var id = config.GetSection("id").ParseString();
             if (id == null)
                 return;
+
+            Plugin.Logger.LogInfo($"Creating HUD {key}/{id}");
 
             var typeStr = config.GetSection("type").ParseString()?.ToLower();
             var type = typeStr == null ? ClassMechanicHud.HudType.Custom : stringToHudType.GetValueOrDefault(typeStr, ClassMechanicHud.HudType.Invalid);
@@ -157,8 +160,14 @@ namespace Conductor.Data.Processors
                 additionalLabelKeys![i] = additionalLabels[i]!.Key;
             }
 
-            if (id == null || UIClass == null || background == null)
+            if (UIClass == null)
             {
+                Plugin.Logger.LogWarning($"UIClass is null, this shouldn't happen, defaulting it back to ClassMechanicHud, if name is specified then this is actionable.");
+                UIClass = typeof(ClassMechanicHud);
+            }
+            if (background == null)
+            {
+                Plugin.Logger.LogError("Background is null, background is a required param.");
                 return;
             }
 
