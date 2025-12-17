@@ -1,4 +1,5 @@
 ﻿using Conductor.TrackedValues;
+using static CharacterTriggerData;
 
 namespace Conductor.Extensions
 {
@@ -13,7 +14,7 @@ namespace Conductor.Extensions
 
         private static bool IsVanillaTrackedValue(CardStatistics.TrackedValueType trackedValue)
         {
-            if ((int)trackedValue <= (from int x in Enum.GetValues(typeof(CardStatistics.TrackedValueType)).AsQueryable() select x).Max())
+            if (EnumDefinitionCache<CardStatistics.TrackedValueType>.IsDefined(trackedValue))
             {
                 Plugin.Logger.LogError($"Attempt to redefine vanilla trackedValue {trackedValue}, you probably didn't mean to do this?");
                 return true;

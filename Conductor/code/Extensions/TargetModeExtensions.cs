@@ -1,6 +1,7 @@
-﻿using Conductor.TargetModes;
-using Conductor.Interfaces;
+﻿using Conductor.Interfaces;
+using Conductor.TargetModes;
 using TrainworksReloaded.Base.Enums;
+using static CharacterTriggerData;
 
 namespace Conductor.Extensions
 {
@@ -24,9 +25,9 @@ namespace Conductor.Extensions
 
         private static bool IsVanillaTargetMode(TargetMode targetMode)
         {
-            if ((byte)targetMode <= (from byte x in Enum.GetValues(typeof(TargetMode)).AsQueryable() select x).Max())
+            if (EnumDefinitionCache<TargetMode>.IsDefined(targetMode))
             {
-                Plugin.Logger.LogError($"Attempt to redefine vanilla target mode {targetMode.ToString()}, you probably didn't mean to do this?");
+                Plugin.Logger.LogError($"Attempt to redefine vanilla target mode {targetMode}, you probably didn't mean to do this?");
                 return true;
             }
             return false;

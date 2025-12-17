@@ -281,9 +281,9 @@ namespace Conductor.Extensions
 
         private static bool IsVanillaTrigger(CharacterTriggerData.Trigger trigger)
         {
-            if ((int)trigger <= (from int x in Enum.GetValues(typeof(CharacterTriggerData.Trigger)).AsQueryable() select x).Max())
+            if (EnumDefinitionCache<CharacterTriggerData.Trigger>.IsDefined(trigger))
             {
-                Plugin.Logger.LogError($"Attempt to redefine vanilla trigger {trigger.ToString()}, you probably didn't mean to do this?");
+                Plugin.Logger.LogError($"Attempt to redefine vanilla trigger {trigger}, you probably didn't mean to do this?");
                 return true;
             }
             return false;
