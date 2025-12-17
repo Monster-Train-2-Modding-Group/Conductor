@@ -1,5 +1,7 @@
 ﻿using Conductor.Extensions;
+using Conductor.Triggers;
 using HarmonyLib;
+using ShinyShoe;
 using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine.TextCore.Text;
@@ -62,12 +64,40 @@ namespace Conductor.Patches
         {
             var triggerQueue = (Queue<TriggerQueueData>)get_TriggerQueue.Invoke(combatManager, null);
 
+            if (trigger == CharacterTriggerData.Trigger.OnEquipmentAdded)
+            {
+                var room = character.GetCurrentRoom();
+                if (room != null)
+                {
+                    List<CharacterState> list;
+                    using (GenericPools.GetList(out list))
+                    {
+                        room.AddCharactersToList(list, character.GetTeamType().GetOppositeTeam());
+                        foreach (CharacterState item in list)
+                        {
+                            triggerQueue.Enqueue(new TriggerQueueData
+                            {
+                                character = item,
+                                dyingCharacter = null,
+                                trigger = CharacterTriggers.Binder,
+                                canAttackOrHeal = true,
+                                canFireTriggers = true,
+                                fireTriggersData = null,
+                                triggerCount = 1,
+                                exclusiveTrigger = null
+                            });
+                        }
+                    }
+                }
+            }
+
             var aliases = CharacterTriggerExtensions.TriggerAliases.GetValueOrDefault(trigger, null);
             if (aliases == null)
                 return;
 
             foreach (var aliasedTrigger in aliases)
             {
+                // TODO allow an alias trigger to change the other parameters.
                 triggerQueue.Enqueue(new TriggerQueueData
                 {
                     character = character,

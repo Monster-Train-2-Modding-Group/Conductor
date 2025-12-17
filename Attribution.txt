@@ -14,3 +14,4 @@ heroic icon: https://game-icons.net/1x1/delapouite/cape.html
 growth icon: https://game-icons.net/1x1/lorc/sprout.html
 brambles icon: https://game-icons.net/1x1/skoll/spiked-ball.html
 piercing icon: https://game-icons.net/1x1/lorc/pierced-heart.html (modified)
+binded icon: <a href="https://www.flaticon.com/free-icons/trap" title="trap icons">Trap icons created by Freepik - Flaticon</a>

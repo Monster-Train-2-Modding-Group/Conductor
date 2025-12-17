@@ -56,6 +56,18 @@
       "is_state_modifier": true
     },
     {
+      "id": "Binder",
+      "names": {
+        "english": "Binder",
+        "chinese": "绑定"
+      },
+      "descriptions": {
+        "english": "Equipment is attached to any opposing unit.",
+        "chinese": "对方单位穿戴上装备时触发。"
+      },
+      "sprite": "@trigger_binder"
+    },
+    {
       "id": "Encounter",
       "names": {
         "english": "Encounter",
@@ -158,6 +170,10 @@
       "path": "textures/trigger_accursed.png"
     },
     {
+      "id": "trigger_binder",
+      "path": "textures/trigger_binder.png"
+    },
+    {
       "id": "trigger_enchant",
       "path": "textures/trigger_enchant.png"
     },
@@ -200,6 +216,10 @@
       "path": "textures/trigger_accursed_tooltip.png"
     },
     {
+      "id": "trigger_binder",
+      "path": "textures/trigger_binder.png"
+    },
+    {
       "id": "trigger_enchant",
       "path": "textures/trigger_enchant.png"
     },
@@ -218,6 +238,10 @@
     {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
+    },
+    {
+      "id": "trigger_mobilize",
+      "path": "textures/trigger_mobilize.png"
     },
     {
       "id": "trigger_penance",

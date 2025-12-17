@@ -184,6 +184,7 @@ namespace Conductor.Triggers
             return false;
         }
 
+        public static CharacterTriggerData.Trigger Binder;
         /// <summary>
         /// Triggers when any ability is used on the floor.
         /// Equipped -> Artificer as Conjure -> Evoke

@@ -99,6 +99,7 @@ namespace Conductor
                     CharacterTriggers.OnDebuffed = GetTrigger("OnDebuffed").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedADebuff).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthLost = GetTrigger("OnGrowthLost").SetToTriggerOnStatusEffectRemoved(CharacterTriggers.OnLostGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
+                    CharacterTriggers.Binder = GetTrigger("Binder");
                     // Implementations of Mobilize/Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Mobilize = GetTrigger("Mobilize");
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
