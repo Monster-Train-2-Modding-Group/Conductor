@@ -1,3 +1,10 @@
+## v0.4.0
+- Fixes for Destiny of the Railforged.
+
+## v0.3.2
+- Add Binder trigger.
+- Add ability to associate a sound cue with a custom Damage.Type
+
 ## v0.3.1
 - Just more logging.
 
