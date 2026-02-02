@@ -39,7 +39,7 @@ namespace Conductor
             saveManager = coreGameManagers.GetSaveManager();
         }
 
-        public override bool GetIsPlayableFromHand(CardManager cardManager, RoomManager roomManager, out CommonSelectionBehavior.SelectionError selectionError)
+        public override bool GetIsPlayableFromHand(CardManager cardManager, RoomManager roomManager, int sourceCharacterRoomIndex, out CommonSelectionBehavior.SelectionError selectionError)
         {
             selectionError = CommonSelectionBehavior.SelectionError.None;
             if (saveManager!.GetGold() < Mathf.Abs(GetParamInt()))
@@ -50,7 +50,7 @@ namespace Conductor
             return true;
         }
 
-        public override bool GetIsPlayableFromPlay(CardManager cardManager, RoomManager roomManager, out CommonSelectionBehavior.SelectionError selectionError)
+        public override bool GetIsPlayableFromPlay(CardManager cardManager, RoomManager roomManager, int sourceCharacterRoomIndex, out CommonSelectionBehavior.SelectionError selectionError)
         {
             selectionError = CommonSelectionBehavior.SelectionError.None;
             if (saveManager!.GetGold() < Mathf.Abs(GetParamInt()))
@@ -61,7 +61,7 @@ namespace Conductor
             return true;
         }
 
-        public override IEnumerator OnPreCardPlayed(CardState cardState, ICoreGameManagers coreGameManagers)
+        public override IEnumerator OnPreCardPlayed(CardState cardState, int sourceCharacterRoomIndex, ICoreGameManagers coreGameManagers)
         {
             yield return coreGameManagers.GetPlayerManager().AdjustGold(-GetParamInt());
         }

@@ -10,7 +10,7 @@ using static CharacterState;
 
 namespace Conductor.Patches
 {
-    [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.AddStatusEffect), [typeof(string), typeof(int), typeof(CharacterState.AddStatusEffectParams), typeof(CharacterState), typeof(bool), typeof(bool), typeof(bool), typeof(bool)])]
+    [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.AddStatusEffect), [typeof(string), typeof(int), typeof(CharacterState.AddStatusEffectParams), typeof(CharacterState), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool)])]
     class CharacterState_AddStatusEffect_StatusBasedTriggers
     {
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -21,6 +21,7 @@ namespace Conductor.Patches
             for (int i = codes.Count - 1; i >= 0; i--)
             {
                 var instruction = codes[i];
+                Plugin.Logger.LogError($"{i}: {instruction}");
                 if (codes[i].opcode == OpCodes.Ldarg_1 &&
                     codes[i + 1].opcode == OpCodes.Ldstr && (string) codes[i + 1].operand == "silenced" &&
                     codes[i + 2].opcode == OpCodes.Call && codes[i + 2].operand is MethodInfo m && m.Name == "op_Equality" &&
@@ -28,7 +29,7 @@ namespace Conductor.Patches
                     codes[i + 4].opcode == OpCodes.Ldarg_1 &&
                     codes[i + 5].opcode == OpCodes.Ldstr && (string)codes[i + 5].operand == "muted" &&
                     codes[i + 6].opcode == OpCodes.Call && codes[i + 6].operand is MethodInfo n && n.Name == "op_Equality" &&
-                    codes[i + 7].opcode == OpCodes.Brfalse)
+                    codes[i + 7].opcode == OpCodes.Brtrue)
                 {
                     index = i;
                     break;
@@ -103,7 +104,7 @@ namespace Conductor.Patches
                     codes[i + 4].opcode == OpCodes.Ldarg_1 &&
                     codes[i + 5].opcode == OpCodes.Ldstr && (string)codes[i + 5].operand == "muted" &&
                     codes[i + 6].opcode == OpCodes.Call && codes[i + 6].operand is MethodInfo n && n.Name == "op_Equality" &&
-                    codes[i + 7].opcode == OpCodes.Brfalse)
+                    codes[i + 7].opcode == OpCodes.Brtrue)
                 {
                     index = i;
                     break;

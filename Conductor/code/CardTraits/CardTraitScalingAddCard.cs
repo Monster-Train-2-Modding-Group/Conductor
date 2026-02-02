@@ -94,7 +94,7 @@ namespace Conductor.CardTraits
             CardPile cardPile = (CardPile) GetParamInt2();
             for (int i = 0; i < count; i++)
             {
-                cardManager.AddCard(cardData, cardPile, i, count, fromRelic: false, permanent: permanent, addCardUpgradingInfo: addCardUpgradingInfo);
+                cardManager.AddNewCard(cardData, cardPile, fromRelic: false, permanent: permanent, addCardUpgradingInfo: addCardUpgradingInfo);
             }
 
             yield break;

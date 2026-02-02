@@ -18,12 +18,15 @@ namespace Conductor.TargetModes
     public abstract class CharacterTargetSelector : ITargetSelector
     {
         private static MethodInfo MethodApplyTargetFilters = AccessTools.Method(typeof(TargetHelper), "ApplyTargetFilters", 
-            [typeof(List<CharacterState>),typeof(List<string>),typeof(CardEffectData.HealthFilter),typeof(bool),typeof(bool),typeof(bool),typeof(bool), typeof(SubtypeData),typeof(List<SubtypeData>),typeof(bool),typeof(bool?)]);
-        //ApplyTargetFilters(List<CharacterState> targets, List<string> targetModeStatusEffectsFilter, CardEffectData.HealthFilter targetModeHealthFilter,
+            [typeof(List<CharacterState>), typeof(List<string>), typeof(List<string>), typeof(CardEffectData.HealthFilter),
+            typeof(bool), typeof(bool), typeof(bool), typeof(bool),
+            typeof(SubtypeData), typeof(List<SubtypeData>), typeof(bool), typeof(bool?)]);
+        //List<CharacterState> targets, List<string> targetModeStatusEffectsFilter, List<string> targetModeStatusEffectsExcludedFilter, CardEffectData.HealthFilter targetModeHealthFilter,
         //bool targetIgnoreBosses, bool targetIgnorePyre, bool inCombat, bool ignoreDead,
         //SubtypeData targetSubtype, List<SubtypeData> targetExcludedSubtypesFilter, bool includeUntouchable, bool? requireEquipment = null)
-        private static readonly List<string> statusEffectFilterEmpty = new List<string>();
-        private static readonly List<SubtypeData> excludedSubtypesListEmpty = new List<SubtypeData>();
+
+        private static readonly List<string> statusEffectFilterEmpty = [];
+        private static readonly List<SubtypeData> excludedSubtypesListEmpty = [];
 
         /// <summary>
         /// The associated CardTargetMode used for CardUpgradeMaskData filtering.
@@ -117,7 +120,7 @@ namespace Conductor.TargetModes
                 Plugin.Logger.LogError("-------------------------------------------------------------------------------------------");
                 return;
             }
-            MethodApplyTargetFilters?.Invoke(null, [targets, data.targetModeStatusEffectsFilter ?? statusEffectFilterEmpty, data.targetModeHealthFilter, data.targetIgnoreBosses, data.ignorePyre, data.inCombat, data.ignoreDead, data.targetSubtype, data.targetExcludedSubtypesFilter ?? excludedSubtypesListEmpty, data.includeUntouchable, data.mustHaveEquipment]);
+            MethodApplyTargetFilters?.Invoke(null, [targets, data.targetModeStatusEffectsFilter ?? statusEffectFilterEmpty, data.targetModeStatusEffectsExcludedFilter ?? statusEffectFilterEmpty, data.targetModeHealthFilter, data.targetIgnoreBosses, data.ignorePyre, data.inCombat, data.ignoreDead, data.targetSubtype, data.targetExcludedSubtypesFilter ?? excludedSubtypesListEmpty, data.includeUntouchable, data.mustHaveEquipment]);
         }
     }
 }

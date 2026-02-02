@@ -8,7 +8,7 @@ using static CharacterState;
 
 namespace Conductor.Patches
 {
-    [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.AddStatusEffect), [typeof(string), typeof(int), typeof(CharacterState.AddStatusEffectParams), typeof(CharacterState), typeof(bool), typeof(bool), typeof(bool), typeof(bool)])]
+    [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.AddStatusEffect), [typeof(string), typeof(int), typeof(CharacterState.AddStatusEffectParams), typeof(CharacterState), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool)])]
     class CharacterState_AddStatusEffect_SelfPropagatingStatusEffectImplementationPatch
     {
         static readonly MethodInfo ModifyStatusCountByOtherStatusMethod = typeof(CharacterState_AddStatusEffect_SelfPropagatingStatusEffectImplementationPatch).GetMethod("ModifyStatusCountByOtherStatus", BindingFlags.Static | BindingFlags.Public);
