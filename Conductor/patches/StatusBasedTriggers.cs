@@ -21,7 +21,6 @@ namespace Conductor.Patches
             for (int i = codes.Count - 1; i >= 0; i--)
             {
                 var instruction = codes[i];
-                Plugin.Logger.LogError($"{i}: {instruction}");
                 if (codes[i].opcode == OpCodes.Ldarg_1 &&
                     codes[i + 1].opcode == OpCodes.Ldstr && (string) codes[i + 1].operand == "silenced" &&
                     codes[i + 2].opcode == OpCodes.Call && codes[i + 2].operand is MethodInfo m && m.Name == "op_Equality" &&
