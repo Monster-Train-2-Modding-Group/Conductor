@@ -73,14 +73,14 @@
                 [CardTraitFieldNames.ParamCardType.GetFieldName()] = new PropDescription("Card Type for the TrackedValue statistic if applicable."),
 
                 [CardTraitFieldNames.ParamInt.GetFieldName()] = new PropDescription("(Required) Status multiplier applied to the TrackedValue and added BonusSize of the CardUpgrade."),
-                [CardTraitFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("(Required) Restrict scaling upgrades to this one provided, all other upgrades of different IDs will not be scaled."),
+                [CardTraitFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("(Required) Restrict scaling upgrades to this one provided, all other upgrades that are not this one provided will not be scaled."),
                 [CardTraitFieldNames.ParamStatusEffects.GetFieldName()] = new PropDescription("(Required) Status Effects to add. Note that if the status effect is not present in the upgrade it will be added.")
             };
         }
 
         public override void OnApplyingCardUpgradeToUnit(CardState thisCard, CharacterState targetUnit, CharacterTriggerState? characterTriggerState, CardUpgradeState upgradeState, ICoreGameManagers coreGameManagers)
         {
-            if (GetCardTraitData().GetCardUpgradeDataParam().GetAssetKey() != upgradeState.GetAssetName())
+            if (GetCardUpgradeDataParam() != upgradeState.GetSourceCardUpgradeData())
             {
                 return;
             }

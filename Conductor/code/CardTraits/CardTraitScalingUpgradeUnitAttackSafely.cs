@@ -63,14 +63,14 @@
                 [CardTraitFieldNames.ParamCardType.GetFieldName()] = new PropDescription("Card Type for the TrackedValue statistic if applicable."),
 
                 [CardTraitFieldNames.ParamInt.GetFieldName()] = new PropDescription("(Required) Attack multiplier applied to the TrackedValue and added BonusDamage of the CardUpgrade."),
-                [CardTraitFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("(Required) Restrict scaling upgrades to this one provided, all other upgrades of different IDs will not be scaled."),
+                [CardTraitFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("(Required) Restrict scaling upgrades to this one provided, all other upgrades that are not this one provided will not be scaled."),
 
             };
         }
 
         public override void OnApplyingCardUpgradeToUnit(CardState thisCard, CharacterState targetUnit, CharacterTriggerState? characterTriggerState, CardUpgradeState upgradeState, ICoreGameManagers coreGameManagers)
         {
-            if (GetCardUpgradeDataParam().GetAssetKey() != upgradeState.GetAssetName())
+            if (GetCardUpgradeDataParam() != upgradeState.GetSourceCardUpgradeData())
             {
                 return;
             }
