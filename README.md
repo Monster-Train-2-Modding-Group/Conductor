@@ -28,7 +28,7 @@ No manual setup is needed.
 
    ```toml
    [package.dependencies]
-   Conductor-Conductor = "0.2.0"
+   Conductor-Conductor = "0.4.1"
    ```
 
 2. If testing locally, download the latest release and extract it into your `BepInEx/plugins` folder.
@@ -38,7 +38,7 @@ No manual setup is needed.
    * Add a package reference to your `.csproj`:
 
      ```xml
-     <PackageReference Include="Conductor" Version="0.2.0" />
+     <PackageReference Include="Conductor" Version="0.4.1" />
      ```
 
 ---
@@ -75,7 +75,6 @@ Icons used in this project are credited as follows:
 * **Construct icon**: <a href="https://www.flaticon.com/free-icons/gears" title="gears icons">Gears icons created by The Chohans - Flaticon</a>
 * **Divine Blessing icon**: <a href="https://www.flaticon.com/free-icons/halo" title="halo icons">Halo icons created by Freepik - Flaticon</a>
 * **Penance icon**: <a href="https://www.flaticon.com/free-icons/pray" title="pray icons">Pray icons created by Aranagraphics - Flaticon</a>
-* **Mobilize (star) icon**: <a href="https://www.flaticon.com/free-icons/star" title="star icons">Star icons created by Freepik - Flaticon</a>
 * **Sniper icon**: <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by Smashicons - Flaticon</a>
 * **Follow-up icon**: <a href="https://www.flaticon.com/free-icons/pvp" title="pvp icons">Pvp icons created by cah nggunung - Flaticon</a>
 
