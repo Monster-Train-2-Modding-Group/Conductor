@@ -100,8 +100,7 @@ namespace Conductor
                     CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthLost = GetTrigger("OnGrowthLost").SetToTriggerOnStatusEffectRemoved(CharacterTriggers.OnLostGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.Binder = GetTrigger("Binder");
-                    // Implementations of Mobilize/Encounter is in SpawnBumpTriggerPatches.cs
-                    CharacterTriggers.Mobilize = GetTrigger("Mobilize");
+                    // Implementation of Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
                     

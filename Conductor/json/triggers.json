@@ -116,18 +116,6 @@
       "sprite": "@trigger_junk"
     },
     {
-      "id": "Mobilize",
-      "names": {
-        "english": "Mobilize",
-        "chinese": "动员"
-      },
-      "descriptions": {
-        "english": "Triggers when an allied unit is spawned on this floor.",
-        "chinese": "在本层有盟友单位被生成时触发。"
-      },
-      "sprite": "@trigger_mobilize"
-    },
-    {
       "id": "Penance",
       "names": {
         "english": "Penance",
@@ -194,10 +182,6 @@
       "path": "textures/trigger_junk.png"
     },
     {
-      "id": "trigger_mobilize",
-      "path": "textures/trigger_mobilize.png"
-    },
-    {
       "id": "trigger_penance",
       "path": "textures/trigger_penance.png"
     },
@@ -238,10 +222,6 @@
     {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
-    },
-    {
-      "id": "trigger_mobilize",
-      "path": "textures/trigger_mobilize.png"
     },
     {
       "id": "trigger_penance",

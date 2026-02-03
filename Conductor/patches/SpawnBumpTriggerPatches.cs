@@ -66,11 +66,6 @@ namespace Conductor.Patches
             }
 
             int numCharacters = __instance.GetCurrentRoom()?.GetNumCharacters(__instance.GetTeamType()) ?? 0;
-            ___combatManager.QueueTrigger(__instance, CharacterTriggers.Mobilize, fireTriggersData: new CharacterState.FireTriggersData
-            {
-                paramInt = numCharacters,
-                overrideTargetCharacter = otherCharacter,
-            });
 
             var data = new TriggerOnAnotherSpawnParams
             {

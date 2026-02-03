@@ -1,3 +1,8 @@
+## v0.4.1
+- Remove debug logging.
+- Remove Mobilize Trigger code (It is the same as Rally now).
+- Internal touchups.
+
 ## v0.4.0
 - Fixes for Destiny of the Railforged.
 

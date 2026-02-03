@@ -118,17 +118,6 @@ namespace Conductor.Triggers
         public static CharacterTriggerData.Trigger Encounter;
 
         /// <summary>
-        /// The Better Rally Trigger™, Triggers whenever an allied unit is spawned on the floor.
-        /// Does not trigger on Spawn unless Spawn creates a Funguy.
-        /// This is a distinction with Rally. Rally triggers whenever a monster card is played, on spawn, and other weird scenarios.
-        /// 
-        /// Parameters
-        ///   paramInt: Number of allied characters in the room.
-        ///   overrideTargetCharacter: The allied unit that spawned.
-        /// </summary>
-        public static CharacterTriggerData.Trigger Mobilize;
-
-        /// <summary>
         /// Triggers when a Blight or Scourge is played.
         /// 
         /// Parameters
