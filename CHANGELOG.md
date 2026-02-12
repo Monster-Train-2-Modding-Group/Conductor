@@ -1,3 +1,8 @@
+## v0.5.0
+- Fixes for Destiny of the Railforged 2.1
+- Add actual steelguard status effect (steelguard is not a true status effect in base game.)
+- Add sprite for unused Steelmight status effect.
+
 ## v0.4.1
 - Remove debug logging.
 - Remove Mobilize Trigger code (It is the same as Rally now).

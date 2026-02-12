@@ -1,0 +1,39 @@
+﻿{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "steelguard",
+      "class_name": "@StatusEffectSteelguardState",
+      "names": {
+        "english": "Steelguard",
+        "chinese": ""
+      },
+      "card_tooltips": {
+        "english": "Cannot lose more than [codeint0] [armor] per hit.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "Cannot lose more than [codeint0] [armor] per hit.",
+        "chinese": ""
+      },
+      "is_propagatable": false,
+      "is_stackable": false,
+      "display_category": "persistent",
+      "trigger_stage": "on_pre_attacked_armor",
+      "icon": "@steelguard",
+      "param_int": 15
+    }
+  ],
+  "sprites": [
+    {
+      "id": "steelguard",
+      "path": "textures/status_steelguard.png"
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "steelguard",
+      "path": "textures/status_steelguard_tooltip.png"
+    }
+  ]
+}

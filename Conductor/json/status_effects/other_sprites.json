@@ -2,8 +2,8 @@
   "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
   "sprites": [
     {
-      "id": "Sniper",
-      "path": "textures/status_sniper.png"
+      "id": "Steelmight",
+      "path": "textures/status_steelmight.png"
     },
     {
       "id": "Piercing",
@@ -12,8 +12,8 @@
   ],
   "atlas_icons": [
     {
-      "id": "Sniper",
-      "path": "textures/status_sniper_tooltip.png"
+      "id": "Steelmight",
+      "path": "textures/status_steelmight_tooltip.png"
     },
     {
       "id": "Piercing",

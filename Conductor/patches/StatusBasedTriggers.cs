@@ -22,13 +22,9 @@ namespace Conductor.Patches
             {
                 var instruction = codes[i];
                 if (codes[i].opcode == OpCodes.Ldarg_1 &&
-                    codes[i + 1].opcode == OpCodes.Ldstr && (string) codes[i + 1].operand == "silenced" &&
+                    codes[i + 1].opcode == OpCodes.Ldstr && (string) codes[i + 1].operand == "armor" &&
                     codes[i + 2].opcode == OpCodes.Call && codes[i + 2].operand is MethodInfo m && m.Name == "op_Equality" &&
-                    codes[i + 3].opcode == OpCodes.Brtrue &&
-                    codes[i + 4].opcode == OpCodes.Ldarg_1 &&
-                    codes[i + 5].opcode == OpCodes.Ldstr && (string)codes[i + 5].operand == "muted" &&
-                    codes[i + 6].opcode == OpCodes.Call && codes[i + 6].operand is MethodInfo n && n.Name == "op_Equality" &&
-                    codes[i + 7].opcode == OpCodes.Brtrue)
+                    codes[i + 3].opcode == OpCodes.Brfalse)
                 {
                     index = i;
                     break;
@@ -37,7 +33,7 @@ namespace Conductor.Patches
 
             if (index == -1)
             {
-                Plugin.Logger.LogError($"StatusBasedTriggersPatch AddStatusEffect could not find if (statusId == \"silenced\" || statusId == \"muted\") check. Patch needs to be redone");
+                Plugin.Logger.LogError($"StatusBasedTriggersPatch AddStatusEffect could not find if (statusId == \"armor\") check. Patch needs to be redone");
                 return codes;
             }
 
@@ -97,13 +93,9 @@ namespace Conductor.Patches
             {
                 var instruction = codes[i];
                 if (codes[i].opcode == OpCodes.Ldarg_1 &&
-                    codes[i + 1].opcode == OpCodes.Ldstr && (string)codes[i + 1].operand == "silenced" &&
+                    codes[i + 1].opcode == OpCodes.Ldstr && (string)codes[i + 1].operand == "horde" &&
                     codes[i + 2].opcode == OpCodes.Call && codes[i + 2].operand is MethodInfo m && m.Name == "op_Equality" &&
-                    codes[i + 3].opcode == OpCodes.Brtrue &&
-                    codes[i + 4].opcode == OpCodes.Ldarg_1 &&
-                    codes[i + 5].opcode == OpCodes.Ldstr && (string)codes[i + 5].operand == "muted" &&
-                    codes[i + 6].opcode == OpCodes.Call && codes[i + 6].operand is MethodInfo n && n.Name == "op_Equality" &&
-                    codes[i + 7].opcode == OpCodes.Brtrue)
+                    codes[i + 3].opcode == OpCodes.Brfalse)
                 {
                     index = i;
                     break;
@@ -112,7 +104,7 @@ namespace Conductor.Patches
 
             if (index == -1)
             {
-                Plugin.Logger.LogError($"StatusBasedTriggersPatch RemoveStatusEffect could not find if (statusId == \"silenced\" || statusId == \"muted\") check. Patch needs to be redone");
+                Plugin.Logger.LogError($"StatusBasedTriggersPatch RemoveStatusEffect could not find if (statusId == \"horde\") check. Patch needs to be redone");
                 return codes;
             }
 

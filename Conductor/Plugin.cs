@@ -46,6 +46,8 @@ namespace Conductor
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
                         "json/status_effects/intangible.json",
+                        "json/status_effects/steelguard.json",
+                        //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
                         "json/status_effects/smirk.json",
                         
@@ -60,7 +62,7 @@ namespace Conductor
                         "json/room_modifiers.json",
                         "json/status_effect_trigger_stages.json"
                         //,"json/test.json"
-                        //,"json/test2.json"
+                        ,"json/test2.json"
                     );
                 }
             );
@@ -130,10 +132,10 @@ namespace Conductor
                     {
                         iconField.SetValue(piercing, GetSprite("Piercing"));
                     }
-                    var sniper = StatusEffectManager.Instance.GetStatusEffectDataById("sniper");
-                    if (sniper != null && sniper.GetIcon() == null)
+                    var steelmight = StatusEffectManager.Instance.GetStatusEffectDataById("armorattack");
+                    if (steelmight != null && steelmight?.GetIcon()?.name == "StatusBlessing")
                     {
-                        iconField.SetValue(sniper, GetSprite("Sniper"));
+                        iconField.SetValue(steelmight, GetSprite("Steelmight"));
                     }
 
                     // Trigger Displays
@@ -174,6 +176,10 @@ namespace Conductor
                         return triggerStageRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.StatusEffectTriggerStageEnum, id));
                     }
                     StatusEffectTriggerStages.OnShift = GetTriggerStage("on_shift");
+
+                    // Fix dormant
+                    var dormant = StatusEffectManager.Instance.GetStatusEffectDataById("dormant");
+                    AccessTools.Field(typeof(StatusEffectData), "triggerStage").SetValue(dormant, StatusEffectData.TriggerStage.OnPreCharacterTrigger);
                 }
             );
 
