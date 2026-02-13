@@ -16,7 +16,7 @@
     ///       "id": "@RoomStateDamageSpellCostModifier",
     ///       "mod_reference": "Conductor"
     ///     },
-    ///     "param_int": 2
+    ///     "param_int": -2
     ///   }
     /// ]
     /// </summary>

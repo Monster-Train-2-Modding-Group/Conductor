@@ -59,7 +59,6 @@ namespace Conductor
                         "json/event_triggers.json",
                         "json/triggers.json",
                         "json/tracked_values.json",
-                        "json/room_modifiers.json",
                         "json/status_effect_trigger_stages.json"
                         //,"json/test.json"
                         //,"json/test2.json"

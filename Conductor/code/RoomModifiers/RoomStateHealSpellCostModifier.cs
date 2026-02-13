@@ -15,7 +15,7 @@
     ///       "id": "@RoomStateHealSpellCostModifier",
     ///       "mod_reference": "Conductor"
     ///     },
-    ///     "param_int": 1
+    ///     "param_int": -1
     ///   }
     /// ]
     /// </summary>
