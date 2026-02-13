@@ -62,7 +62,7 @@ namespace Conductor
                         "json/room_modifiers.json",
                         "json/status_effect_trigger_stages.json"
                         //,"json/test.json"
-                        ,"json/test2.json"
+                        //,"json/test2.json"
                     );
                 }
             );

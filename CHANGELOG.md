@@ -1,3 +1,6 @@
+## v0.5.1
+- Fix mistakenly incldued file
+
 ## v0.5.0
 - Fixes for Destiny of the Railforged 2.1
 - Add actual steelguard status effect (steelguard is not a true status effect in base game.)
