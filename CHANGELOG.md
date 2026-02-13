@@ -1,5 +1,7 @@
 ## v0.5.1
-- Fix mistakenly incldued file
+- Fix mistakenly included file
+- Ability to create status effects that change the target mode, see IChangeAttackingTargetModeStatusEffect.
+- Add fixes for Dormant to work properly.
 
 ## v0.5.0
 - Fixes for Destiny of the Railforged 2.1
