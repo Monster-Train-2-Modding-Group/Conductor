@@ -6,15 +6,39 @@
       "class_name": "@StatusEffectSteelguardState",
       "names": {
         "english": "Steelguard",
-        "chinese": ""
+        "french": "Garde de fer",
+        "german": "Eiserne Abwehr",
+        "russian": "Стальная защита",
+        "portuguese": "Guarda de Aço",
+        "chinese": "钢铁护卫",
+        "spanish": "Guardia acerada",
+        "chinese_traditional": "鋼鐵守衛",
+        "korean": "스틸가드",
+        "japanese": "鉄壁の守り"
       },
       "card_tooltips": {
         "english": "Cannot lose more than [codeint0] [armor] per hit.",
-        "chinese": ""
+        "french": "Ne peut pas perdre plus de <nobr>[codeint0] [armor]</nobr> par coup.",
+        "german": "Du kannst pro Treffer nicht mehr als [codeint0] [armor] verlieren.",
+        "russian": "Максимум слоев <b>брони</b>, которую можно потерять при ударе: [codeint0].",
+        "portuguese": "Não pode perder mais do que [codeint0] de [armor] por acerto.",
+        "chinese": "每次被命中时，损失的 [armor] 不会超过 [codeint0]。",
+        "spanish": "No puede perder más de [codeint0] [armor] por impacto.",
+        "chinese_traditional": "每次被擊中最多只會失去[codeint0][armor]。",
+        "korean": "한 번의 피격으로 [codeint0] [armor]을 초과해 잃을 수 없습니다.",
+        "japanese": "1撃ごとに[codeint0]を超える[armor]を失わない。"
       },
       "character_tooltips": {
         "english": "Cannot lose more than [codeint0] [armor] per hit.",
-        "chinese": ""
+        "french": "Ne peut pas perdre plus de <nobr>[codeint0] [armor]</nobr> par coup.",
+        "german": "Du kannst pro Treffer nicht mehr als [codeint0] [armor] verlieren.",
+        "russian": "Максимум слоев <b>брони</b>, которую можно потерять при ударе: [codeint0].",
+        "portuguese": "Não pode perder mais do que [codeint0] de [armor] por acerto.",
+        "chinese": "每次被命中时，损失的 [armor] 不会超过 [codeint0]。",
+        "spanish": "No puede perder más de [codeint0] [armor] por impacto.",
+        "chinese_traditional": "每次被擊中最多只會失去[codeint0][armor]。",
+        "korean": "한 번의 피격으로 [codeint0] [armor]을 초과해 잃을 수 없습니다.",
+        "japanese": "1撃ごとに[codeint0]を超える[armor]を失わない。"
       },
       "is_propagatable": false,
       "is_stackable": false,
