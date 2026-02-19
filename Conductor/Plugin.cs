@@ -179,6 +179,14 @@ namespace Conductor
                     // Fix dormant
                     var dormant = StatusEffectManager.Instance.GetStatusEffectDataById("dormant");
                     AccessTools.Field(typeof(StatusEffectData), "triggerStage").SetValue(dormant, StatusEffectData.TriggerStage.OnPreCharacterTrigger);
+
+                    // Canonize steelguard
+                    var steelguard = StatusEffectManager.Instance.GetStatusEffectDataById("conductor_steelguard", true);
+                    if (StatusEffectManager.Instance.GetStatusEffectDataById("steelguard", true) == null)
+                    {
+                        AccessTools.Field(typeof(StatusEffectData), "statusId").SetValue(steelguard, "steelguard");
+                        StatusEffectManager.StatusIdToLocalizationExpression.Add("steelguard", "StatusEffect_conductor_steelguard");
+                    }
                 }
             );
 

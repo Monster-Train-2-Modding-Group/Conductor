@@ -1,3 +1,8 @@
+## v0.5.2
+- Steelguard can now be referenced without a mod_reference. Use "steelguard".
+- Steelguard now sets damageBlocked.
+- Fix steelguard localizations and param substitution.
+
 ## v0.5.1
 - Fix mistakenly included file
 - Ability to create status effects that change the target mode, see IChangeAttackingTargetModeStatusEffect.
