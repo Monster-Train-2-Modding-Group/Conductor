@@ -7,6 +7,9 @@ namespace Conductor.CardEffects
     /// 
     /// Test fails if there's no shuffling (Heroes and Monsters count on the floor needs to be <1 for each)
     /// 
+    /// Note that this is based off RelicEffectShuffleUnitsEndOfTurn. however it doesn't have the quirk
+    /// that it triggers shift multiple times for certain units.
+    /// 
     /// Example Json.
     /// "effects": [
     ///   {
@@ -25,7 +28,7 @@ namespace Conductor.CardEffects
         public override bool CanPlayAfterBossDead => false;
         public override bool CanApplyInPreviewMode => false;
         private readonly List<CharacterState> allTargets = [];
-        private readonly List<CharacterState> shuffledUnits = [];
+        private readonly HashSet<CharacterState> shuffledUnits = [];
 
         public override PropDescriptions CreateEditorInspectorDescriptions()
         {
