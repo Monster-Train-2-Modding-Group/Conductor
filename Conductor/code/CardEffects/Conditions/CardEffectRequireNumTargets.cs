@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Conductor.CardEffects
+namespace Conductor.CardEffects.Conditions
 {
     /// <summary>
     /// Card effect that requires a number of targets specified by param_int.

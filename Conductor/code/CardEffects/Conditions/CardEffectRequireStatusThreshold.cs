@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Conductor.CardEffects
+namespace Conductor.CardEffects.Conditions
 {
     /// <summary>
     /// Card effect that requires a status threshold on units targeted.

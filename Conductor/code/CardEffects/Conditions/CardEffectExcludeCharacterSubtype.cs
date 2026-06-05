@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using static CharacterState;
 
-namespace Conductor.CardEffects
+namespace Conductor.CardEffects.Conditions
 {
     /// <summary>
     /// Card effect that requires the units targeted to not have a specific subtype.
