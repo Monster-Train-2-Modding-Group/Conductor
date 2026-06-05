@@ -107,15 +107,7 @@ namespace Conductor.CardTraits
                 return GetParamInt();
             }
 
-            CardStatistics.StatValueData statValueData = new()
-            {
-                cardState = GetCard(),
-                trackedValue = GetParamTrackedValue(),
-                entryDuration = GetParamEntryDuration(),
-                cardTypeTarget = GetParamCardType(),
-                paramSubtype = GetParamSubtype(),
-                forPreviewText = false
-            };
+            CardStatistics.StatValueData statValueData = base.StatValueData;
             int statValue = cardStatistics.GetStatValue(statValueData);
             return (int)(GetParamFloat() * statValue + GetParamInt());
         }

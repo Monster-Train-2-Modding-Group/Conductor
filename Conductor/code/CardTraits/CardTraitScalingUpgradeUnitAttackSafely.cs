@@ -89,6 +89,7 @@
             statValueData.paramSubtype = GetParamSubtype();
             statValueData.paramStatusEffects = GetParamStatusEffects();
             statValueData.paramTeamType = GetParamTeamType();
+            statValueData.paramCardData = GetParamCardData();
             statValueData.forPreviewText = setForPreviewText;
             CardStatistics.StatValueData statValueData2 = statValueData;
             int statValue = cardStatistics.GetStatValue(statValueData2);
