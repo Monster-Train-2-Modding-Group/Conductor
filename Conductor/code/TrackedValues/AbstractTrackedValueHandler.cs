@@ -24,6 +24,27 @@ namespace Conductor.TrackedValues
         /// Signal for any listeners interested in subscribing.
         /// </summary>
         public Signal<TrackedValueChangedParams> ValueChangedSignal => valueChangedSignal;
+
+        private static AllGameManagers? allGameManagers;
+        private static CardManager? cardManager;
+        private static HeroManager? heroManager;
+        private static MonsterManager? monsterManager;
+        private static RoomManager? roomManager;
+        private static SaveManager? saveManager;
+        private static RelicManager? relicManager;
+        private static PlayerManager? playerManager;
+        private static CombatManager? combatManager;
+
+        protected static AllGameManagers? AllGameManagers => allGameManagers;
+        protected static CardManager? CardManager => cardManager;
+        protected static HeroManager? HeroManager => heroManager;
+        protected static MonsterManager? MonsterManager => monsterManager;
+        protected static RoomManager? RoomManager => roomManager;
+        protected static SaveManager? SaveManager => saveManager;
+        protected static RelicManager? RelicManager => relicManager;
+        protected static PlayerManager? PlayerManager => playerManager;
+        protected static CombatManager? CombatManager => combatManager;
+
         /// <summary>
         /// Default constructor calls Reset and creates the Value changed signal.
         /// </summary>
@@ -84,6 +105,32 @@ namespace Conductor.TrackedValues
         protected void ValueChanged(int currentValue, int? previousValue = null, CardState? card = null, EntryDuration entryDuration = EntryDuration.ThisTurn, UiUpdateMode updateUI = UiUpdateMode.Animated)
         {
             valueChangedSignal.Dispatch(new TrackedValueChangedParams { value = currentValue, previousValue = previousValue, card = card, entryDuration = entryDuration, updateUI = updateUI });
+        }
+
+        internal static void NewProviderAvailable(IProvider newProvider)
+        {
+            DepInjector.MapProvider(newProvider, ref allGameManagers);
+            DepInjector.MapProvider(newProvider, ref saveManager);
+            DepInjector.MapProvider(newProvider, ref cardManager);
+            DepInjector.MapProvider(newProvider, ref heroManager);
+            DepInjector.MapProvider(newProvider, ref monsterManager);
+            DepInjector.MapProvider(newProvider, ref roomManager);
+            DepInjector.MapProvider(newProvider, ref relicManager);
+            DepInjector.MapProvider(newProvider, ref playerManager);
+            DepInjector.MapProvider(newProvider, ref combatManager);
+        }
+
+        internal static void ProvidedRemoved(IProvider removeProvider) 
+        {
+            DepInjector.UnmapProvider(removeProvider, ref allGameManagers);
+            DepInjector.UnmapProvider(removeProvider, ref saveManager);
+            DepInjector.UnmapProvider(removeProvider, ref cardManager);
+            DepInjector.UnmapProvider(removeProvider, ref heroManager);
+            DepInjector.UnmapProvider(removeProvider, ref monsterManager);
+            DepInjector.UnmapProvider(removeProvider, ref roomManager);
+            DepInjector.UnmapProvider(removeProvider, ref relicManager);
+            DepInjector.UnmapProvider(removeProvider, ref playerManager);
+            DepInjector.UnmapProvider(removeProvider, ref combatManager);
         }
     }
 }
