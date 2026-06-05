@@ -1,3 +1,10 @@
+## v0.5.3
+- AbstractTrackedValueHandler now has access to all of the managers.
+- Add CardEffectRequireTargetsDestroyed.
+- Fox Scaling CardTraits now respect the param_card parameter.
+- Fix CardEffectShuffleUnits triggering shift multiple times
+- Steelguard removed (Developers made Steelguard an actual status effect, which inactivated Conductor's version).
+
 ## v0.5.2
 - Steelguard can now be referenced without a mod_reference. Use "steelguard".
 - Steelguard now sets damageBlocked.
