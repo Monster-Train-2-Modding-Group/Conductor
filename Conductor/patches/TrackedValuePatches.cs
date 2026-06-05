@@ -1,4 +1,5 @@
 ﻿using Conductor.Extensions;
+using Conductor.TrackedValues;
 using HarmonyLib;
 using static CardStatistics;
 
@@ -93,6 +94,24 @@ namespace Conductor.Patches
         {
             if (TrackedValueTypeExtensions.TrackedValuesValidOutsideBattle.Contains(trackedValueType))
                 __result = true;
+        }
+    }
+
+    [HarmonyPatch(typeof(CardStatistics), nameof(CardStatistics.NewProviderAvailable))]
+    public class CardStatistics_NewProviderAvailable_Patch
+    {
+        public static void Postfix(IProvider newProvider)
+        {
+            AbstractTrackedValueHandler.NewProviderAvailable(newProvider);
+        }
+    }
+
+    [HarmonyPatch(typeof(CardStatistics), nameof(CardStatistics.ProviderRemoved))]
+    public class CardStatistics_ProviderRemoved_Patch
+    {
+        public static void Postfix(IProvider removeProvider)
+        {
+            AbstractTrackedValueHandler.ProvidedRemoved(removeProvider);
         }
     }
 }
