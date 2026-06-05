@@ -46,7 +46,6 @@ namespace Conductor
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
                         "json/status_effects/intangible.json",
-                        "json/status_effects/steelguard.json",
                         //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
                         "json/status_effects/smirk.json",
@@ -101,6 +100,7 @@ namespace Conductor
                     CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthLost = GetTrigger("OnGrowthLost").SetToTriggerOnStatusEffectRemoved(CharacterTriggers.OnLostGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.Binder = GetTrigger("Binder");
+
                     // Implementation of Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
@@ -179,14 +179,6 @@ namespace Conductor
                     // Fix dormant
                     var dormant = StatusEffectManager.Instance.GetStatusEffectDataById("dormant");
                     AccessTools.Field(typeof(StatusEffectData), "triggerStage").SetValue(dormant, StatusEffectData.TriggerStage.OnPreCharacterTrigger);
-
-                    // Canonize steelguard
-                    var steelguard = StatusEffectManager.Instance.GetStatusEffectDataById("conductor_steelguard", true);
-                    if (StatusEffectManager.Instance.GetStatusEffectDataById("steelguard", true) == null)
-                    {
-                        AccessTools.Field(typeof(StatusEffectData), "statusId").SetValue(steelguard, "steelguard");
-                        StatusEffectManager.StatusIdToLocalizationExpression.Add("steelguard", "StatusEffect_conductor_steelguard");
-                    }
                 }
             );
 
