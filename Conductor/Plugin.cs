@@ -48,6 +48,7 @@ namespace Conductor
                         "json/status_effects/intangible.json",
                         //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
+                        "json/status_effects/recoil.json",
                         "json/status_effects/smirk.json",
                         
                         //"json/status_effects/test.json",
