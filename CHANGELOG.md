@@ -1,3 +1,7 @@
+## v0.5.4
+- Added Recoil (character takes damage equal to stacks after attacking)
+- Added Trinity (genericized version from MT2 modding tutorials)
+
 ## v0.5.3
 - AbstractTrackedValueHandler now has access to all of the managers.
 - Add CardEffectRequireTargetsDestroyed.
