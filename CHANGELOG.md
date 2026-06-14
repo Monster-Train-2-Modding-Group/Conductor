@@ -1,5 +1,6 @@
 ## v0.5.5
 - Added Furnish (triggers when a Room is played)
+- Added missing Recoil icons.
 
 ## v0.5.4
 - Added Recoil (character takes damage equal to stacks after attacking)
