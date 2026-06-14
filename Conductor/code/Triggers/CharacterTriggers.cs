@@ -13,6 +13,8 @@ namespace Conductor.Triggers
     {
         public static CharacterTriggerData.Trigger AfterSpawnBetterEnchant;
 
+        public static CharacterTriggerData.Trigger Destroyed;
+
         /// <summary>
         /// Triggers when any allied unit takes damage from any source.
         /// 
@@ -116,6 +118,22 @@ namespace Conductor.Triggers
         ///   overrideTargetCharacter: the other allied unit.
         /// </summary>
         public static CharacterTriggerData.Trigger Encounter;
+
+        /// <summary>
+        /// Triggers when a room card is played.
+        /// </summary>
+        public static CharacterTriggerData.Trigger Furnish;
+        internal static bool OnPlayedRoom(TriggerOnCardPlayedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            var cardType = data.Card.GetCardType();
+            if (cardType == CardType.TrainRoomAttachment)
+            {
+                triggerQueueData = new QueueTriggerParams();
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
+        }
 
         /// <summary>
         /// Triggers when a Blight or Scourge is played.

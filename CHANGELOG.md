@@ -1,3 +1,6 @@
+## v0.5.5
+- Added Furnish (triggers when a Room is played)
+
 ## v0.5.4
 - Added Recoil (character takes damage equal to stacks after attacking)
 - Added Trinity (genericized version from MT2 modding tutorials)

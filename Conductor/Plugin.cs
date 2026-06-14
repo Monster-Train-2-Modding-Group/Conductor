@@ -91,6 +91,7 @@ namespace Conductor
                     CharacterTriggers.Vengeance = GetTrigger("Vengeance").SetToTriggerOnCharacterHit(CharacterTriggers.OnAlliedCharacterHit);
                     CharacterTriggers.FollowUp = GetTrigger("FollowUp").SetToTriggerOnCharacterHit(CharacterTriggers.OnOpposingCharacterHitByDirectAttack);
                     CharacterTriggers.Junk = GetTrigger("Junk").SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedAnyCard);
+                    CharacterTriggers.Furnish = GetTrigger("Furnish").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedRoom);
                     CharacterTriggers.Penance = GetTrigger("Penance").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge);
                     CharacterTriggers.Accursed = GetTrigger("Accursed").SetToTriggerOnCardPlayed(CharacterTriggers.OnPlayedBlightOrScourge).SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedBlightOrScourge);
                     CharacterTriggers.Resonance = GetTrigger("Resonance").SetToTriggerOnPyreDamage(CharacterTriggers.OnPyreTakeDamage);

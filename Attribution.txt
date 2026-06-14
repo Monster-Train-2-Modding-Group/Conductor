@@ -15,3 +15,5 @@ brambles icon: https://game-icons.net/1x1/skoll/spiked-ball.html
 piercing icon: https://game-icons.net/1x1/lorc/pierced-heart.html (modified)
 binded icon: <a href="https://www.flaticon.com/free-icons/trap" title="trap icons">Trap icons created by Freepik - Flaticon</a>
 steelmight icon: https://game-icons.net/1x1/delapouite/shield-bash.html
+Furnish icon: <a href="https://www.flaticon.com/free-icons/furniture-and-household" title="furniture and household icons">Furniture and household icons created by Freepik - Flaticon</a>
+recoil icon: https://game-icons.net/1x1/lorc/divert.html

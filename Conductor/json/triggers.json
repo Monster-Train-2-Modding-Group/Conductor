@@ -104,6 +104,16 @@
       "sprite": "@trigger_followup"
     },
     {
+      "id": "Furnish",
+      "names": {
+        "english": "Furnish"
+      },
+      "descriptions": {
+        "english": "Triggers when a <b>Room</b> is played on this floor."
+      },
+      "sprite": "@trigger_furnish"
+    },
+    {
       "id": "Junk",
       "names": {
         "english": "Junk",
@@ -178,6 +188,10 @@
       "path": "textures/trigger_followup.png"
     },
     {
+      "id": "trigger_furnish",
+      "path": "textures/trigger_furnish.png"
+    },
+    {
       "id": "trigger_junk",
       "path": "textures/trigger_junk.png"
     },
@@ -218,6 +232,10 @@
     {
       "id": "trigger_followup",
       "path": "textures/trigger_followup.png"
+    },
+    {
+      "id": "trigger_furnish",
+      "path": "textures/trigger_furnish.png"
     },
     {
       "id": "trigger_junk",
