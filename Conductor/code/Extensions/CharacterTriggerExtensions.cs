@@ -132,6 +132,39 @@ namespace Conductor.Extensions
         public ICoreGameManagers CoreGameManagers { get; init; }
     }
 
+
+    public struct TriggerOnCardPurgedParams
+    {
+        /// <summary>
+        /// The character whose trigger is being considered to fire.
+        /// </summary>
+        public CharacterState Character { get; internal set; }
+        /// <summary>
+        /// The Room Index where the card was discarded.
+        /// </summary>
+        public int RoomIndex { get; init; }
+        /// <summary>
+        /// The room where the card was discarded.
+        /// </summary>
+        public RoomState Room { get; init; }
+        /// <summary>
+        /// The card purged.
+        /// </summary>
+        public CardState Card { get; init; }
+        /// <summary>
+        /// If the card was an ephmeral card.
+        /// </summary>
+        public bool WasEphemeral { get; init; }
+        /// <summary>
+        /// If the card was an ephmeral card and being purged due to being played.
+        /// </summary>
+        public bool EphemeralCardWasPlayed { get; init; }
+        /// <summary>
+        /// CoreGameManagers (available if you wish to modify other game state if the trigger is fired).
+        /// </summary>
+        public ICoreGameManagers CoreGameManagers { get; init; }
+    }
+
     public struct TriggerOnAnotherSpawnParams
     {
         /// <summary>
@@ -261,6 +294,7 @@ namespace Conductor.Extensions
     public delegate bool TriggerOnStatusRemovedDelegate(TriggerOnStatusRemovedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCardPlayedDelegate(TriggerOnCardPlayedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCardDiscardedDelegate(TriggerOnCardDiscardedParams data, out QueueTriggerParams? outParam);
+    public delegate bool TriggerOnCardPurgedDelegate(TriggerOnCardPurgedParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnAnotherSpawnDelegate(TriggerOnAnotherSpawnParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnCharacterHitDelegate(TriggerOnCharacterHitParams data, out QueueTriggerParams? outParam);
     public delegate bool TriggerOnPyreDamageDelegate(TriggerOnPyreDamageParams data, out QueueTriggerParams? outParam);
@@ -273,6 +307,7 @@ namespace Conductor.Extensions
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnStatusRemovedDelegate> TriggersOnStatusRemoved = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardPlayedDelegate> TriggersOnCardPlayed = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardDiscardedDelegate> TriggersOnCardDiscarded = [];
+        internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCardPurgedDelegate> TriggersOnCardPurged = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnAnotherSpawnDelegate> TriggersOnAnotherSpawn = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnCharacterHitDelegate> TriggersOnCharacterHit = [];
         internal readonly static Dictionary<CharacterTriggerData.Trigger, TriggerOnPyreDamageDelegate> TriggersOnPyreDamage = [];
@@ -338,6 +373,20 @@ namespace Conductor.Extensions
         {
             if (IsVanillaTrigger(trigger)) return trigger;
             TriggersOnCardDiscarded.Add(trigger, func);
+            return trigger;
+        }
+
+
+        /// <summary>
+        /// Sets the trigger to fire in CardManager.PurgeCard.
+        /// </summary>
+        /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
+        /// <param name="func">Function to call to determine if the trigger should be fired as a result of a card being discarded.</param>
+        /// <returns>The trigger</returns>
+        public static CharacterTriggerData.Trigger SetToTriggerOnCardPurged(this CharacterTriggerData.Trigger trigger, TriggerOnCardPurgedDelegate func)
+        {
+            if (IsVanillaTrigger(trigger)) return trigger;
+            TriggersOnCardPurged.Add(trigger, func);
             return trigger;
         }
 

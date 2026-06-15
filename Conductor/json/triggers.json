@@ -15,6 +15,16 @@
   ],
   "character_trigger_types": [
     {
+      "id": "Absolve",
+      "names": {
+        "english": "Absolve"
+      },
+      "descriptions": {
+        "english": "Triggers when you purge a <b>Blight</b> or [junk] on the floor."
+      },
+      "sprite": "@trigger_absolve"
+    },
+    {
       "id": "Accursed",
       "names": {
         "english": "Accursed",
@@ -150,6 +160,16 @@
       "sprite": "@trigger_resonance"
     },
     {
+      "id": "Vanish",
+      "names": {
+        "english": "Vanish"
+      },
+      "descriptions": {
+        "english": "Triggers when an [ephemeral] card is played or discarded on this floor."
+      },
+      "sprite": "@trigger_vanish"
+    },
+    {
       "id": "Vengeance",
       "names": {
         "english": "Vengeance",
@@ -163,6 +183,10 @@
     }
   ],
   "sprites": [
+    {
+      "id": "trigger_absolve",
+      "path": "textures/trigger_absolve.png"
+    },
     {
       "id": "trigger_accursed",
       "path": "textures/trigger_accursed.png"
@@ -206,9 +230,17 @@
     {
       "id": "trigger_vengeance",
       "path": "textures/trigger_vengeance.png"
+    },
+    {
+      "id": "trigger_vanish",
+      "path": "textures/trigger_vanish.png"
     }
   ],
   "atlas_icons": [
+    {
+      "id": "trigger_absolve",
+      "path": "textures/trigger_absolve.png"
+    },
     {
       "id": "trigger_accursed",
       "path": "textures/trigger_accursed_tooltip.png"
@@ -252,6 +284,10 @@
     {
       "id": "trigger_vengeance",
       "path": "textures/trigger_vengeance.png"
+    },
+    {
+      "id": "trigger_vanish",
+      "path": "textures/trigger_vanish.png"
     }
   ]
 }

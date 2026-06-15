@@ -1,4 +1,5 @@
 ﻿using Conductor.Extensions;
+using Conductor.patches;
 using Conductor.StatusEffects;
 using System;
 using UnityEngine.TextCore.Text;
@@ -12,8 +13,6 @@ namespace Conductor.Triggers
     public static class CharacterTriggers
     {
         public static CharacterTriggerData.Trigger AfterSpawnBetterEnchant;
-
-        public static CharacterTriggerData.Trigger Destroyed;
 
         /// <summary>
         /// Triggers when any allied unit takes damage from any source.
@@ -172,10 +171,30 @@ namespace Conductor.Triggers
         }
         internal static bool OnDiscardedBlightOrScourge(TriggerOnCardDiscardedParams data, out QueueTriggerParams? triggerQueueData)
         {
-            triggerQueueData = null;
             DiscardCardParams discardCardParams = data.DiscardCardParams;
             CardType cardType = discardCardParams.discardCard.GetCardType();
             if (discardCardParams.triggeredByCard && (cardType == CardType.Blight || cardType == CardType.Junk))
+            {
+                triggerQueueData = new QueueTriggerParams
+                {
+                    fireTriggersData = new FireTriggersData
+                    {
+                        paramInt = cardType == CardType.Blight ? 0 : 1,
+                        paramInt2 = 0
+                    }
+                };
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
+        }
+
+        public static CharacterTriggerData.Trigger Absolve;
+        internal static bool OnPurgedBlightOrScourge(TriggerOnCardPurgedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            CardType cardType = data.Card.GetCardType();
+            // Handle ephemeral Blights/Scourges which when played will be purged twice.
+            if ((cardType == CardType.Blight || cardType == CardType.Junk) && !data.WasEphemeral)
             {
                 triggerQueueData = new QueueTriggerParams
                 {
@@ -240,7 +259,32 @@ namespace Conductor.Triggers
             }
 
             triggerQueueData = null;
-            return true;
+            return false;
+        }
+
+        public static CharacterTriggerData.Trigger Vanish;
+        internal static bool OnEphemeralCardPlayed(TriggerOnCardPlayedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            // Ephemeral cards get purged twice when played, only trigger off the natural discard.
+            if (data.Card.HasTrait(typeof(CardTraitEphemeral)))
+            {
+                triggerQueueData = new QueueTriggerParams();
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
+        }
+        internal static bool OnEphemeralCardDiscarded(TriggerOnCardDiscardedParams data, out QueueTriggerParams? triggerQueueData)
+        {
+            triggerQueueData = null;
+            DiscardCardParams discardCardParams = data.DiscardCardParams;
+            if (discardCardParams.triggeredByCard && (discardCardParams.discardCard.HasTrait(typeof(CardTraitEphemeral))))
+            {
+                triggerQueueData = new QueueTriggerParams();
+                return true;
+            }
+            triggerQueueData = null;
+            return false;
         }
 
         // The following a Silent event triggers, if using set hideVisualAndIgnoreSilence on all CharacterTriggers.

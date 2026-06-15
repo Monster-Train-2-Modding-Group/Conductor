@@ -17,3 +17,4 @@ binded icon: <a href="https://www.flaticon.com/free-icons/trap" title="trap icon
 steelmight icon: https://game-icons.net/1x1/delapouite/shield-bash.html
 Furnish icon: <a href="https://www.flaticon.com/free-icons/furniture-and-household" title="furniture and household icons">Furniture and household icons created by Freepik - Flaticon</a>
 recoil icon: https://game-icons.net/1x1/lorc/divert.html
+Absolve icon: <a href="https://www.flaticon.com/free-icons/peace" title="peace icons">Peace icons created by Freepik - Flaticon</a>

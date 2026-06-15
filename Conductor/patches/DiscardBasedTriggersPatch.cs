@@ -38,7 +38,7 @@ namespace Conductor.Patches
             // If discard was prevented then no. Have to iterate through all traits for custom ones that aren't discardable.
             foreach (CardTraitState traitState in discardCardParams.discardCard.GetTraitStates())
             {
-                // You can freely discard a card with CardTraitFreeze. CardTraitInfusion can not be discarded freely or via end of turn.
+                // You can freely discard a card with CardTraitFreeze. CardTraitInfusion/Persistent can not be discarded freely or via end of turn.
                 if (!traitState.GetIsDiscardable() && traitState is not CardTraitFreeze)
                 {
                     yield break;

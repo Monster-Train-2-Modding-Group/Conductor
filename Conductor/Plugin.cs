@@ -88,6 +88,8 @@ namespace Conductor
                     {
                         return manager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, id));
                     }
+                    CharacterTriggers.Absolve = GetTrigger("Absolve").SetToTriggerOnCardPurged(CharacterTriggers.OnPurgedBlightOrScourge);
+                    CharacterTriggers.Vanish = GetTrigger("Vanish").SetToTriggerOnCardPlayed(CharacterTriggers.OnEphemeralCardPlayed).SetToTriggerOnCardDiscarded(CharacterTriggers.OnEphemeralCardDiscarded);
                     CharacterTriggers.Vengeance = GetTrigger("Vengeance").SetToTriggerOnCharacterHit(CharacterTriggers.OnAlliedCharacterHit);
                     CharacterTriggers.FollowUp = GetTrigger("FollowUp").SetToTriggerOnCharacterHit(CharacterTriggers.OnOpposingCharacterHitByDirectAttack);
                     CharacterTriggers.Junk = GetTrigger("Junk").SetToTriggerOnCardDiscarded(CharacterTriggers.OnDiscardedAnyCard);
