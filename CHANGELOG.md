@@ -1,6 +1,9 @@
 ## v0.5.5
+- Added Absolve (triggers when a Blight/Scourge is purged)
+- Added Vanish (triggers when an Ephemeral card is played or discarded)
 - Added Furnish (triggers when a Room is played)
 - Added missing Recoil icons.
+- Added TriggerOnCardPurged event.
 
 ## v0.5.4
 - Added Recoil (character takes damage equal to stacks after attacking)
