@@ -1,3 +1,8 @@
+## v0.5.6
+- Add Utilities.MarkEffectAsADamageEffect
+- Add Utilities.MarkEffectAsHealEffect
+- Add Utilities.MarkEffectAsStatusGivingEffect
+
 ## v0.5.5
 - Added Absolve (triggers when a Blight/Scourge is purged)
 - Added Vanish (triggers when an Ephemeral card is played or discarded)
