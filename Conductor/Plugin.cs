@@ -15,6 +15,7 @@ using Conductor.TrackedValues;
 using Conductor.Data.Processors;
 using Conductor.Data.Registers;
 using Conductor.CardEffects;
+using MonoMod.Utils;
 
 namespace Conductor
 {
@@ -28,11 +29,18 @@ namespace Conductor
             var timestamp = DateTime.UtcNow.ToString("HH:mm:ss.ffffff");
             Logger.LogError($"[{timestamp}] {message}");
         }
+        private void Initialize()
+        {
+            Utilities.VanillaFilters.AddRange(Resources.FindObjectsOfTypeAll<CardUpgradeMaskData>().ToDictionary(x => x.name, x => x));
+        }
 
         public void Awake()
         {
             // Plugin startup logic
             Logger = base.Logger;
+
+            Initialize();
+
             var builder = Railhead.GetBuilder();
             builder.Configure(
                 MyPluginInfo.PLUGIN_GUID,
@@ -186,7 +194,12 @@ namespace Conductor
                 }
             );
 
+            // Additional Setup
             Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
+            Utilities.SetupCardEffectTooltips(Assembly.GetExecutingAssembly());
+
+            Utilities.MarkEffectAsStatusGivingEffect(typeof(CardEffectAddStatusEffectUpToMaximum));
+
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
             var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);

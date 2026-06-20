@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Conductor.RoomModifiers;
+using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
 
@@ -10,13 +11,74 @@ namespace Conductor
         internal static FieldInfo StatesSupportedInTooltips = AccessTools.Field(typeof(TooltipContainer), "StatesSupportedInTooltips");
         internal static FieldInfo StatusEffectManager_displayDataField = AccessTools.Field(typeof(StatusEffectManager), "displayData");
         internal static FieldInfo StatusEffectsDisplayData_cardEffectDisplayDataField = AccessTools.Field(typeof(StatusEffectsDisplayData), "cardEffectDisplayData");
+        internal static FieldInfo CardUpgradeMask_excludedCardEffectsField = AccessTools.Field(typeof(CardUpgradeMaskData), "excludedCardEffects");
+        internal static FieldInfo CardUpgradeMask_requiredCardEffectsField = AccessTools.Field(typeof(CardUpgradeMaskData), "requiredCardEffects");
 
         internal static MethodInfo CreateAdditionalTooltips1 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectState), typeof(TooltipContainer), typeof(SaveManager)]);
         internal static MethodInfo CreateAdditionalTooltips2 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectData), typeof(List<TooltipContent>), typeof(SaveManager), typeof(CardState)]);
-
         internal static MethodInfo GetCardTooltipText = AccessTools.Method(typeof(CardTraitState), "GetCardTooltipText");
+
+        internal static Dictionary<string, CardUpgradeMaskData> VanillaFilters = [];
+
+        private static Lazy<List<string>> DrawSpellOnDeploymentExcludedCardEffects = 
+            new(static () => { return GetCardEffectsFromFilter("DrawSpellOnDeployment_CardMask", false); });
+        private static Lazy<List<string>> OnlyDamageCardRequiredCardEffects =
+            new(static () => { return GetCardEffectsFromFilter("OnlyDamageCard"); });
+        private static Lazy<List<string>> OnlyDamageCardExcludeSpellsFromMagicPowerRequiredCardEffects =
+            new(static () => { return GetCardEffectsFromFilter("OnlyDamageCardExcludeSpellsFromMagicPower"); });
+        private static Lazy<List<string>> MagicPowerKillSacrificeSpellsRequiredCardEffects =
+            new(static () => { return GetCardEffectsFromFilter("MagicPowerKillSacrificeSpells"); });
+        private static Lazy<List<string>> MagicPowerSpellsRequiredCardEffects =
+            new(static () => { return GetCardEffectsFromFilter("MagicPowerSpells"); });
+        private static Lazy<List<string>> OnlyStatusEffectSettingRequiredCardEffects =
+            new(static () => { return GetCardEffectsFromFilter("OnlyStatusEffectSetting"); });
+
+        private static List<string> GetCardEffectsFromFilter(string name, bool required = true)
+        {
+            var filter = VanillaFilters[name];
+            if (filter == null)
+                return [];
+            if (required)
+            {
+                return CardUpgradeMask_requiredCardEffectsField.GetValue(filter) as List<string> ?? [];
+            }
+            else
+            {
+                return CardUpgradeMask_excludedCardEffectsField.GetValue(filter) as List<string> ?? [];
+            }
+        }
+
+        public static void MarkEffectAsADamageEffect(Type cardEffectClass)
+        {
+            if (!cardEffectClass.IsSubclassOf(typeof(CardEffectBase)))
+            {
+                return;
+            }
+            RoomStateDamageSpellCostModifier.DamagingCardEffects.Add(cardEffectClass);
+
+            string fullyQualifiedType = cardEffectClass.AssemblyQualifiedName;
+            DrawSpellOnDeploymentExcludedCardEffects.Value.Add(fullyQualifiedType);
+            OnlyDamageCardRequiredCardEffects.Value.Add(fullyQualifiedType);
+            OnlyDamageCardExcludeSpellsFromMagicPowerRequiredCardEffects.Value.Add(fullyQualifiedType);
+            MagicPowerKillSacrificeSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
+            MagicPowerSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
+        }
+
+        public static void MarkEffectAsHealEffect(Type cardEffectClass)
+        {
+            RoomStateHealSpellCostModifier.OtherHealingCardEffects.Add(cardEffectClass);
+            string fullyQualifiedType = cardEffectClass.AssemblyQualifiedName;
+            MagicPowerKillSacrificeSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
+            MagicPowerSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
+        }
+
+        public static void MarkEffectAsStatusGivingEffect(Type cardEffectClass)
+        {
+            string fullyQualifiedType = cardEffectClass.AssemblyQualifiedName;
+            OnlyStatusEffectSettingRequiredCardEffects.Value.Add(fullyQualifiedType);
+        }
 
         /// <summary>
         /// If a CardTraitState subclass defines GetCardTooltipText it does not display automatically when on a card.
