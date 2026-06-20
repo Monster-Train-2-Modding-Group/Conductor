@@ -39,8 +39,6 @@ namespace Conductor
             // Plugin startup logic
             Logger = base.Logger;
 
-            Initialize();
-
             var builder = Railhead.GetBuilder();
             builder.Configure(
                 MyPluginInfo.PLUGIN_GUID,
@@ -77,6 +75,7 @@ namespace Conductor
             Railend.ConfigurePreAction(
                 c =>
                 {
+                    Initialize();
                     c.RegisterSingleton<UnitEssenceProcessor, UnitEssenceProcessor>();
                     c.RegisterSingleton<HudProcessor, HudProcessor>();
                     c.RegisterSingleton<UnitEssenceRegistry, UnitEssenceRegistry>();
@@ -191,14 +190,15 @@ namespace Conductor
                     // Fix dormant
                     var dormant = StatusEffectManager.Instance.GetStatusEffectDataById("dormant");
                     AccessTools.Field(typeof(StatusEffectData), "triggerStage").SetValue(dormant, StatusEffectData.TriggerStage.OnPreCharacterTrigger);
+
+                    // Additional Setup
+                    Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
+                    Utilities.SetupCardEffectTooltips(Assembly.GetExecutingAssembly());
+                    Utilities.MarkEffectAsStatusGivingEffect(typeof(CardEffectAddStatusEffectUpToMaximum));
+
                 }
             );
 
-            // Additional Setup
-            Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
-            Utilities.SetupCardEffectTooltips(Assembly.GetExecutingAssembly());
-
-            Utilities.MarkEffectAsStatusGivingEffect(typeof(CardEffectAddStatusEffectUpToMaximum));
 
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 

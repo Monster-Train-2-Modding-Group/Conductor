@@ -37,19 +37,39 @@ namespace Conductor
 
         private static List<string> GetCardEffectsFromFilter(string name, bool required = true)
         {
-            var filter = VanillaFilters[name];
+            var filter = VanillaFilters.GetValueOrDefault(name);
             if (filter == null)
+            {
+                Plugin.Logger.LogWarning("Could not find filter " + name);
                 return [];
+            }
+
+            List<string>? ret;
             if (required)
             {
-                return CardUpgradeMask_requiredCardEffectsField.GetValue(filter) as List<string> ?? [];
+                ret = CardUpgradeMask_requiredCardEffectsField.GetValue(filter) as List<string>;
             }
             else
             {
-                return CardUpgradeMask_excludedCardEffectsField.GetValue(filter) as List<string> ?? [];
+                ret = CardUpgradeMask_excludedCardEffectsField.GetValue(filter) as List<string>;
             }
+
+            if (ret == null)
+            {
+                Plugin.Logger.LogWarning("Could not find filter's list " + name);
+            }
+            return ret ?? [];
         }
 
+        /// <summary>
+        /// Mark this effect as a damaging effect.
+        /// 
+        /// This helper function marks a Custom CardEffect as a damaging effect.
+        /// This adds the card effect to CardUpgradeMasks that filter for damaging effects.
+        /// 
+        /// This function should be called in your call to Railend.ConfigurePostAction.
+        /// </summary>
+        /// <param name="cardEffectClass">Type that is a subclass of CardEffectBase</param>
         public static void MarkEffectAsADamageEffect(Type cardEffectClass)
         {
             if (!cardEffectClass.IsSubclassOf(typeof(CardEffectBase)))
@@ -66,6 +86,15 @@ namespace Conductor
             MagicPowerSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
         }
 
+        /// <summary>
+        /// Mark this effect as a healing effect.
+        /// 
+        /// This helper function marks a Custom CardEffect as a healing effect.
+        /// This adds the card effect to CardUpgradeMasks that filter for heal effects.
+        /// 
+        /// This function should be called in your call to Railend.ConfigurePostAction.
+        /// </summary>
+        /// <param name="cardEffectClass">Type that is a subclass of CardEffectBase</param>
         public static void MarkEffectAsHealEffect(Type cardEffectClass)
         {
             RoomStateHealSpellCostModifier.OtherHealingCardEffects.Add(cardEffectClass);
@@ -74,6 +103,15 @@ namespace Conductor
             MagicPowerSpellsRequiredCardEffects.Value.Add(fullyQualifiedType);
         }
 
+        /// <summary>
+        /// Mark this effect as a status effect giving effect.
+        /// 
+        /// This helper function marks a Custom CardEffect as a status giving effect.
+        /// This adds the card effect to CardUpgradeMasks that filter for effects that give status effects.
+        /// 
+        /// This function should be called in your call to Railend.ConfigurePostAction.
+        /// </summary>
+        /// <param name="cardEffectClass">Type that is a subclass of CardEffectBase</param>
         public static void MarkEffectAsStatusGivingEffect(Type cardEffectClass)
         {
             string fullyQualifiedType = cardEffectClass.AssemblyQualifiedName;
