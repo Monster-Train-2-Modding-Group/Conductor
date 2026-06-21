@@ -25,19 +25,22 @@
     {
       "key": "CardTraitSelfTrinity_CardText",
       "texts": {
-        "english": "Trinity {0}"
+        "english": "Trinity {0}",
+        "chinese": "套件 {0}"
       }
     },
     {
       "key": "CardTraitSelfTrinity_TooltipText",
       "texts": {
-        "english": "If this card is played {0} more times, the <b>Bonus</b> effect will apply."
+        "english": "If this card is played {0} more times, the <b>Bonus</b> effect will apply.",
+        "chinese": "当这张牌被打出 {0} 次后，获得额外效果。"
       }
     },
     {
       "key": "CardTraitSelfTrinity_TrinityCharged_TooltipText",
       "texts": {
-        "english": "This card's <b>Bonus</b> effect will apply when it is cast."
+        "english": "This card's <b>Bonus</b> effect will apply when it is cast.",
+        "chinese": "打出这张牌之后会触发额外效果。"
       }
     }
   ]
