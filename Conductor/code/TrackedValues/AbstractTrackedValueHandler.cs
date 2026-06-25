@@ -107,6 +107,23 @@ namespace Conductor.TrackedValues
             valueChangedSignal.Dispatch(new TrackedValueChangedParams { value = currentValue, previousValue = previousValue, card = card, entryDuration = entryDuration, updateUI = updateUI });
         }
 
+        /// <summary>
+        /// Called when the Combat Previews has been enabled
+        /// </summary>
+        public virtual void OnCombatPreviewEnabled()
+        {
+
+        }
+
+        /// <summary>
+        /// Called when the Combat Preview has been disabled.
+        /// If keep track of the tracked value during a preview, this is where you should copy the non-preview state to the preview state.
+        /// </summary>
+        public virtual void OnCombatPreviewDisabled()
+        {
+
+        }
+
         internal static void NewProviderAvailable(IProvider newProvider)
         {
             DepInjector.MapProvider(newProvider, ref allGameManagers);

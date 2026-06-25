@@ -227,7 +227,7 @@ namespace Conductor.UI
         /// <param name="bodyKey">Localization key for the tooltip body.</param>
         protected virtual void SetTooltip(string titleKey, string bodyKey)
         {
-            tooltipProvider.OrNull()?.SetTooltipLocalized(titleKey.Localize(), bodyKey.Localize());
+            tooltipProvider?.SetTooltipLocalized(titleKey.Localize(), bodyKey.Localize());
         }
 
         /// <summary>

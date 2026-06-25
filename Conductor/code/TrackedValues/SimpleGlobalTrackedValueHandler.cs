@@ -2,6 +2,7 @@
 using ShinyShoe;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Conductor.TrackedValues
@@ -14,28 +15,62 @@ namespace Conductor.TrackedValues
     /// 
     /// Once associated with a TrackedValue, you should let CardStatistics manage the stat.
     /// If you need to increment the stat you can do so with a call to CardStatistics.IncrementStat.
-    /// 
     /// </summary>
     public class SimpleGlobalTrackedValueHandler : AbstractTrackedValueHandler
     {
-        private int thisTurn;
-        private int previousTurn;
-        private int thisBattle;
+        private readonly int[] currentStats = new int[3];
+        private readonly int[] previewStats = new int[3];
+
+        private int[] ActiveStats => (SaveManager != null && SaveManager.PreviewMode) ? previewStats : currentStats;
 
         /// <summary>
-        /// Get the value for this tracked value.
+        /// Get the value for this tracked value in current game calculating mode.
         /// </summary>
         /// <param name="statValueData">StatValueData object.</param>
         /// <returns>Current value of the tracked value for the specified StatValueData.</returns>
         public override int GetValue(CardStatistics.StatValueData statValueData)
         {
-            return statValueData.entryDuration switch
-            {
-                CardStatistics.EntryDuration.ThisTurn => thisTurn,
-                CardStatistics.EntryDuration.PreviousTurn => previousTurn,
-                CardStatistics.EntryDuration.ThisBattle => thisBattle,
-                _ => 0,
-            };
+            int index = (int)statValueData.entryDuration;
+            return ActiveStats.ElementAtOrDefault(index);
+        }
+
+        /// <summary>
+        /// Gets the stat value for ThisTurn.
+        /// </summary>
+        /// <param name="preview">Get the current stat as of a game preview instead.</param>
+        /// <returns>The current stat value for this turn.</returns>
+        public int GetCurrentValue(bool preview = false)
+        {
+            if (preview)
+                return previewStats[0];
+            else
+                return currentStats[0];
+        }
+
+        /// <summary>
+        /// Gets the stat value for PreviousTurn.
+        /// </summary>
+        /// <param name="preview">Get the previous turn stat as of a game preview instead.</param>
+        /// <returns>The current stat value for the previous turn.</returns>
+        public int GetPreviousValue(bool preview = false)
+        {
+            if (preview)
+                return previewStats[1];
+            else
+                return currentStats[1];
+        }
+
+        /// <summary>
+        /// Gets the stat value for ThisBattle.
+        /// </summary>
+        /// <param name="preview">Get the this battle turn stat as of a game preview instead.</param>
+        /// <returns>The this battle stat value for the previous turn.</returns>
+        public int GetTotalValue(bool preview = false)
+        {
+            if (preview)
+                return previewStats[2];
+            else
+                return currentStats[2];
         }
 
         /// <summary>
@@ -44,29 +79,19 @@ namespace Conductor.TrackedValues
         /// </summary>
         public override void IncrementValue(CardState? card, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn)
         {
-            int previous;
-            int current;
-            switch (entryDuration)
+            int index = (int)entryDuration;
+            if (index < 0 || index > 2) return;
+            int[] stats = ActiveStats;
+
+            int previous = stats[index];
+            stats[index] += amount;
+            int current = stats[index];
+
+            if (SaveManager != null && !SaveManager.PreviewMode)
             {
-                case CardStatistics.EntryDuration.ThisTurn:
-                    previous = thisTurn;
-                    thisTurn += amount;
-                    current = thisTurn;
-                    break;
-                case CardStatistics.EntryDuration.PreviousTurn:
-                    previous = previousTurn;
-                    previousTurn += amount;
-                    current = previousTurn;
-                    break;
-                case CardStatistics.EntryDuration.ThisBattle:
-                    previous = thisBattle;
-                    thisBattle += amount;
-                    current = thisBattle;
-                    break;
-                default:
-                    return;
+                previewStats[index] = current;
+                ValueChanged(current, previous, card, entryDuration);
             }
-            ValueChanged(current, previous, card, entryDuration);
         }
 
         /// <summary>
@@ -76,27 +101,19 @@ namespace Conductor.TrackedValues
         /// <param name="entryDuration">EntryDuration to modify.</param>
         public void SetValue(CardState? card, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn, bool notify = true)
         {
+            int index = (int)entryDuration;
+            if (index < 0 || index > 2) return;
+            int[] stats = ActiveStats;
+
             int current = amount;
-            int previous;
-            switch (entryDuration)
+            int previous = stats[index];
+            stats[index] = amount;
+
+            if (notify && SaveManager != null && !SaveManager.PreviewMode)
             {
-                case CardStatistics.EntryDuration.ThisTurn:
-                    previous = thisTurn;
-                    thisTurn = amount;
-                    break;
-                case CardStatistics.EntryDuration.PreviousTurn:
-                    previous = previousTurn;
-                    previousTurn = amount;
-                    break;
-                case CardStatistics.EntryDuration.ThisBattle:
-                    previous = thisBattle;
-                    thisBattle = amount;
-                    break;
-                default:
-                    return;
-            }
-            if (notify)
+                previewStats[index] = current;
                 ValueChanged(current, previous, card, entryDuration);
+            }   
         }
 
         public override void OnBattleEnd()
@@ -106,17 +123,39 @@ namespace Conductor.TrackedValues
 
         public override void Reset()
         {
-            thisTurn = 0;
-            previousTurn = 0;
-            thisBattle = 0;
-            ValueChanged(thisTurn, previousTurn, updateUI: TrackedValueChangedParams.UiUpdateMode.Instant);
+            for (int i = 0; i < ActiveStats.Length; i++)
+            {
+                ActiveStats[i] = 0;
+            }
+            if (SaveManager != null && !SaveManager.PreviewMode)
+            {
+                ValueChanged(0, 0, updateUI: TrackedValueChangedParams.UiUpdateMode.Instant);
+            }    
         }
 
         public override void UpdateStatsForNextTurn()
         {
-            previousTurn = thisTurn;
-            thisTurn = 0;
+            int previousTurn = currentStats[(int) CardStatistics.EntryDuration.PreviousTurn] = currentStats[(int) CardStatistics.EntryDuration.ThisTurn];
+            int thisTurn = currentStats[(int)CardStatistics.EntryDuration.ThisTurn] = 0;
+            previewStats[(int)CardStatistics.EntryDuration.PreviousTurn] = previousTurn;
+            previewStats[(int)CardStatistics.EntryDuration.ThisTurn] = 0;
             ValueChanged(thisTurn, previousTurn, updateUI: TrackedValueChangedParams.UiUpdateMode.Instant);
+        }
+
+        public override void OnCombatPreviewEnabled()
+        {
+            for (int i = 0; i < previewStats.Length; i++)
+            {
+                previewStats[i] = currentStats[i];
+            }
+        }
+
+        public override void OnCombatPreviewDisabled()
+        {
+            for (int i = 0; i < previewStats.Length; i++)
+            {
+                previewStats[i] = currentStats[i];
+            }
         }
     }
 }

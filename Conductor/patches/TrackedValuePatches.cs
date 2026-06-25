@@ -97,6 +97,28 @@ namespace Conductor.Patches
         }
     }
 
+    [HarmonyPatch(typeof(CombatManager), "SetTemporaryStateEnabled")]
+    public class CombatManager_SetTemporaryStateEnabled_Patch
+    {
+        public static void Prefix(bool enable, bool isCardPreview = false)
+        {
+            if (enable)
+            {
+                foreach (var handler in TrackedValueTypeExtensions.TrackedValueHandlers.Values)
+                {
+                    handler.OnCombatPreviewEnabled();
+                }
+            }
+            else
+            {
+                foreach (var handler in TrackedValueTypeExtensions.TrackedValueHandlers.Values)
+                {
+                    handler.OnCombatPreviewDisabled();
+                }
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(CardStatistics), nameof(CardStatistics.NewProviderAvailable))]
     public class CardStatistics_NewProviderAvailable_Patch
     {
