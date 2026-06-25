@@ -1,3 +1,8 @@
+## v0.5.7
+- SimpleTrackedValueHandler is now preview aware, now has a preview state and current state.
+- AbstractTrackedValueHandler has functions that get called when Previews are enabled/disabled.
+- Updated localizations.
+
 ## v0.5.6
 - Add Utilities.MarkEffectAsADamageEffect
 - Add Utilities.MarkEffectAsHealEffect
