@@ -5,19 +5,24 @@
       "id": "recoil",
       "class_name": "@StatusEffectRecoilState",
       "names": {
-        "english": "Recoil"
+        "english": "Recoil",
+        "chinese": "后坐力"
       },
       "stackable_names": {
-        "english": "Recoil {0}"
+        "english": "Recoil {0}",
+        "chinese": "后坐力 {0}"
       },
       "card_tooltips": {
-        "english": "Unit takes 1 damage per stack after attacking.<br>Decreases every turn."
+        "english": "Unit takes 1 damage per stack after attacking.<br>Decreases every turn.",
+        "chinese": "当单位攻击时，每有一层[Conductor_recoil]，对其造成 1 点伤害。<br>回合结束时，层数减少 1。"
       },
       "character_tooltips": {
-        "english": "Takes [codeint0] damage after attacking.<br>Decreases every turn."
+        "english": "Takes [codeint0] damage after attacking.<br>Decreases every turn.",
+        "chinese": "当单位攻击时，对其造成 [codeint0] 点伤害。<br>回合结束时，层数减少 1。"
       },
       "replacement_texts": {
-        "english": "<b>Recoil</b>"
+        "english": "<b>Recoil</b>",
+        "chinese": "<b>后坐力</b>"
       },
       "trigger_stage": "on_post_attacking",
       "remove_when_triggered": true,

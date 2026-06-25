@@ -17,10 +17,12 @@
     {
       "id": "Absolve",
       "names": {
-        "english": "Absolve"
+        "english": "Absolve",
+        "chinese": "免除"
       },
       "descriptions": {
-        "english": "Triggers when you purge a <b>Blight</b> or [junk] on the floor."
+        "english": "Triggers when you purge a <b>Blight</b> or [junk] on the floor.",
+        "chinese": "在本层移除[blight]牌或[junk]牌时触发。"
       },
       "sprite": "@trigger_absolve"
     },
@@ -116,10 +118,12 @@
     {
       "id": "Furnish",
       "names": {
-        "english": "Furnish"
+        "english": "Furnish",
+        "chinese": "装设"
       },
       "descriptions": {
-        "english": "Triggers when a <b>Room</b> is played on this floor."
+        "english": "Triggers when a <b>Room</b> is played on this floor.",
+        "chinese": "在本层打出<b>房间</b>牌时触发。"
       },
       "sprite": "@trigger_furnish"
     },
@@ -162,10 +166,12 @@
     {
       "id": "Vanish",
       "names": {
-        "english": "Vanish"
+        "english": "Vanish",
+        "chinese": "瞬逝"
       },
       "descriptions": {
-        "english": "Triggers when an [ephemeral] card is played or discarded on this floor."
+        "english": "Triggers when an [ephemeral] card is played or discarded on this floor.",
+        "chinese": "在本层打出或舍弃[ephemeral]牌时触发。"
       },
       "sprite": "@trigger_vanish"
     },
