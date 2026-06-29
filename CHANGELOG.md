@@ -1,3 +1,8 @@
+## v0.5.8
+- Added ability for mods to have save data.
+- Added PlayerResource class
+- Added RoomModifierDamagePerAttackModifier
+
 ## v0.5.7
 - SimpleTrackedValueHandler is now preview aware, now has a preview state and current state.
 - AbstractTrackedValueHandler has functions that get called when Previews are enabled/disabled.
