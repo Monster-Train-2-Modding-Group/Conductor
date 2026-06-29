@@ -16,8 +16,10 @@ namespace Conductor.Interfaces
         /// </summary>
         public string Key { get; }
         /// <summary>
-        /// Should the data be serialized.
+        /// Should the data be serialized?
         /// This function returns a flag if there's data that needs to be saved.
+        /// Your mod should only save data if it is necessary to keep it filesize minimal. 
+        /// (i.e. if the save data is related to a specific clan, then don't save any data if the clan is not part of the run)
         /// </summary>
         /// <returns></returns>
         public bool ShouldSerialize();
