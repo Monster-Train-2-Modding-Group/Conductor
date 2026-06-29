@@ -7,7 +7,6 @@ namespace Conductor.Extensions
 
     public static class TrackedValueTypeExtensions
     {
-        
         internal readonly static Dictionary<CardStatistics.TrackedValueType, AbstractTrackedValueHandler> TrackedValueHandlers = [];
         internal readonly static Dictionary<CardStatistics.TrackedValueType, TrackedValueGetter> TrackedValueGetters = [];
         internal readonly static ISet<CardStatistics.TrackedValueType> TrackedValuesValidOutsideBattle = new HashSet<CardStatistics.TrackedValueType>();
@@ -76,6 +75,8 @@ namespace Conductor.Extensions
         /// Allows the TrackedValue to be displayed on cards outside battle.
         /// 
         /// By default TrackedValues are only valid within a battle, so calling this on the TrackedValue makes it valid outside battle.
+        /// 
+        /// Note that if using SimpleGlobalTrackedValueHandler as your TrackedValueHandler, the value will reset to 0 at the end of battle.
         /// </summary>
         /// <param name="trackedValue">Custom TrackedValue</param>
         /// <returns>The TrackedValue</returns>
