@@ -10,11 +10,15 @@ namespace Conductor.TrackedValues
     /// <summary>
     /// Simple TrackedValue class that implements ITrackedValueHandler
     /// 
-    /// This class represents a simple global variable that can be used with the
-    /// TrackedValue system.
+    /// This class represents a simple global variable that is valid in-battle that can be
+    /// used with the TrackedValue system.
     /// 
-    /// Once associated with a TrackedValue, you should let CardStatistics manage the stat.
-    /// If you need to increment the stat you can do so with a call to CardStatistics.IncrementStat.
+    /// The class manages the stat for all EntryDurations, you can get the stats value as of the current turn,
+    /// previous turn and the entire battle.
+    /// 
+    /// Once associated with a TrackedValue, you should let CardStatistics manage the stat so that the internal
+    /// tracking updates properly. If you need to increment the stat you should do so with a call to 
+    /// CardStatistics.IncrementStat.
     /// </summary>
     public class SimpleGlobalTrackedValueHandler : AbstractTrackedValueHandler
     {
