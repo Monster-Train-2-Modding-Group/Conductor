@@ -12,7 +12,7 @@ namespace Conductor.Interfaces
     public interface ISaveData
     {
         /// <summary>
-        /// Identifier for this Data. Must be unique no two items within a mod can have the same key.
+        /// Identifier for this Data. Must be unique. No two items within a mod can have the same key.
         /// </summary>
         public string Key { get; }
         /// <summary>
@@ -22,20 +22,21 @@ namespace Conductor.Interfaces
         /// <returns></returns>
         public bool ShouldSerialize();
         /// <summary>
-        /// Returns a JSON string with the data.
+        /// Returns a serialized string with the data.
         /// 
         /// Recommended to use the DTO pattern, defining a simple struct to hold the values you wish to save.
         /// When this function is called transfer the properties you wish to serialze to to the struct
         /// and then return JsonSerializer.Serialize(state);
         /// 
+        /// The string return need not be JSON however.
         /// See PlayerResource.Serialize for an example.
         /// </summary>
-        /// <returns>String containing JSON data.</returns>
+        /// <returns>String containing the serialized save data.</returns>
         public string Serialize();
         /// <summary>
-        /// Given a string containing JSON deserializes in place
+        /// Given a previously serialized string deserializes it in place.
         /// </summary>
-        /// <param name="data">String containing JSON data</param>
+        /// <param name="data">String containing serialized data</param>
         public void Deserialize(string data);
         /// <summary>
         /// Called when the data should reset as part of starting a new run.
