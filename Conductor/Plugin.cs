@@ -199,7 +199,6 @@ namespace Conductor
                 }
             );
 
-
             Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
             var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);

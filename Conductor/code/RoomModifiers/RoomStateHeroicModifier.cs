@@ -1,11 +1,4 @@
-﻿using ShinyShoe.Logging;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-
-namespace Conductor.RoomModifiers
+﻿namespace Conductor.RoomModifiers
 {
     /// <summary>
     /// Not designed to be used directly. This drives the Heroic status effects implementation and is controlled by that status effect.
