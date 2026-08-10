@@ -51,6 +51,9 @@ namespace Conductor.Patches
                 return;
 
             var saveData = SaveManager_LoadDeckFromFile_Patch.ActiveSaveDataProperty.GetValue(__instance) as SaveData;
+            if (saveData == null)
+                return;
+
             var permanentlyDisabledAbilities = SaveManager_LoadDeckFromFile_Patch.PermanentlyDisabledAbilitiesField.GetValue(saveData) as List<string>;
             if (permanentlyDisabledAbilities == null)
             {
