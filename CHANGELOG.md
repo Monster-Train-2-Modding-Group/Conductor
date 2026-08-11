@@ -1,3 +1,6 @@
+## V0.5.9
+- Fix NRE at startup before save data is initialized.
+
 ## v0.5.8
 - Added ability for mods to have save data.
 - Added PlayerResource class
