@@ -177,7 +177,8 @@ namespace Conductor
                         return trackedValueRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TrackedValueTypeEnum, id));
                     }
                     GetTrackedValueType("BlightsAndScourgesInDeck").SetIsValidOutsideBattle().SetTrackedValueGetter(TrackedValueFunctions.CountBlightsAndScourgesInDeck);
-
+                    GetTrackedValueType("NumUnitsInTargetRoom").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsInTargetRoom);
+                    GetTrackedValueType("NumUnitsOnTrain").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsOnTrain);
 
                     // Status Effect Trigger Stages
                     var triggerStageRegister = c.GetInstance<IRegister<StatusEffectData.TriggerStage>>();

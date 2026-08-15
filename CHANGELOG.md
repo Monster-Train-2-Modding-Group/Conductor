@@ -1,3 +1,6 @@
+## V0.5.10
+- Added new TrackedValueType NumUnitsInTargetRoom, NumUnitsOnTrain which gets a count of units matching conditions.
+
 ## V0.5.9
 - Fix NRE at startup before save data is initialized.
 

@@ -3,6 +3,12 @@
   "tracked_value_types": [
     {
       "id": "BlightsAndScourgesInDeck"
+    },
+    {
+      "id": "NumUnitsInTargetRoom"
+    },
+    {
+      "id": "NumUnitsOnTrain"
     }
   ]
 }
