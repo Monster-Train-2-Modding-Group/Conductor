@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Conductor</RootNamespace>
     <LangVersion>latest</LangVersion>
-    <Version>0.5.10</Version>
+    <Version>0.5.11</Version>
   </PropertyGroup>
 
   <ItemGroup>

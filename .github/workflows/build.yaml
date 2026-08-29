@@ -73,6 +73,7 @@ jobs:
         with:
           files: ${{ env.mod_namespace }}-${{ env.mod_name }}-${{ github.ref_name }}.zip
           generate_release_notes: true
+          make_latest: true
 
       - name: Publish to Thunderstore
         run: tcli publish --file "${{ env.mod_namespace }}-${{ env.mod_name }}-${{ github.ref_name }}.zip" --token ${{ secrets.TCLI_AUTH_TOKEN }}

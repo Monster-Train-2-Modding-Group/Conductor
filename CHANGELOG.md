@@ -1,3 +1,7 @@
+## V0.5.11
+- Expanded Unit Essence Support. Added GetSourceEssenceCharacter, IsEssenceUpgrade (Register is now private).
+- Mod now uses AssetBundles (Mod should load faster).
+
 ## V0.5.10
 - Added new TrackedValueType NumUnitsInTargetRoom, NumUnitsOnTrain which gets a count of units matching conditions.
 
