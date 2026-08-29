@@ -40,13 +40,19 @@
   "sprites": [
     {
       "id": "Construct",
-      "path": "textures/status_construct.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_construct.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Construct",
-      "path": "textures/status_construct_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_construct_tooltip.png"
+      }
     }
   ]
 }

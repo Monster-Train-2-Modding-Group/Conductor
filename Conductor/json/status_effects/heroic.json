@@ -35,13 +35,19 @@
   "sprites": [
     {
       "id": "Heroic",
-      "path": "textures/status_heroic.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_heroic.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Heroic",
-      "path": "textures/status_heroic_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_heroic_tooltip.png"
+      }
     }
   ]
 }

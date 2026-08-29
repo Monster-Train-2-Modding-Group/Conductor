@@ -37,13 +37,19 @@
   "sprites": [
     {
       "id": "Recoil",
-      "path": "textures/status_recoil.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_recoil.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Recoil",
-      "path": "textures/status_recoil_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_recoil_tooltip.png"
+      }
     }
   ]
 }

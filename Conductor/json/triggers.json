@@ -191,109 +191,187 @@
   "sprites": [
     {
       "id": "trigger_absolve",
-      "path": "textures/trigger_absolve.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_absolve.png"
+      }
     },
     {
       "id": "trigger_accursed",
-      "path": "textures/trigger_accursed.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_accursed.png"
+      }
     },
     {
       "id": "trigger_binder",
-      "path": "textures/trigger_binder.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_binder.png"
+      }
     },
     {
       "id": "trigger_enchant",
-      "path": "textures/trigger_enchant.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_enchant.png"
+      }
     },
     {
       "id": "trigger_encounter",
-      "path": "textures/trigger_encounter.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_encounter.png"
+      }
     },
     {
       "id": "trigger_evoke",
-      "path": "textures/trigger_evoke.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_evoke.png"
+      }
     },
     {
       "id": "trigger_followup",
-      "path": "textures/trigger_followup.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_followup.png"
+      }
     },
     {
       "id": "trigger_furnish",
-      "path": "textures/trigger_furnish.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_furnish.png"
+      }
     },
     {
       "id": "trigger_junk",
-      "path": "textures/trigger_junk.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_junk.png"
+      }
     },
     {
       "id": "trigger_penance",
-      "path": "textures/trigger_penance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_penance.png"
+      }
     },
     {
       "id": "trigger_resonance",
-      "path": "textures/trigger_resonance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_resonance.png"
+      }
     },
     {
       "id": "trigger_vengeance",
-      "path": "textures/trigger_vengeance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_vengeance.png"
+      }
     },
     {
       "id": "trigger_vanish",
-      "path": "textures/trigger_vanish.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_vanish.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "trigger_absolve",
-      "path": "textures/trigger_absolve.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_absolve.png"
+      }
     },
     {
       "id": "trigger_accursed",
-      "path": "textures/trigger_accursed_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_accursed_tooltip.png"
+      }
     },
     {
       "id": "trigger_binder",
-      "path": "textures/trigger_binder.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_binder.png"
+      }
     },
     {
       "id": "trigger_enchant",
-      "path": "textures/trigger_enchant.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_enchant.png"
+      }
     },
     {
       "id": "trigger_encounter",
-      "path": "textures/trigger_encounter.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_encounter.png"
+      }
     },
     {
       "id": "trigger_evoke",
-      "path": "textures/trigger_evoke.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_evoke.png"
+      }
     },
     {
       "id": "trigger_followup",
-      "path": "textures/trigger_followup.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_followup.png"
+      }
     },
     {
       "id": "trigger_furnish",
-      "path": "textures/trigger_furnish.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_furnish.png"
+      }
     },
     {
       "id": "trigger_junk",
-      "path": "textures/trigger_junk.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_junk.png"
+      }
     },
     {
       "id": "trigger_penance",
-      "path": "textures/trigger_penance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_penance.png"
+      }
     },
     {
       "id": "trigger_resonance",
-      "path": "textures/trigger_resonance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_resonance.png"
+      }
     },
     {
       "id": "trigger_vengeance",
-      "path": "textures/trigger_vengeance.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_vengeance.png"
+      }
     },
     {
       "id": "trigger_vanish",
-      "path": "textures/trigger_vanish.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_vanish.png"
+      }
     }
   ]
 }

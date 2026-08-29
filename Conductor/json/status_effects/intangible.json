@@ -40,13 +40,19 @@
   "sprites": [
     {
       "id": "intangible",
-      "path": "textures/status_intangible.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_intangible.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "intangible",
-      "path": "textures/status_intangible_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_intangible_tooltip.png"
+      }
     }
   ]
 }

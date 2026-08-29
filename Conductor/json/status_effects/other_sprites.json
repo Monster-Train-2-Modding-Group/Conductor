@@ -3,21 +3,33 @@
   "sprites": [
     {
       "id": "Steelmight",
-      "path": "textures/status_steelmight.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_steelmight.png"
+      }
     },
     {
       "id": "Piercing",
-      "path": "textures/status_piercing.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_piercing.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Steelmight",
-      "path": "textures/status_steelmight_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_steelmight_tooltip.png"
+      }
     },
     {
       "id": "Piercing",
-      "path": "textures/status_piercing_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_piercing_tooltip.png"
+      }
     }
   ]
 }

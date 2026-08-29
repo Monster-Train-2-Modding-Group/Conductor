@@ -45,13 +45,19 @@
   "sprites": [
     {
       "id": "Growth",
-      "path": "textures/status_growth.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_growth.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Growth",
-      "path": "textures/status_growth_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_growth_tooltip.png"
+      }
     }
   ]
 }

@@ -38,13 +38,19 @@
   "sprites": [
     {
       "id": "hex",
-      "path": "textures/status_hex.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_hex.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "hex",
-      "path": "textures/status_hex_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_hex_tooltip.png"
+      }
     }
   ]
 }

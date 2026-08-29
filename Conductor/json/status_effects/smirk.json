@@ -41,17 +41,26 @@
   "sprites": [
     {
       "id": "Smirk",
-      "path": "textures/status_smirk.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_smirk.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "Smirk",
-      "path": "textures/status_smirk_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_smirk_tooltip.png"
+      }
     },
     {
       "id": "CardTextSmirk",
-      "path": "textures/trigger_smirk.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/trigger_smirk.png"
+      }
     }
   ],
   "replacement_texts": [

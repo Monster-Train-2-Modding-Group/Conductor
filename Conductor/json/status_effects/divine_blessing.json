@@ -38,13 +38,19 @@
   "sprites": [
     {
       "id": "divine_blessing",
-      "path": "textures/status_divine_blessing.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_divine_blessing.png"
+      }
     }
   ],
   "atlas_icons": [
     {
       "id": "divine_blessing",
-      "path": "textures/status_divine_blessing_tooltip.png"
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Textures/status_divine_blessing_tooltip.png"
+      }
     }
   ]
 }
