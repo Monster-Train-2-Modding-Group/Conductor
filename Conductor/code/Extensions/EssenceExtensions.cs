@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Conductor.Extensions
 {
-    public static class CardUpgradeExtensions
+    public static class EssenceExtensions
     {
         public static bool IsEssenceUpgrade(this CardUpgradeData upgrade)
         {

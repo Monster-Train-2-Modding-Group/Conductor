@@ -1,0 +1,27 @@
+{
+  "$id": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Conductor/refs/heads/main/schemas/essences.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "essences": {
+      "type": "array",
+      "description": "Defines a 1:1 mapping of character to upgrade defining its essence.",
+      "items": {
+        "type": "object",
+        "required": ["character", "upgrade"],
+        "properties": {
+          "character": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/character.json",
+            "description": "Character reference to assign essence to."
+          },
+          "upgrade": {
+            "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/definitions/card_upgrade.json",
+            "description": "Unique CardUpgrade to assign as an essence to the character. Upgrades can only be associated with one character."
+          }
+        }
+      }
+    },
+    "upgrades": {
+      "$ref": "https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/refs/heads/main/schemas/schemas/upgrades.json"
+    }
+  }
+}

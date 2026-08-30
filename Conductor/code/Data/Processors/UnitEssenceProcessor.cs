@@ -1,4 +1,5 @@
 ﻿using Conductor.Data.Registers;
+using I2.Loc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
