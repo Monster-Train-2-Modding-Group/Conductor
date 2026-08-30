@@ -17,6 +17,28 @@ namespace Conductor.Data.Registers
         internal IDictionary<CharacterData, CardUpgradeData> Essences = new Dictionary<CharacterData, CardUpgradeData>();
         internal IDictionary<CardUpgradeData, CharacterData> ReverseEssences = new Dictionary<CardUpgradeData, CharacterData>();
 
+        private static UnitEssenceRegistry? instance;
+        public static UnitEssenceRegistry? Instance { 
+            get 
+            {
+                if (instance == null)
+                {
+                    Plugin.Logger.LogError("Attempt to use UnitEssenceRegistry before it is initialized.");
+                    return null;
+                }
+                return instance;
+            }
+            private set
+            {
+                instance = value;
+            }
+        }
+
+        public UnitEssenceRegistry()
+        {
+            Instance = this;
+        }
+
         internal void Register(CharacterData character, CardUpgradeData upgrade, bool force = false)
         {
             Plugin.Logger.LogInfo($"Register Essence for {character.name} - Upgrade: {upgrade.name}");
