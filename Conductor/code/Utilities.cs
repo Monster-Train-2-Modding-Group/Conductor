@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System.Reflection;
 using UnityEngine;
+using static Ink.Runtime.Story;
 
 namespace Conductor
 {
@@ -21,6 +22,8 @@ namespace Conductor
         internal static MethodInfo GetCardTooltipText = AccessTools.Method(typeof(CardTraitState), "GetCardTooltipText");
 
         internal static Dictionary<string, CardUpgradeMaskData> VanillaFilters = [];
+
+        internal static Dictionary<string, ExternalFunction> InkExternalFunctions = [];
 
         private static Lazy<List<string>> DrawSpellOnDeploymentExcludedCardEffects = 
             new(static () => { return GetCardEffectsFromFilter("DrawSpellOnDeployment_CardMask", false); });
@@ -191,6 +194,11 @@ namespace Conductor
                 displayCategory = displayCategory,
                 colorType = colorType
             });
+        }
+
+        public static void AddInkExternalFunction(string name, ExternalFunction function)
+        {
+            InkExternalFunctions.Add(name, function);
         }
 
         internal static bool HasOverride(Type type, MethodInfo baseMethod)
