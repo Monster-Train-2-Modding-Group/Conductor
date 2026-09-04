@@ -1,3 +1,7 @@
+## V0.5.12
+- QoL extension functions added to CardUpgradeData/State CharacterData to query essence information.
+- Added Utilities.AddInkExternalFunction to bind an external function for Ink stories.
+
 ## V0.5.11
 - Expanded Unit Essence Support. Added GetSourceEssenceCharacter, IsEssenceUpgrade (Register is now private).
 - Mod now uses AssetBundles (Mod should load faster).
