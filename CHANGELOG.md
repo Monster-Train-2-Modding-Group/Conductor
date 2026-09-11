@@ -1,3 +1,8 @@
+## V0.5.13
+- Added IRewardPreviewProvider for custom rewards that provide variable items.
+- Added ICardGiverReward for custom rewards that provide cards
+- Added patch for Spellchain with a paramInt > 1
+
 ## V0.5.12
 - QoL extension functions added to CardUpgradeData/State CharacterData to query essence information.
 - Added Utilities.AddInkExternalFunction to bind an external function for Ink stories.
