@@ -16,6 +16,8 @@ using Conductor.Data.Processors;
 using Conductor.Data.Registers;
 using Conductor.CardEffects;
 using MonoMod.Utils;
+using Conductor.Enums;
+using TrainworksReloaded.Base.Enums;
 
 namespace Conductor
 {
@@ -55,6 +57,7 @@ namespace Conductor
                         "json/status_effects/intangible.json",
                         //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
+                        "json/status_effects/pierce.json",
                         "json/status_effects/recoil.json",
                         "json/status_effects/smirk.json",
                         
@@ -116,11 +119,6 @@ namespace Conductor
                     // Implementation of Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
-                    
-                    /*// Less annoying way to implement Portal.
-                    CharacterTriggerData.Trigger.OnTrainRoomLoop.AllowTriggerToFirePreCharacterTriggerStatus();
-                    */
-
                     // Setup Card Triggers.
                     var triggerManager = c.GetInstance<IRegister<CardTriggerType>>();
                     CardTriggerType GetCardTrigger(string id)
@@ -129,7 +127,6 @@ namespace Conductor
                     }
                     // Implementation is in DiscardBasedTriggersPatch.cs
                     CardTriggers.Junk = GetCardTrigger("Junk");
-
 
                     // Set sprites for abandoned tech
                     var spriteManager = c.GetInstance<IRegister<Sprite>>();
@@ -158,18 +155,19 @@ namespace Conductor
                     {
                         return targetModeRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TargetModeEnum, id));
                     }
-                    GetTargetMode("played_card").SetTargetModeSelector(new PlayedCard());
-                    GetTargetMode("override_target_character").SetTargetModeSelector(new OverrideTargetCharacter());
-                    GetTargetMode("in_front_of_self").SetTargetModeSelector(new InFrontOfSelf());
-                    GetTargetMode("behind_self").SetTargetModeSelector(new BehindSelf());
-                    GetTargetMode("around_self").SetTargetModeSelector(new AroundSelf());
-                    GetTargetMode("strongest").SetTargetModeSelector(new Strongest());
-                    GetTargetMode("highest_attack").SetTargetModeSelector(new HighestAttack());
-                    GetTargetMode("lowest_attack").SetTargetModeSelector(new LowestAttack());
-                    GetTargetMode("highest_attack_all_rooms").SetTargetModeSelector(new HighestAttackAllRooms());
-                    GetTargetMode("lowest_attack_all_rooms").SetTargetModeSelector(new LowestAttackAllRooms());
-                    GetTargetMode("highest_attack_excluding_self").SetTargetModeSelector(new HighestAttackExcludingSelf());
 
+                    Enums.TargetModes.PlayedCard = GetTargetMode("played_card").SetTargetModeSelector(new PlayedCard());
+                    Enums.TargetModes.OverrideTargetCharacter = GetTargetMode("override_target_character").SetTargetModeSelector(new OverrideTargetCharacter());
+                    Enums.TargetModes.InFrontOfSelf = GetTargetMode("in_front_of_self").SetTargetModeSelector(new InFrontOfSelf());
+                    Enums.TargetModes.BehindSelf = GetTargetMode("behind_self").SetTargetModeSelector(new BehindSelf());
+                    Enums.TargetModes.AroundSelf = GetTargetMode("around_self").SetTargetModeSelector(new AroundSelf());
+                    Enums.TargetModes.Strongest = GetTargetMode("strongest").SetTargetModeSelector(new Strongest());
+                    Enums.TargetModes.HighestAttack = GetTargetMode("highest_attack").SetTargetModeSelector(new HighestAttack());
+                    Enums.TargetModes.LowestAttack = GetTargetMode("lowest_attack").SetTargetModeSelector(new LowestAttack());
+                    Enums.TargetModes.HighestAttackAllRooms = GetTargetMode("highest_attack_all_rooms").SetTargetModeSelector(new HighestAttackAllRooms());
+                    Enums.TargetModes.LowestAttackAllRooms = GetTargetMode("lowest_attack_all_rooms").SetTargetModeSelector(new LowestAttackAllRooms());
+                    Enums.TargetModes.HigestAttackExcludingSelf = GetTargetMode("highest_attack_excluding_self").SetTargetModeSelector(new HighestAttackExcludingSelf());
+                    Enums.TargetModes.NUnits = GetTargetMode("n-units").SetTargetModeSelector(new NUnits());
 
                     // TrackedValue implementation wiring.
                     var trackedValueRegister = c.GetInstance<IRegister<CardStatistics.TrackedValueType>>();
