@@ -1,3 +1,9 @@
+## V0.5.14
+- Added CardEffectPlayCharacterAnimation (Allows a spell card to play a units animation)
+- Added CardEffectSwitchCharacterAnimationModel (Allows switching an animated sprite model variation)
+- Added Pierce (Mini-Sweep) that allows attacking the first N units.
+- Added N-Units target mode. Target Mode when assigned to a CardEffectNull causes the card to target the first N units (paramInt) or back N units (paramInt+paramBool3)
+
 ## V0.5.13
 - Added IRewardPreviewProvider for custom rewards that provide variable items.
 - Added ICardGiverReward for custom rewards that provide cards
