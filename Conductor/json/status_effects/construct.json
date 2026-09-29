@@ -42,7 +42,7 @@
       "id": "Construct",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_construct.png"
+        "asset_path": "Assets/Conductor/Textures/status_construct.png"
       }
     }
   ],
@@ -51,7 +51,7 @@
       "id": "Construct",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_construct_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_construct_tooltip.png"
       }
     }
   ]

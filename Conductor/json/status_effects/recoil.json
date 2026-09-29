@@ -39,7 +39,7 @@
       "id": "Recoil",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_recoil.png"
+        "asset_path": "Assets/Conductor/Textures/status_recoil.png"
       }
     }
   ],
@@ -48,7 +48,7 @@
       "id": "Recoil",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_recoil_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_recoil_tooltip.png"
       }
     }
   ]

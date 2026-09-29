@@ -40,7 +40,7 @@
       "id": "divine_blessing",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_divine_blessing.png"
+        "asset_path": "Assets/Conductor/Textures/status_divine_blessing.png"
       }
     }
   ],
@@ -49,7 +49,7 @@
       "id": "divine_blessing",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_divine_blessing_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_divine_blessing_tooltip.png"
       }
     }
   ]

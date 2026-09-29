@@ -43,7 +43,7 @@
       "id": "Smirk",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_smirk.png"
+        "asset_path": "Assets/Conductor/Textures/status_smirk.png"
       }
     }
   ],
@@ -52,14 +52,14 @@
       "id": "Smirk",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_smirk_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_smirk_tooltip.png"
       }
     },
     {
       "id": "CardTextSmirk",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/trigger_smirk.png"
+        "asset_path": "Assets/Conductor/Textures/trigger_smirk.png"
       }
     }
   ],

@@ -4,9 +4,9 @@
     {
       "id": "ConductorAssets",
       "paths": {
-        "windows": "data/assetbundle.windows.bundle",
-        "linux": "data/assetbundle.linux.bundle",
-        "macosx": "data/assetbundle.macosx.bundle"
+        "windows": "data/conductor_assetbundle.windows.bundle",
+        "linux": "data/conductor_assetbundle.linux.bundle",
+        "macosx": "data/conductor_assetbundle.macosx.bundle"
       }
     }
   ]

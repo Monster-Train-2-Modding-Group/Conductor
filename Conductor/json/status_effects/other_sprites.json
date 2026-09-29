@@ -5,14 +5,14 @@
       "id": "Steelmight",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_steelmight.png"
+        "asset_path": "Assets/Conductor/Textures/status_steelmight.png"
       }
     },
     {
       "id": "Piercing",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_piercing.png"
+        "asset_path": "Assets/Conductor/Textures/status_piercing.png"
       }
     }
   ],
@@ -21,14 +21,14 @@
       "id": "Steelmight",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_steelmight_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_steelmight_tooltip.png"
       }
     },
     {
       "id": "Piercing",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_piercing_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_piercing_tooltip.png"
       }
     }
   ]

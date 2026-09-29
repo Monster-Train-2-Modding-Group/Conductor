@@ -42,7 +42,7 @@
       "id": "intangible",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_intangible.png"
+        "asset_path": "Assets/Conductor/Textures/status_intangible.png"
       }
     }
   ],
@@ -51,7 +51,7 @@
       "id": "intangible",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_intangible_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_intangible_tooltip.png"
       }
     }
   ]

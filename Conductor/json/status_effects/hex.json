@@ -40,7 +40,7 @@
       "id": "hex",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_hex.png"
+        "asset_path": "Assets/Conductor/Textures/status_hex.png"
       }
     }
   ],
@@ -49,7 +49,7 @@
       "id": "hex",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_hex_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_hex_tooltip.png"
       }
     }
   ]

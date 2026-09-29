@@ -47,7 +47,7 @@
       "id": "Growth",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_growth.png"
+        "asset_path": "Assets/Conductor/Textures/status_growth.png"
       }
     }
   ],
@@ -56,7 +56,7 @@
       "id": "Growth",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_growth_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_growth_tooltip.png"
       }
     }
   ]

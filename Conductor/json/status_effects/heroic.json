@@ -37,7 +37,7 @@
       "id": "Heroic",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_heroic.png"
+        "asset_path": "Assets/Conductor/Textures/status_heroic.png"
       }
     }
   ],
@@ -46,7 +46,7 @@
       "id": "Heroic",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_heroic_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_heroic_tooltip.png"
       }
     }
   ]

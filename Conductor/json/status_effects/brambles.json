@@ -38,7 +38,7 @@
       "id": "brambles",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_brambles.png"
+        "asset_path": "Assets/Conductor/Textures/status_brambles.png"
       }
     }
   ],
@@ -47,7 +47,7 @@
       "id": "brambles",
       "path": {
         "bundle": "@ConductorAssets",
-        "asset_path": "Assets/Textures/status_brambles_tooltip.png"
+        "asset_path": "Assets/Conductor/Textures/status_brambles_tooltip.png"
       }
     }
   ]
