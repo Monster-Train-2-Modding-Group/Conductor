@@ -1,0 +1,55 @@
+﻿{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "pierce",
+      "class_name": "@StatusEffectPierceState",
+      "names": {
+        "english": "Pierce",
+        "chinese": ""
+      },
+      "stackable_names": {
+        "english": "Pierce {0}",
+        "chinese": "后坐力 {0}"
+      },
+      "card_tooltips": {
+        "english": "Attacks also hit [codeint0] units behind the attacked unit.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "Attacks also hit [codeint0] units behind the attacked unit.",
+        "chinese": ""
+      },
+      "replacement_texts": {
+        "english": "<b>Pierce</b>",
+        "chinese": "<b></b>"
+      },
+      "trigger_stage": "on_attack_target_mode_requested",
+      "remove_when_triggered": false,
+      "is_propagatable": false,
+      "exclude_hero_propagation": true,
+      "exclude_monster_propagation": true,
+      "display_category": "persistent",
+      "is_stackable": true,
+      "icon": "@Pierce"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "Pierce",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_pierce.png"
+      }
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "Pierce",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_pierce_tooltip.png"
+      }
+    }
+  ]
+}
