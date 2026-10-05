@@ -17,6 +17,7 @@ namespace Conductor.CardEffects
     /// Params:
     ///   TargetCardType: (Required) Target card filter. Note default is Spell cards only. Set to CardType.Invalid to disable filtering.
     ///   TargetCharacterSubtype: If TargetCardType is Monster additional filtering based on subtype.The default is the None subtype which matches all.
+    ///   ParamCardPool: If set restricts random discards to this specific pool.
     ///
     /// Example Json
     /// "effects": [
@@ -54,13 +55,16 @@ namespace Conductor.CardEffects
         {
             return new PropDescriptions
             {
-                [CardEffectFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("An Optional CardUpgrade to apply. Note that CardUpgradeMaskData filters can be applied to restrict the upgrade from hitting non matching cards."),
+                [CardEffectFieldNames.ParamCardUpgradeData.GetFieldName()] = new PropDescription("An Optional CardUpgrade to apply. " +
+                    "Note that CardUpgradeMaskData filters can be applied to restrict the upgrade from hitting filtered out cards. " +
+                    "This doesn't prevent a filtered out card from being discarded."),
                 [CardEffectFieldNames.ParamBool.GetFieldName()] = new PropDescription("If true the CardUpgrade is applied permanently."),
                 [CardEffectFieldNames.ParamInt.GetFieldName()] = new PropDescription("Num Cards To Discard"),
                 [CardEffectFieldNames.UseIntRange.GetFieldName()] = new PropDescription("Use Range For Num Cards To Discard"),
                 [CardEffectFieldNames.ParamMinInt.GetFieldName()] = new PropDescription("Min Num Cards To Discard"),
                 [CardEffectFieldNames.ParamMaxInt.GetFieldName()] = new PropDescription("Max Num Cards To Discard"),
-                [CardEffectFieldNames.ParamMultiplier.GetFieldName()] = new PropDescription("Range Multiplier")
+                [CardEffectFieldNames.ParamMultiplier.GetFieldName()] = new PropDescription("Range Multiplier"),
+                [CardEffectFieldNames.ParamCardPool.GetFieldName()] = new PropDescription("Pool restriction, if set only cards from this pool can be discarded.")
             };
         }
 
@@ -77,7 +81,7 @@ namespace Conductor.CardEffects
         public override bool TestEffect(CardEffectState cardEffectState, CardEffectParams cardEffectParams, ICoreGameManagers coreGameManagers)
         {
             var sourceCardState = cardEffectState.GetParentCardState() ?? cardEffectParams.cardTriggeredCharacter?.GetSpawnerCard() ?? cardEffectParams.selfTarget?.GetSpawnerCard();
-            FilterTargetCards(cardEffectParams.targetCards, cardEffectState.GetTargetCardType(), sourceCardState, cardEffectState.GetTargetCharacterSubtype());
+            FilterTargetCards(cardEffectParams.targetCards, cardEffectState.GetTargetCardType(), sourceCardState, cardEffectState.GetTargetCharacterSubtype(), cardEffectState.GetParamCardPool());
             int count = cardEffectState.GetParamInt();
             if (cardEffectState.GetUseIntRange())
             {
@@ -122,7 +126,7 @@ namespace Conductor.CardEffects
             }
         }
 
-        private void FilterTargetCards(List<CardState> allCards, CardType filterToCardType, CardState? playedCard, SubtypeData subtypeData)
+        private void FilterTargetCards(List<CardState> allCards, CardType filterToCardType, CardState? playedCard, SubtypeData subtypeData, CardPool? cardPool)
         {
             targets.Clear();
             foreach (CardState allCard in allCards)
@@ -141,6 +145,10 @@ namespace Conductor.CardEffects
                 {
                     flag = allCard.GetCardType() == filterToCardType;
                 }
+                if (flag && cardPool != null)
+                {
+                    flag = cardPool.Contains(allCard.GetCardDataID());
+                }
                 if (flag)
                 {
                     targets.Add(allCard);
@@ -151,7 +159,7 @@ namespace Conductor.CardEffects
         public override IEnumerator ApplyEffect(CardEffectState cardEffectState, CardEffectParams cardEffectParams, ICoreGameManagers coreGameManagers, ISystemManagers systemManagers)
         {
             var sourceCardState = cardEffectState.GetParentCardState() ?? cardEffectParams.cardTriggeredCharacter?.GetSpawnerCard() ?? cardEffectParams.selfTarget?.GetSpawnerCard();
-            FilterTargetCards(cardEffectParams.targetCards, cardEffectState.GetTargetCardType(), sourceCardState, cardEffectState.GetTargetCharacterSubtype());
+            FilterTargetCards(cardEffectParams.targetCards, cardEffectState.GetTargetCardType(), sourceCardState, cardEffectState.GetTargetCharacterSubtype(), cardEffectState.GetParamCardPool());
             targets.Shuffle(RngId.Battle);
             int num = Math.Min(cardEffectState.GetIntInRange(), targets.Count);
 
