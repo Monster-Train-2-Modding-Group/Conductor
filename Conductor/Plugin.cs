@@ -92,13 +92,18 @@ namespace Conductor
                     // Parse Essences.
                     c.GetInstance<UnitEssenceProcessor>().Run();
                     c.GetInstance<HudProcessor>().Run();
+                }
+            );
 
+            Roundhouse.WhenReady(MyPluginInfo.PLUGIN_GUID,
+                ctx =>
+                {
                     // Wire Implementations of CharacterTriggers
-                    var manager = c.GetInstance<IRegister<CharacterTriggerData.Trigger>>();
                     CharacterTriggerData.Trigger GetTrigger(string id)
                     {
-                        return manager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CharacterTriggerEnum, id));
+                        return ctx.GetCharacterTriggerEnum(id);
                     }
+                    
                     CharacterTriggers.Absolve = GetTrigger("Absolve").SetToTriggerOnCardPurged(CharacterTriggers.OnPurgedBlightOrScourge);
                     CharacterTriggers.Vanish = GetTrigger("Vanish").SetToTriggerOnCardPlayed(CharacterTriggers.OnEphemeralCardPlayed).SetToTriggerOnCardDiscarded(CharacterTriggers.OnEphemeralCardDiscarded);
                     CharacterTriggers.Vengeance = GetTrigger("Vengeance").SetToTriggerOnCharacterHit(CharacterTriggers.OnAlliedCharacterHit);
@@ -120,40 +125,34 @@ namespace Conductor
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
 
                     // Setup Card Triggers.
-                    var triggerManager = c.GetInstance<IRegister<CardTriggerType>>();
+                    
                     CardTriggerType GetCardTrigger(string id)
                     {
-                        return triggerManager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.CardTriggerEnum, id));
+                        return ctx.GetCardTriggerEnum(id);
                     }
                     // Implementation is in DiscardBasedTriggersPatch.cs
                     CardTriggers.Junk = GetCardTrigger("Junk");
 
                     // Set sprites for abandoned tech
-                    var spriteManager = c.GetInstance<IRegister<Sprite>>();
                     var iconField = AccessTools.Field(typeof(StatusEffectData), "icon");
-                    Sprite? GetSprite(string id)
-                    {
-                        return spriteManager.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.Sprite, id));
-                    }
                     var piercing = StatusEffectManager.Instance.GetStatusEffectDataById("piercing");
                     if (piercing != null && piercing.GetIcon() == null)
                     {
-                        iconField.SetValue(piercing, GetSprite("Piercing"));
+                        iconField.SetValue(piercing, ctx.GetSprite("Piercing"));
                     }
                     var steelmight = StatusEffectManager.Instance.GetStatusEffectDataById("armorattack");
                     if (steelmight != null && steelmight?.GetIcon()?.name == "StatusBlessing")
                     {
-                        iconField.SetValue(steelmight, GetSprite("Steelmight"));
+                        iconField.SetValue(steelmight, ctx.GetSprite("Steelmight"));
                     }
 
                     // Trigger Displays
-                    Utilities.AddCardEffectDisplay(typeof(Conductor.CardEffects.CardEffectEnchant), GetSprite("trigger_enchant")!, CharacterTriggerData.DisplayCategory.StateModifier, ColorDisplayData.ColorType.StateModifier);
+                    Utilities.AddCardEffectDisplay(typeof(Conductor.CardEffects.CardEffectEnchant), ctx.GetSprite("trigger_enchant")!, CharacterTriggerData.DisplayCategory.StateModifier, ColorDisplayData.ColorType.StateModifier);
 
                     // Target Mode implementation wiring.
-                    var targetModeRegister = c.GetInstance<IRegister<TargetMode>>();
                     TargetMode GetTargetMode(string id)
                     {
-                        return targetModeRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TargetModeEnum, id));
+                        return ctx.GetTargetModeEnum(id);
                     }
 
                     Enums.TargetModes.PlayedCard = GetTargetMode("played_card").SetTargetModeSelector(new PlayedCard());
@@ -170,20 +169,18 @@ namespace Conductor
                     Enums.TargetModes.NUnits = GetTargetMode("n-units").SetTargetModeSelector(new NUnits());
 
                     // TrackedValue implementation wiring.
-                    var trackedValueRegister = c.GetInstance<IRegister<CardStatistics.TrackedValueType>>();
                     CardStatistics.TrackedValueType GetTrackedValueType(string id)
                     {
-                        return trackedValueRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.TrackedValueTypeEnum, id));
+                        return ctx.GetTrackedValueTypeEnum(id);
                     }
                     GetTrackedValueType("BlightsAndScourgesInDeck").SetIsValidOutsideBattle().SetTrackedValueGetter(TrackedValueFunctions.CountBlightsAndScourgesInDeck);
                     GetTrackedValueType("NumUnitsInTargetRoom").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsInTargetRoom);
                     GetTrackedValueType("NumUnitsOnTrain").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsOnTrain);
 
                     // Status Effect Trigger Stages
-                    var triggerStageRegister = c.GetInstance<IRegister<StatusEffectData.TriggerStage>>();
                     StatusEffectData.TriggerStage GetTriggerStage(string id)
                     {
-                        return triggerStageRegister.GetValueOrDefault(MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.StatusEffectTriggerStageEnum, id));
+                        return ctx.GetStatusEffectTriggerStageEnum(id);
                     }
                     StatusEffectTriggerStages.OnShift = GetTriggerStage("on_shift");
 
