@@ -13,7 +13,7 @@
         "chinese": "后坐力 {0}"
       },
       "card_tooltips": {
-        "english": "Attacks also hit [codeint0] units behind the attacked unit.",
+        "english": "Attacks also hit one unit behind the attacked unit per stack.",
         "chinese": ""
       },
       "character_tooltips": {
