@@ -3,7 +3,7 @@
 namespace Conductor.Patches
 {
     /// <summary>
-    /// Attuned's multiplier comes from the trait's paramInt. The game's own data leaves it 0,
+    /// Attuned's multiplier comes from the trait's paramInt. The game's own data may leave it at 0,
     /// which keeps the hard-coded 5, so vanilla cards are unchanged apart from showing the number.
     /// </summary>
     [HarmonyPatch(typeof(CardTraitStrongerMagicPower))]
@@ -26,7 +26,10 @@ namespace Conductor.Patches
         [HarmonyPostfix, HarmonyPatch(nameof(CardTraitStrongerMagicPower.GetCardText))]
         public static void GetCardText(CardTraitStrongerMagicPower __instance, ref string __result)
         {
-            __result = $"{__result} <b>{Multiplier(__instance)}</b>";
+            int multiplier = Multiplier(__instance);
+            if (multiplier == DefaultMultiplier && !Flags.AttunedAlwaysShowParam)
+                return;
+            __result = $"{__result} <b>{multiplier}</b>";
         }
 
         [HarmonyPostfix, HarmonyPatch(nameof(CardTraitStrongerMagicPower.GetCardTooltipText))]

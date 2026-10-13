@@ -11,7 +11,7 @@ namespace Conductor.Patches
         public static void Postfix(CardTraitCopyOnPlay __instance, ref string __result)
         {
             var paramInt = __instance.GetParamInt();
-            if (paramInt <= 1)
+            if (paramInt <= 1 && !Flags.SpellchainAlwaysShowParam)
                 return;
             __result = $"{__result} <b>{paramInt}</b>";
         }

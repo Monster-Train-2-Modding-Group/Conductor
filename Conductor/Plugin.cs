@@ -1,23 +1,25 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
+using Conductor.CardEffects;
+using Conductor.Data.Processors;
+using Conductor.Data.Registers;
+using Conductor.Enums;
+using Conductor.Extensions;
+using Conductor.TargetModes;
+using Conductor.TrackedValues;
 using Conductor.Triggers;
 using HarmonyLib;
+using I2.Loc;
+using MonoMod.Utils;
 using System.Reflection;
-using Conductor.Extensions;
 using TrainworksReloaded.Base;
+using TrainworksReloaded.Base.Enums;
 using TrainworksReloaded.Base.Extensions;
+using TrainworksReloaded.Base.Localization;
 using TrainworksReloaded.Core;
 using TrainworksReloaded.Core.Extensions;
 using TrainworksReloaded.Core.Interfaces;
 using UnityEngine;
-using Conductor.TargetModes;
-using Conductor.TrackedValues;
-using Conductor.Data.Processors;
-using Conductor.Data.Registers;
-using Conductor.CardEffects;
-using MonoMod.Utils;
-using Conductor.Enums;
-using TrainworksReloaded.Base.Enums;
 
 namespace Conductor
 {
@@ -92,6 +94,11 @@ namespace Conductor
                     // Parse Essences.
                     c.GetInstance<UnitEssenceProcessor>().Run();
                     c.GetInstance<HudProcessor>().Run();
+                    if (Flags.ShardStatusTooltipTextIsGeneric)
+                    {
+                        Utilities.CopyI2LocTerm("StatusEffect_CapturedSoul_CardTooltipText", "StatusEffect_StygianBlessing_CardTooltipText");
+                        Utilities.CopyI2LocTerm("StatusEffect_CapturedSoul_CharacterTooltipText", "StatusEffect_StygianBlessing_CharacterTooltipText");
+                    }
                 }
             );
 
@@ -192,7 +199,6 @@ namespace Conductor
                     Utilities.SetupTraitTooltips(Assembly.GetExecutingAssembly());
                     Utilities.SetupCardEffectTooltips(Assembly.GetExecutingAssembly());
                     Utilities.MarkEffectAsStatusGivingEffect(typeof(CardEffectAddStatusEffectUpToMaximum));
-
                 }
             );
 

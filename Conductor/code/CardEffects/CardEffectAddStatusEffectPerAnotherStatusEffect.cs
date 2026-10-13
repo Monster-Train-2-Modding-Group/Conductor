@@ -8,6 +8,8 @@ namespace Conductor.CardEffects
     /// Rather than summing up everyone's (or all targets) status and giving a multiple of another.
     /// Example Give 5 stacks of armor per every stack of rage.
     /// 
+    /// Not eligible for X-stack/Dualism
+    /// 
     /// Test Passes if any character targeted has stacks of the first status preset in param_status_effects.
     /// 
     /// Example Json

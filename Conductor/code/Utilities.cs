@@ -1,5 +1,6 @@
 ﻿using Conductor.RoomModifiers;
 using HarmonyLib;
+using I2.Loc;
 using System.Reflection;
 using UnityEngine;
 using static Ink.Runtime.Story;
@@ -17,25 +18,25 @@ namespace Conductor
 
         internal static MethodInfo CreateAdditionalTooltips1 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectState), typeof(TooltipContainer), typeof(SaveManager)]);
-        internal static MethodInfo CreateAdditionalTooltips2 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
+        internal readonly static MethodInfo CreateAdditionalTooltips2 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectData), typeof(List<TooltipContent>), typeof(SaveManager), typeof(CardState)]);
-        internal static MethodInfo GetCardTooltipText = AccessTools.Method(typeof(CardTraitState), "GetCardTooltipText");
+        internal readonly static MethodInfo GetCardTooltipText = AccessTools.Method(typeof(CardTraitState), "GetCardTooltipText");
 
-        internal static Dictionary<string, CardUpgradeMaskData> VanillaFilters = [];
+        internal readonly static Dictionary<string, CardUpgradeMaskData> VanillaFilters = [];
 
-        internal static Dictionary<string, ExternalFunction> InkExternalFunctions = [];
+        internal readonly static Dictionary<string, ExternalFunction> InkExternalFunctions = [];
 
-        private static Lazy<List<string>> DrawSpellOnDeploymentExcludedCardEffects = 
+        private readonly static Lazy<List<string>> DrawSpellOnDeploymentExcludedCardEffects =
             new(static () => { return GetCardEffectsFromFilter("DrawSpellOnDeployment_CardMask", false); });
-        private static Lazy<List<string>> OnlyDamageCardRequiredCardEffects =
+        private readonly static Lazy<List<string>> OnlyDamageCardRequiredCardEffects =
             new(static () => { return GetCardEffectsFromFilter("OnlyDamageCard"); });
-        private static Lazy<List<string>> OnlyDamageCardExcludeSpellsFromMagicPowerRequiredCardEffects =
+        private readonly static Lazy<List<string>> OnlyDamageCardExcludeSpellsFromMagicPowerRequiredCardEffects =
             new(static () => { return GetCardEffectsFromFilter("OnlyDamageCardExcludeSpellsFromMagicPower"); });
-        private static Lazy<List<string>> MagicPowerKillSacrificeSpellsRequiredCardEffects =
+        private readonly static Lazy<List<string>> MagicPowerKillSacrificeSpellsRequiredCardEffects =
             new(static () => { return GetCardEffectsFromFilter("MagicPowerKillSacrificeSpells"); });
-        private static Lazy<List<string>> MagicPowerSpellsRequiredCardEffects =
+        private readonly static Lazy<List<string>> MagicPowerSpellsRequiredCardEffects =
             new(static () => { return GetCardEffectsFromFilter("MagicPowerSpells"); });
-        private static Lazy<List<string>> OnlyStatusEffectSettingRequiredCardEffects =
+        private readonly static Lazy<List<string>> OnlyStatusEffectSettingRequiredCardEffects =
             new(static () => { return GetCardEffectsFromFilter("OnlyStatusEffectSetting"); });
 
         private static List<string> GetCardEffectsFromFilter(string name, bool required = true)
@@ -196,6 +197,11 @@ namespace Conductor
             });
         }
 
+        /// <summary>
+        /// Adds an Ink external function.
+        /// </summary>
+        /// <param name="name">Name of the function, recommended to include the Mod GUID in its name.</param>
+        /// <param name="function">Function that gets called.</param>
         public static void AddInkExternalFunction(string name, ExternalFunction function)
         {
             InkExternalFunctions.Add(name, function);
@@ -213,6 +219,22 @@ namespace Conductor
                 null
             );
             return method != null && method.DeclaringType != baseMethod.DeclaringType;
+        }
+
+        internal static void CopyI2LocTerm(string source, string dest)
+        {
+            var languageSource = LocalizationManager.Sources[0];
+            var sourceTerm = languageSource.GetTermData($"{source}");
+            var destTerm = languageSource.GetTermData($"{dest}");
+            CopyI2LocTerm(sourceTerm, destTerm);
+        }
+
+        internal static void CopyI2LocTerm(TermData source, TermData dest)
+        {
+            for (int i = 0; i < source.Languages.Length; i++)
+            {
+                dest.Languages[i] = source.Languages[i];
+            }
         }
     }
 }
