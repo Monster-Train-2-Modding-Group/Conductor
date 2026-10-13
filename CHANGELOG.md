@@ -1,3 +1,6 @@
+## Unreleased
+- Attuned reads its multiplier from paramInt (0 keeps the game's 5) and shows it in the card text, so a mod can define Attuned 2 or Attuned 10 from JSON.
+
 ## V0.5.14
 - Added CardEffectPlayCharacterAnimation (Allows a spell card to play a units animation)
 - Added CardEffectSwitchCharacterAnimationModel (Allows switching an animated sprite model variation)
