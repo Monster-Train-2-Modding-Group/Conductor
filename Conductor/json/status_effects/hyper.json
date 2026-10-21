@@ -1,0 +1,50 @@
+﻿{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "hyper",
+      "class_name": "@StatusEffectHyperState",
+      "names": {
+        "english": "Hyper"
+      },
+      "stackable_names": {
+        "english": "Hyper {0}"
+      },
+      "card_tooltips": {
+        "english": "Triggers activate an additional time.<br>Decreases every turn."
+      },
+      "character_tooltips": {
+        "english": "Triggers activate an additional time.<br>Decreases every turn."
+      },
+      "replacement_texts": {
+        "english": "<b>Hyper</b>"
+      },
+      "remove_at_end_of_turn": true,
+      "param_int": 1,
+      "is_propagatable": false,
+      "display_category": "persistent",
+      "exclude_monster_propagation": true,
+      "exclude_hero_propagation": true,
+      "is_stackable": true,
+      "icon": "@hyper"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "hyper",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_hyper.png"
+      }
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "hyper",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_hyper_tooltip.png"
+      }
+    }
+  ]
+}
