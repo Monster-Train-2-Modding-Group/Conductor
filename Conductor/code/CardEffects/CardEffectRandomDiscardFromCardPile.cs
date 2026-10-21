@@ -111,7 +111,7 @@ namespace Conductor.CardEffects
             }
         }
 
-        public float GetDrawDelay(TargetMode targetMode, BalanceData.AnimationTimingData timings)
+        public static float GetDrawDelay(TargetMode targetMode, BalanceData.AnimationTimingData timings)
         {
             switch (targetMode)
             {
@@ -119,7 +119,6 @@ namespace Conductor.CardEffects
                     return timings.cardDrawAnimationDuration;
                 case TargetMode.Eaten:
                 case TargetMode.Exhaust:
-
                     return timings.cardConsumeReturnAnimationDuration + timings.cardDrawAnimationDuration + RestoreDelayBeforeDiscard;
                 default:
                     return timings.cardDrawAnimationDuration;
