@@ -7,7 +7,7 @@ namespace Conductor.TargetModes
     /// 
     /// Only useful for card effects within a Custom CharacterTrigger which can set the field.
     /// </summary>
-    public class OverrideTargetCharacter : CharacterTargetSelector
+    class OverrideTargetCharacter : CharacterTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
         public override bool ResolvesToSingleTarget => true;

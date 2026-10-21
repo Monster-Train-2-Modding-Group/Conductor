@@ -2,7 +2,7 @@
 
 namespace Conductor.TargetModes
 {
-    public class NUnits : CharacterTargetSelector
+    class NUnits : CharacterTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
         private int overrideCountSpellsEffects = 0;

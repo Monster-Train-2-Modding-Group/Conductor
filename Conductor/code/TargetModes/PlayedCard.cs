@@ -4,7 +4,7 @@
     /// Target Mode that sets targetCards to the card being played.
     /// Useful for bypassing the need for CardTriggerEffects for permanently scaling a card.
     /// </summary>
-    public class PlayedCard : CardTargetSelector
+    class PlayedCard : CardTargetSelector
     {
         public override CardTargetMode CardTargetMode { get; } = CardTargetMode.Targetless;
 
