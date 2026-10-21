@@ -80,6 +80,19 @@
       "sprite": "@trigger_binder"
     },
     {
+      "id": "Divination",
+      "names": {
+        "english": "Divination",
+        "chinese": "占卜"
+      },
+      "descriptions": {
+        "english": "Triggers when the deck is shuffled.",
+        "chinese": "当牌库洗牌时触发。"
+      },
+      "disallow_in_deployment": true,
+      "sprite": "@trigger_divination"
+    },
+    {
       "id": "Encounter",
       "names": {
         "english": "Encounter",
@@ -211,6 +224,13 @@
       }
     },
     {
+      "id": "trigger_divination",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/trigger_divination.png"
+      }
+    },
+    {
       "id": "trigger_enchant",
       "path": {
         "bundle": "@ConductorAssets",
@@ -301,6 +321,13 @@
       "path": {
         "bundle": "@ConductorAssets",
         "asset_path": "Assets/Conductor/Textures/trigger_binder.png"
+      }
+    },
+    {
+      "id": "trigger_divination",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/trigger_divination.png"
       }
     },
     {

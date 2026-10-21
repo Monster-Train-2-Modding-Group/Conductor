@@ -210,6 +210,8 @@ namespace Conductor.Triggers
             return false;
         }
 
+        public static CharacterTriggerData.Trigger Divination;
+
         public static CharacterTriggerData.Trigger Binder;
         /// <summary>
         /// Triggers when any ability is used on the floor.
