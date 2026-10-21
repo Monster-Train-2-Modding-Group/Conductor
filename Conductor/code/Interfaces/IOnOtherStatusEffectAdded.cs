@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Conductor.Interfaces
 {
+    /// <summary>
+    /// Interface for StatusEffectState to allow changing the number of stacks added.
+    /// </summary>
     public interface IOnOtherStatusEffectAdded
     {
         /// <summary>
