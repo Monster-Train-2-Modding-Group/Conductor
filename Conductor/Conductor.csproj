@@ -29,5 +29,15 @@
     </None>
   </ItemGroup>
 
+  <Target Name="CopyDebugOutputs" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <ItemGroup>
+      <DebugOutputFiles Include="$(TargetDir)**\*.*" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(DebugOutputFiles)"
+      DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Monster Train 2\BepInEx\plugins\Conductor\%(RecursiveDir)"
+      SkipUnchangedFiles="true" />
+  </Target>
+  
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 </Project>

@@ -56,6 +56,7 @@ namespace Conductor
                         "json/status_effects/growth.json",
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
+                        "json/status_effects/hyper.json",
                         "json/status_effects/intangible.json",
                         //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
@@ -66,6 +67,7 @@ namespace Conductor
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",
                         //"json/status_effects/curse.json",
+                        "json/effects.json",
                         "json/target_modes.json",
                         "json/traits.json",
                         "json/event_triggers.json",
@@ -127,6 +129,7 @@ namespace Conductor
                     CharacterTriggers.OnGrowthGained = GetTrigger("OnGrowthGained").SetToTriggerOnStatusEffectAdded(CharacterTriggers.OnGainedGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.OnGrowthLost = GetTrigger("OnGrowthLost").SetToTriggerOnStatusEffectRemoved(CharacterTriggers.OnLostGrowth).AllowTriggerToFirePreCharacterTriggerStatus();
                     CharacterTriggers.Binder = GetTrigger("Binder");
+                    CharacterTriggers.Divination = GetTrigger("Divination");
 
                     // Implementation of Encounter is in SpawnBumpTriggerPatches.cs
                     CharacterTriggers.Encounter = GetTrigger("Encounter");
