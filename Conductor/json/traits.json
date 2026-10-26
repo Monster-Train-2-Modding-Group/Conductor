@@ -23,6 +23,69 @@
       }
     },
     {
+      "key": "CardTraitOracle_CardText",
+      "texts": {
+        "english": "Oracle {0}",
+        "chinese": "甲骨文 {0}"
+      }
+    },
+    {
+      "key": "CardTraitOracle_TooltipTitle",
+      "texts": {
+        "english": "Oracle",
+        "chinese": "甲骨文"
+      }
+    },
+    {
+      "key": "CardTraitOracle_TooltipText",
+      "texts": {
+        "english": "When revealed by [Conductor_scry], <b>Oracle</b> is removed to view +{0} extra cards.<br>The effects of the extra cards do not trigger and are always returned to the deck.",
+        "chinese": ""
+      }
+    },
+    {
+      "key": "CardTraitOmen_CardText",
+      "texts": {
+        "english": "Omen",
+        "chinese": "预兆"
+      }
+    },
+    {
+      "key": "CardTraitOmen_TooltipTitle",
+      "texts": {
+        "english": "Omen",
+        "chinese": "预兆"
+      }
+    },
+    {
+      "key": "CardTraitOmen_TooltipText",
+      "texts": {
+        "english": "When revealed directly by [Conductor_scry], the card will be played.",
+        "chinese": ""
+      }
+    },
+    {
+      "key": "CardTraitRebound_CardText",
+      "texts": {
+        "english": "Rebound",
+        "chinese": "反弹"
+      }
+    },
+    {
+      "key": "CardTraitRebound_TooltipTitle",
+      "texts": {
+        "english": "Rebound",
+        "chinese": "反弹"
+      }
+    },
+    {
+      "key": "CardTraitRebound_TooltipText",
+      "texts": {
+        "english": "When played, this card is put in a random location of your draw pile.",
+        "chinese": ""
+      }
+    },
+    {
       "key": "CardTraitSelfTrinity_CardText",
       "texts": {
         "english": "Trinity {0}",
@@ -41,6 +104,12 @@
       "texts": {
         "english": "This card's <b>Bonus</b> effect will apply when it is cast.",
         "chinese": "打出这张牌之后会触发额外效果。"
+      }
+    },
+    {
+      "key": "CardTraitScalingScryCards_CurrentScaling_CardText",
+      "texts": {
+        "english": "<nobr><i>(Scry {0})</i></nobr>"
       }
     }
   ]
