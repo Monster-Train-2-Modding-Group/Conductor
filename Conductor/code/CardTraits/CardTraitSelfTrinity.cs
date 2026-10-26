@@ -84,12 +84,20 @@ namespace Conductor.CardTraits
         /// <returns></returns>
         public void ForceTrinity()
         {
-            playedOffset = 2 - GetTrinityCount();
-            var associatedCard = GetCard();
-            if (associatedCard == null)
-                return;
-            associatedCard.ApplyPermanentUpgrade(GetCachedTraitUpgradeState(), AllGameManagers.Instance?.GetSaveManager(), ignoreUpgradeAnimation: true);
-            upgradeActive = true;
+            SetTrinity(2);
+        }
+
+        public void SetTrinity(int offset)
+        {
+            playedOffset = offset - GetTrinityCount();
+            if (IsTrinity())
+            {
+                var associatedCard = GetCard();
+                if (associatedCard == null)
+                    return;
+                associatedCard.ApplyPermanentUpgrade(GetCachedTraitUpgradeState(), AllGameManagers.Instance?.GetSaveManager(), ignoreUpgradeAnimation: true);
+                upgradeActive = true;
+            }
         }
 
         public override string GetCardText()
