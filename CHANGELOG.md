@@ -1,5 +1,21 @@
-## Unreleased
+## V0.5.16
+- Added Hyper (All triggers fire an additional time) -> Interface to implement a similar status effect IStatusEffectModifyTriggerFireCount
+- Added CardEffectShuffleDeck
+- Added CardEffectScryTargetPile (Keyworded effect - Scry, Scavenge, Exhume, Regurgitate)
+- Added Omen (Card triggers when it is revealed by a Scry)
+- Added Oracle (When revealed expand scry's effect)
+- Added ICardTraitScryState (make an keyword that interacts with Scry).
+- Added CardTraitScalingScryCards (dynamic length scry extender)
+- Added Rebound (Card shuffles itself back into the deck when played)
+- Added ICardTraitOverrideDiscardEffect which changes the effect when a card with this trait is discarded
+- Added Divination trigger (triggers when the deck is shuffled)
+
+## V0.5.15
+- Add ParamCardPool To CardEffectRandomDiscardFromCardPile to allow for discarding a specific card.
+- Added CardEffectAddTemporaryStatusEffect, CardEffectRequireRoomAbilityActivatedOnItsFloor, and CardEffectAdjustSelectRoomCapacity
 - Attuned reads its multiplier from paramInt (0 keeps the game's 5) and shows it in the card text, so a mod can define Attuned 2 or Attuned 10 from JSON.
+- Added Flags system for Enabling/Disabling changes (Attuned CardText, Spellchain CardText, Shard Tooltip)
+- Fix Pierce Status effect tooltips
 
 ## V0.5.14
 - Added CardEffectPlayCharacterAnimation (Allows a spell card to play a units animation)
