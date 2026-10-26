@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using static CharacterState;
 
 namespace Conductor.RelicEffects
 {
@@ -23,14 +24,12 @@ namespace Conductor.RelicEffects
     ///  }
     /// ]
     /// </summary>
-    public sealed class RelicEffectClearStatusEndOfTurn : RelicEffectBase, ITurnPhaseEndOfTurnRelicEffect, IRelicEffect
+    public sealed class RelicEffectClearStatusEndOfTurn : RelicEffectBase, ITurnPhaseEndOfTurnRelicEffect
     {
         private StatusEffectData.DisplayCategory displayCategory;
         private bool halveStatuses;
         private Team.Type sourceTeam;
         private VfxAtLoc? appliedVfx;
-        private List<CharacterState> targets = [];
-        private List<CharacterState.StatusEffectStack> statusEffectStacks = [];
         private SubtypeData[]? excludeCharacterSubtypes;
 
         public override PropDescriptions CreateEditorInspectorDescriptions()
@@ -61,49 +60,50 @@ namespace Conductor.RelicEffects
 
         public IEnumerator ApplyEffectEndOfTurn(EndOfTurnRelicEffectParams relicEffectParams, ICoreGameManagers coreGameManagers)
         {
-            targets.Clear();
-            relicEffectParams.roomState.AddMovableCharactersToList(targets, sourceTeam);
-            CharacterState.RemoveStatusEffectParams removeStatusEffectParams;
-            using (GenericPools.Get<CharacterState.RemoveStatusEffectParams>(out removeStatusEffectParams))
+            using (GenericPools.Get<List<CharacterState>>(out var targets))
             {
-                removeStatusEffectParams.sourceRelicState = SourceRelicState;
-                removeStatusEffectParams.sourceCardState = null;
-                removeStatusEffectParams.showNotification = true;
-                removeStatusEffectParams.fromEffectType = this.GetType();
-                foreach (var characterState in targets)
+                relicEffectParams.roomState.AddMovableCharactersToList(targets, sourceTeam);
+                using (GenericPools.Get<CharacterState.RemoveStatusEffectParams>(out var removeStatusEffectParams))
                 {
-                    bool flag = false;
-                    foreach (SubtypeData subtypeData in excludeCharacterSubtypes!)
+                    removeStatusEffectParams.sourceRelicState = SourceRelicState;
+                    removeStatusEffectParams.sourceCardState = null;
+                    removeStatusEffectParams.showNotification = true;
+                    removeStatusEffectParams.fromEffectType = this.GetType();
+                    foreach (var characterState in targets)
                     {
-                        if (characterState.GetHasSubtype(subtypeData))
+                        foreach (SubtypeData subtypeData in excludeCharacterSubtypes!)
                         {
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
-                    {
-                        continue;
-                    }
-
-                    characterState.GetStatusEffects(ref statusEffectStacks);
-                    for (int j = 0; j < statusEffectStacks.Count; j++)
-                    {
-                        if (statusEffectStacks[j].State.GetDisplayCategory() == displayCategory)
-                        {
-                            int num = statusEffectStacks[j].Count;
-                            if (halveStatuses)
+                            if (characterState.GetHasSubtype(subtypeData))
                             {
-                                num = Mathf.CeilToInt((float)num / 2f);
+                                continue;
                             }
-                            characterState.RemoveStatusEffect(statusEffectStacks[j].State.GetStatusId(), num, removeStatusEffectParams, allowModification: false);
-                            characterState.GetCharacterUI().ShowEffectVFX(characterState, appliedVfx);
                         }
+                        RemoveStatusEffectsFromCharacter(characterState, removeStatusEffectParams);
                     }
-                    statusEffectStacks.Clear();
                 }
             }
             yield break;
+        }
+
+        private void RemoveStatusEffectsFromCharacter(CharacterState characterState, RemoveStatusEffectParams removeStatusEffectParams)
+        {
+            using (GenericPools.Get<List<CharacterState.StatusEffectStack>>(out var statusEffectStacks))
+            {
+                characterState.GetStatusEffects(ref statusEffectStacks);
+                foreach (var statusEffect in statusEffectStacks)
+                {
+                    if (statusEffect.State.GetDisplayCategory() == displayCategory)
+                    {
+                        int num = statusEffect.Count;
+                        if (halveStatuses)
+                        {
+                            num = Mathf.CeilToInt((float)num / 2f);
+                        }
+                        characterState.RemoveStatusEffect(statusEffect.State.GetStatusId(), num, removeStatusEffectParams, allowModification: false);
+                        characterState.GetCharacterUI().ShowEffectVFX(characterState, appliedVfx);
+                    }
+                }
+            }
         }
     }
 }
