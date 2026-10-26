@@ -1,0 +1,86 @@
+﻿{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "replacement_texts": [
+    {
+      "key": "scry",
+      "texts": {
+        "english": "<b>Scry</b>"
+      }
+    },
+    {
+      "key": "scavenge",
+      "texts": {
+        "english": "<b>Scavenge</b>"
+      }
+    },
+    {
+      "key": "exhume",
+      "texts": {
+        "english": "<b>Exhume</b>"
+      }
+    },
+    {
+      "key": "regurgitate",
+      "texts": {
+        "english": "<b>Regurgitate</b>"
+      }
+    }
+  ],
+  "localization_terms": [
+    {
+      "key": "ScreenDeck_Select_CardEffectScryTargetPile",
+      "texts": {
+        "english": "<i>Choose a card to add to your hand.</i>"
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_DrawPile_TooltipTitle",
+      "texts": {
+        "english": "Scry"
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_DrawPile_TooltipText",
+      "texts": {
+        "english": "View the top [codeint0] cards of your deck, and select [codeint1] card(s) to add to your hand."
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Discard_TooltipTitle",
+      "texts": {
+        "english": "Scavenge"
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Discard_TooltipText",
+      "texts": {
+        "english": "View the [codeint0] most recently discarded cards, and select [codeint1] card(s) to add to your hand."
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Exhaust_TooltipTitle",
+      "texts": {
+        "english": "Exhume"
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Exhaust_TooltipText",
+      "texts": {
+        "english": "View the [codeint0] most recently consumed cards, and select [codeint1] card(s) to add to your hand."
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Eaten_TooltipTitle",
+      "texts": {
+        "english": "Regurgitate"
+      }
+    },
+    {
+      "key": "CardEffectScryTargetPile_Eaten_TooltipText",
+      "texts": {
+        "english": "View the [codeint0] most recently eaten units, and select [codeint1] unit(s) to add to your hand."
+      }
+    }
+  ]
+
+}
