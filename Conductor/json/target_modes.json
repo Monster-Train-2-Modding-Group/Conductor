@@ -35,6 +35,9 @@
       "id": "highest_attack_excluding_self"
     },
     {
+      "id": "back_in_all_rooms"
+    },
+    {
       "id": "n-units"
     }
   ]

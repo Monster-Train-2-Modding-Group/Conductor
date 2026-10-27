@@ -13,6 +13,8 @@
         public static TargetMode HighestAttackAllRooms;
         public static TargetMode LowestAttackAllRooms;
         public static TargetMode HigestAttackExcludingSelf;
+        public static TargetMode BackInAllRooms;
         public static TargetMode NUnits;
+
     }
 }
