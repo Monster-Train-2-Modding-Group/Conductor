@@ -16,6 +16,7 @@ using TrainworksReloaded.Base;
 using TrainworksReloaded.Base.Enums;
 using TrainworksReloaded.Base.Extensions;
 using TrainworksReloaded.Base.Localization;
+using TrainworksReloaded.Base.StatusEffects;
 using TrainworksReloaded.Core;
 using TrainworksReloaded.Core.Extensions;
 using TrainworksReloaded.Core.Interfaces;
@@ -60,10 +61,12 @@ namespace Conductor
                         "json/status_effects/intangible.json",
                         //"json/status_effects/siege.json",
                         //"json/status_effects/portal.json",
-                        "json/status_effects/pierce.json",
+                        
                         "json/status_effects/recoil.json",
+                        "json/status_effects/skewer.json",
                         "json/status_effects/smirk.json",
                         
+
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",
                         //"json/status_effects/curse.json",
@@ -101,6 +104,15 @@ namespace Conductor
                         Utilities.CopyI2LocTerm("StatusEffect_CapturedSoul_CardTooltipText", "StatusEffect_StygianBlessing_CardTooltipText");
                         Utilities.CopyI2LocTerm("StatusEffect_CapturedSoul_CharacterTooltipText", "StatusEffect_StygianBlessing_CharacterTooltipText");
                     }
+
+
+                    // TODO Migrate pierce -> skewer Framework looks up status effect by GetStatusId().
+                    /*var statusEffectRegister = c.GetInstance<StatusEffectDataRegister>();
+                    var srcId = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.StatusEffect, "skewer");
+                    var dstId = MyPluginInfo.PLUGIN_GUID.GetId(TemplateConstants.StatusEffect, "pierce");
+                    
+                    var statusEffectData = statusEffectRegister.GetValueOrDefault(srcId);
+                    statusEffectRegister.Add(dstId, statusEffectData!);*/
                 }
             );
 
@@ -176,6 +188,7 @@ namespace Conductor
                     Enums.TargetModes.HighestAttackAllRooms = GetTargetMode("highest_attack_all_rooms").SetTargetModeSelector(new HighestAttackAllRooms());
                     Enums.TargetModes.LowestAttackAllRooms = GetTargetMode("lowest_attack_all_rooms").SetTargetModeSelector(new LowestAttackAllRooms());
                     Enums.TargetModes.HigestAttackExcludingSelf = GetTargetMode("highest_attack_excluding_self").SetTargetModeSelector(new HighestAttackExcludingSelf());
+                    Enums.TargetModes.BackInAllRooms = GetTargetMode("back_in_all_rooms").SetTargetModeSelector(new BackInAllRooms());
                     Enums.TargetModes.NUnits = GetTargetMode("n-units").SetTargetModeSelector(new NUnits());
 
                     // TrackedValue implementation wiring.
@@ -186,6 +199,10 @@ namespace Conductor
                     GetTrackedValueType("BlightsAndScourgesInDeck").SetIsValidOutsideBattle().SetTrackedValueGetter(TrackedValueFunctions.CountBlightsAndScourgesInDeck);
                     GetTrackedValueType("NumUnitsInTargetRoom").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsInTargetRoom);
                     GetTrackedValueType("NumUnitsOnTrain").SetTrackedValueGetter(TrackedValueFunctions.CountUnitsOnTrain);
+                    GetTrackedValueType("NumSpecificCardDiscarded").SetTrackedValueHandler(new CardAggregateTrackedValueHandler()).ListenToTrackedValues(CardStatistics.TrackedValueType.TimesDiscarded);
+                    GetTrackedValueType("NumSpecificCardPlayed").SetTrackedValueHandler(new CardAggregateTrackedValueHandler()).ListenToTrackedValues(CardStatistics.TrackedValueType.TimesPlayed);
+                    GetTrackedValueType("NumSpecificCardDrawn").SetTrackedValueHandler(new CardAggregateTrackedValueHandler()).ListenToTrackedValues(CardStatistics.TrackedValueType.TimesDrawn);
+                    GetTrackedValueType("NumSpecificCardExhausted").SetTrackedValueHandler(new CardAggregateTrackedValueHandler()).ListenToTrackedValues(CardStatistics.TrackedValueType.TimesExhausted);
 
                     // Status Effect Trigger Stages
                     StatusEffectData.TriggerStage GetTriggerStage(string id)
