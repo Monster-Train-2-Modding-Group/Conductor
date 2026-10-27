@@ -50,7 +50,7 @@ namespace Conductor.Data.Registers
 
         internal static void Reset()
         {
-            Plugin.Logger.LogDebug("Resetting Save Data states");
+            //Plugin.Logger.LogDebug("Resetting Save Data states");
             foreach (var guid_item in Data)
             {
                 foreach (var item2 in guid_item.Value.Values)
@@ -69,7 +69,7 @@ namespace Conductor.Data.Registers
 
         internal static void Deserialize(string data)
         {
-            Plugin.Logger.LogDebug("Loading Save Data from json");
+            //Plugin.Logger.LogDebug("Loading Save Data from json");
             SaveData saveData;
             try
             {
@@ -101,7 +101,7 @@ namespace Conductor.Data.Registers
 
         internal static string? Serialize()
         {
-            Plugin.Logger.LogDebug("Writing Save Data to json");
+            //Plugin.Logger.LogDebug("Writing Save Data to json");
             SaveData data = new();
             foreach (var guid_entries in Data)
             {
