@@ -1,33 +1,10 @@
-﻿using HarmonyLib;
-using ShinyShoe;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿using ShinyShoe;
 using static CardStatistics;
 
 namespace Conductor.TrackedValues
 {
     public static class TrackedValueFunctions
     {
-        private static bool CheckSubtypeMatch(CardState card, SubtypeData subtype, RelicManager relicManager)
-        {
-            if (card != null && subtype != null)
-            {
-                CharacterData? spawnCharacterData = card.GetSpawnCharacterData();
-                bool flag = relicManager.GetRelicEffect<RelicEffectMonstersAreAllSubtypes>() != null && !subtype.IsChampion;
-                if (spawnCharacterData != null)
-                {
-                    List<SubtypeData> subtypes = spawnCharacterData.GetSubtypes();
-                    if (flag || (subtypes != null && subtypes.Contains(subtype)))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
         internal static int CountBlightsAndScourgesInDeck(CardStatistics.StatValueData _, IReadOnlyDictionary<CardState, CardStatsEntry> deckStats, ICoreGameManagers coreGameManagers)
         {
             int count = 0;
@@ -95,6 +72,25 @@ namespace Conductor.TrackedValues
 
             return count;
         }
+
+        private static bool CheckSubtypeMatch(CardState card, SubtypeData subtype, RelicManager relicManager)
+        {
+            if (card != null && subtype != null)
+            {
+                CharacterData? spawnCharacterData = card.GetSpawnCharacterData();
+                bool flag = relicManager.GetRelicEffect<RelicEffectMonstersAreAllSubtypes>() != null && !subtype.IsChampion;
+                if (spawnCharacterData != null)
+                {
+                    List<SubtypeData> subtypes = spawnCharacterData.GetSubtypes();
+                    if (flag || (subtypes != null && subtypes.Contains(subtype)))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
 
         private static int CountMatchingCharactersInList(StatValueData statValueData, RelicManager relicManager, List<CharacterState> list)
         {

@@ -66,6 +66,13 @@ namespace Conductor.TrackedValues
         /// <param name="amount">Amount to increase or decrease by</param>
         /// <param name="entryDuration">Optional EntryDuration default is ThisTurn.</param>
         public abstract void IncrementValue(CardState? card, int amount, CardStatistics.EntryDuration entryDuration = CardStatistics.EntryDuration.ThisTurn);
+
+        /// <see cref="ITrackedValueHandler.OnTrackedValueIncremented(CardState?, TrackedValueType, int)"/>
+        public virtual void OnTrackedValueIncremented(CardState? card, TrackedValueType trackedValue, int additionalAmount)
+        {
+
+        }
+
         /// <summary>
         /// Called when a scenario ends. You should reset the stats if the TrackedValue doesn't carryover between battles.
         /// The default implementation calls Reset().

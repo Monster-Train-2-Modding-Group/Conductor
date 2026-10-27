@@ -59,6 +59,14 @@ namespace Conductor.Patches
         // Prefix in case onIncrementedSignal needs the value.
         public static void Prefix(CardState cardState, TrackedValueType trackedValue, int additionalAmount = 1)
         {
+            var listeners = TrackedValueTypeExtensions.TrackedValueListeners.GetValueOrDefault(trackedValue);
+            if (!listeners.IsNullOrEmpty())
+            {
+                foreach (var listener in listeners!)
+                {
+                    listener.OnTrackedValueIncremented(cardState, trackedValue, additionalAmount);
+                }
+            }
             var handler = TrackedValueTypeExtensions.TrackedValueHandlers.GetValueOrDefault(trackedValue);
             if (handler == null)
                 return;

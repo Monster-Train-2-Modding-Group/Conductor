@@ -1,4 +1,5 @@
-﻿using Conductor.TrackedValues;
+﻿using Conductor.Extensions;
+using Conductor.TrackedValues;
 using ShinyShoe;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,16 @@ namespace Conductor.Interfaces
         /// <param name="amount">Amount to increase or decrease by</param>
         /// <param name="entryDuration">Optional EntryDuration default is ThisTurn.</param>
         void IncrementValue(CardState? card, int amount, EntryDuration entryDuration = EntryDuration.ThisTurn);
+        /// <summary>
+        /// Called when a different TrackedValue this TrackedValueHandler is interested in is incremented.
+        /// To enable this call TrackedValueType.ListenToTrackedValues(TrackedValuesTypes[]) after associating with a TrackedValueHandler.
+        /// <see cref="TrackedValueTypeExtensions.ListenToTrackedValues(TrackedValueType, TrackedValueType[])"/>
+        /// This function will be called prior to tracked value you are interested in is incremented
+        /// </summary>
+        /// <param name="card">Card whose tracked value stat is being incremented. (Can be null.)</param>
+        /// <param name="trackedValue">TrackedValue being incremented</param>
+        /// <param name="additionalAmount">Additional amount</param>
+        void OnTrackedValueIncremented(CardState? card, TrackedValueType trackedValue, int additionalAmount);
         /// <summary>
         /// Updates the TrackedValue states for the next turn.
         /// Typically you set the stat's value for PreviousTurn to be the CurrentTurn.

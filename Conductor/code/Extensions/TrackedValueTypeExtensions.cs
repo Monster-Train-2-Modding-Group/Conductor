@@ -8,6 +8,7 @@ namespace Conductor.Extensions
     public static class TrackedValueTypeExtensions
     {
         internal readonly static Dictionary<CardStatistics.TrackedValueType, AbstractTrackedValueHandler> TrackedValueHandlers = [];
+        internal readonly static Dictionary<CardStatistics.TrackedValueType, HashSet<AbstractTrackedValueHandler>> TrackedValueListeners = [];
         internal readonly static Dictionary<CardStatistics.TrackedValueType, TrackedValueGetter> TrackedValueGetters = [];
         internal readonly static ISet<CardStatistics.TrackedValueType> TrackedValuesValidOutsideBattle = new HashSet<CardStatistics.TrackedValueType>();
 
@@ -68,6 +69,41 @@ namespace Conductor.Extensions
                 return trackedValue;
             }
             TrackedValueGetters.Add(trackedValue, handler);
+            return trackedValue;
+        }
+
+        /// <summary>
+        /// Allows a tracked value for listen to calls to CardStatistics.IncrementStat
+        /// Note that the tracked value must already be associated with a TrackedValueHandler class.
+        /// </summary>
+        /// <param name="trackedValue">TrackedValueType</param>
+        /// <param name="listenToThese">A set of TrackedValueTypes to listen for</param>
+        /// <returns>The tracked value</returns>
+        public static CardStatistics.TrackedValueType ListenToTrackedValues(this CardStatistics.TrackedValueType trackedValue, params CardStatistics.TrackedValueType[] listenToThese)
+        {
+            if (IsVanillaTrackedValue(trackedValue)) return trackedValue;
+            if (TrackedValueGetters.ContainsKey(trackedValue))
+            {
+                Plugin.Logger.LogError($"Custom TrackedValue {trackedValue} is associated with a Getter function. ListenToTrackedValues is only supported for TrackedValueHandlers. Ignoring...");
+                Plugin.Logger.LogDebug(Environment.StackTrace);
+                return trackedValue;
+            }
+            if (!TrackedValueHandlers.ContainsKey(trackedValue))
+            {
+                Plugin.Logger.LogError($"Custom TrackedValue {trackedValue} is not associated with a Handler class. Please call SetTrackedValueHandler before calling this function. Ignoring...");
+                Plugin.Logger.LogDebug(Environment.StackTrace);
+                return trackedValue;
+            }
+            var handler = TrackedValueHandlers[trackedValue];
+            foreach (var otherTrackedValue in listenToThese)
+            {
+                if (!TrackedValueListeners.TryGetValue(otherTrackedValue, out var list))
+                {
+                    list = [];
+                    TrackedValueListeners[otherTrackedValue] = list;
+                }
+                list.Add(handler);
+            }
             return trackedValue;
         }
 
