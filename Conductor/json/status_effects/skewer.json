@@ -3,14 +3,14 @@
   "status_effects": [
     {
       "id": "pierce",
-      "class_name": "@StatusEffectPierceState",
+      "class_name": "@StatusEffectSkewerState",
       "names": {
-        "english": "Pierce",
+        "english": "Skewer",
         "chinese": ""
       },
       "stackable_names": {
-        "english": "Pierce {0}",
-        "chinese": "后坐力 {0}"
+        "english": "Skewer {0}",
+        "chinese": "串 {0}"
       },
       "card_tooltips": {
         "english": "Attacks also hit one unit behind the attacked unit per stack.",
@@ -21,8 +21,8 @@
         "chinese": ""
       },
       "replacement_texts": {
-        "english": "<b>Pierce</b>",
-        "chinese": "<b></b>"
+        "english": "<b>Skewer</b>",
+        "chinese": "<b>串</b>"
       },
       "trigger_stage": "on_attack_target_mode_requested",
       "remove_when_triggered": false,
@@ -31,12 +31,12 @@
       "exclude_monster_propagation": true,
       "display_category": "persistent",
       "is_stackable": true,
-      "icon": "@Pierce"
+      "icon": "@Skewer"
     }
   ],
   "sprites": [
     {
-      "id": "Pierce",
+      "id": "Skewer",
       "path": {
         "bundle": "@ConductorAssets",
         "asset_path": "Assets/Conductor/Textures/status_pierce.png"
@@ -45,7 +45,7 @@
   ],
   "atlas_icons": [
     {
-      "id": "Pierce",
+      "id": "Skewer",
       "path": {
         "bundle": "@ConductorAssets",
         "asset_path": "Assets/Conductor/Textures/status_pierce_tooltip.png"

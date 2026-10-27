@@ -2,7 +2,7 @@
 
 namespace Conductor.StatusEffects
 {
-    public class StatusEffectPierceState : StatusEffectState, IChangeAttackingTargetModeStatusEffect
+    public class StatusEffectSkewerState : StatusEffectState, IChangeAttackingTargetModeStatusEffect
     {
         public int Precedence => 1;
         public int Priority => 0;
