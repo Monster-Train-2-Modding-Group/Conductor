@@ -65,7 +65,6 @@ namespace Conductor
                         "json/status_effects/recoil.json",
                         "json/status_effects/skewer.json",
                         "json/status_effects/smirk.json",
-                        
 
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",

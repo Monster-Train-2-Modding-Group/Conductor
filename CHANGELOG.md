@@ -1,8 +1,17 @@
+## V0.5.17
+- Pierce has been renamed to Skewer (the id is still pierce)
+- Added back_in_all_rooms target mode
+- Added TrackedValues NumSpecificCard(Played/Drawn/Exhausted/Discarded) which contains the total number of times a specific card was played.
+- Added CardAggregateTrackedValueHandler which listens for TrackedValue increments and aggregates the stat across all instances of a specific card.
+- Added OnTrackedValueIncremented function to AbstractTrackedValueHandler
+- Added ListenToTrackedValues extension function to TrackedValueType 
+- Eliminated Frequent debug type logs
+
 ## V0.5.16
 - Added Hyper (All triggers fire an additional time) -> Interface to implement a similar status effect IStatusEffectModifyTriggerFireCount
 - Added CardEffectShuffleDeck
 - Added CardEffectScryTargetPile (Keyworded effect - Scry, Scavenge, Exhume, Regurgitate)
-- Added Omen (Card triggers when it is revealed by a Scry)
+- Added Omen (Card plays itself when it is revealed by a Scry)
 - Added Oracle (When revealed expand scry's effect)
 - Added ICardTraitScryState (make an keyword that interacts with Scry).
 - Added CardTraitScalingScryCards (dynamic length scry extender)
