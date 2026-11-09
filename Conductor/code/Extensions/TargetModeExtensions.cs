@@ -76,5 +76,16 @@ namespace Conductor.Extensions
 
             cardTargetSelector.CollectTargetCards(data, coreGameManagers, targetCards);
         }
+
+        internal static bool CollectCards(this TargetMode mode, DeckScreen.Params deckScreenParams, List<CardState> targetCards)
+        {
+            var impl = TargetModeDictionary.GetValueOrDefault(mode);
+            if (impl == null || impl is not CardTargetSelector cardTargetSelector)
+                return false;
+
+            var coreGameManagers = AllGameManagers.Instance!.GetCoreManagers();
+
+            return cardTargetSelector.CollectCards(deckScreenParams, coreGameManagers, targetCards);
+        }
     }
 }

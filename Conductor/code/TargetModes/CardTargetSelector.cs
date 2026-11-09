@@ -36,6 +36,7 @@ namespace Conductor.TargetModes
         }
         /// <summary>
         /// Get Target Cards. Required if PreCollectTargets is not implemented.
+        /// Called from TargetHelper
         /// </summary>
         /// <param name="data">Targeting parameters</param>
         /// <param name="coreGameManagers">CoreGameManagers object</param>
@@ -43,6 +44,18 @@ namespace Conductor.TargetModes
         public virtual void CollectTargetCards(CollectTargetsData data, ICoreGameManagers coreGameManagers, List<CardState> targetsOut)
         {
 
+        }
+
+        /// <summary>
+        /// Get Target Cards for DeckScreen.
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="coreGameManagers"></param>
+        /// <param name="targetsOut"></param>
+        /// <returns></returns>
+        public virtual bool CollectCards(DeckScreen.Params param, ICoreGameManagers coreGameManagers, List<CardState> targetsOut)
+        {
+            return false;
         }
     }
 }

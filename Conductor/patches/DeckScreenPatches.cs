@@ -7,9 +7,20 @@ using System.Text;
 
 namespace Conductor.Patches
 {
+    [HarmonyPatch(typeof(DeckScreen), nameof(DeckScreen.Setup))]
+    public class DeckScreen_Setup_Patch
+    {
+        internal static DeckScreen.Params? CachedSetupParams;
+
+        public static void Postfix(DeckScreen.Params setParams)
+        {
+            CachedSetupParams = setParams;
+        }
+    }
+
     [HarmonyPatch(typeof(DeckScreen), "SortCards")]
     [HarmonyPriority(401)]
-    public class DeckScreenPatches
+    public class DeckScreen_SortCard_Patch
     {
         public static void Postfix(ref List<DeckScreen.CardInfo> ___cardInfos, DeckScreen.Mode ___mode, AllGameManagers ___allGameManagers)
         {
@@ -53,6 +64,7 @@ namespace Conductor.Patches
         public static void Postfix()
         {
             DeckScreenExtensions.RequestingCardEffect = null;
+            DeckScreen_Setup_Patch.CachedSetupParams = null;
         }
     }
 }

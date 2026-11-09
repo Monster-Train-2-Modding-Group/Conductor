@@ -107,10 +107,114 @@ namespace Conductor.Patches
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Method Declaration", "Harmony003:Harmony non-ref patch parameters modified", Justification = "<Pending>")]
         public static void Postfix(TargetHelper.CollectTargetsData data, ICoreGameManagers coreGameManagers, List<CardState> targetCards)
         {
+            // Handle TargetMode.Hand as it doesn't do anything in stock game.
+            // This change is safe as no cards or effects in game uses it.
+            // TODO: Recheck safety after Punished releases
+            if (data.targetMode == TargetMode.Hand && targetCards.Count == 0)
+            {
+                targetCards.AddRange(coreGameManagers.GetCardManager().GetHand());
+            }
+
             if (targetCards == null || coreGameManagers.IsNullOrDestroyed())
                 return;
 
             data.targetMode.CollectTargetCards(data, coreGameManagers, targetCards);
+        }
+    }
+
+    [HarmonyPatch(typeof(DeckScreen), "CollectCardsForSelection")]
+    public static class DeckScreen_CollectCardsForSelection_Patch
+    {
+
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator il)
+        {
+            CodeMatcher matcher = new CodeMatcher(instructions, il);
+
+            FieldInfo includeTempField = AccessTools.Field(typeof(DeckScreen), "includeTemporaryCardsInBattle");
+            FieldInfo setupParamsField = AccessTools.Field(typeof(DeckScreen), "setupParams");
+            MethodInfo getCountMethod = AccessTools.PropertyGetter(typeof(List<CardState>), nameof(List<CardState>.Count));
+            MethodInfo customMethod = AccessTools.Method(
+                typeof(DeckScreen_CollectCardsForSelection_Patch),
+                nameof(DeckScreen_CollectCardsForSelection_Patch.TryCustomCardCollect)
+            );
+
+            // 1. Find the start of the 'for' loop (list.Count) first to obtain the jump target & local variable
+            matcher.MatchForward(false,
+                new CodeMatch(OpCodes.Callvirt, getCountMethod)
+            );
+
+            if (matcher.IsInvalid)
+            {
+                throw new Exception("Could not find start of for-loop (list.Count).");
+            }
+
+            // Step back to the instruction that loads 'list' for list.Count
+            matcher.Advance(-1);
+
+            // Grab the local variable representing 'list'
+            var listLocalInstruction = matcher.Instruction;
+
+            // Create a label on this exact instruction safely via CodeMatcher
+            // (If it already has a label, CreateLabel returns the existing one; otherwise it adds and marks a new one)
+            matcher.CreateLabel(out Label loopStartLabel);
+
+            // Determine the address-loading opcode for 'ref list'
+            // If the original opcode was ldloc.0, we need ldloca.s 0 (or ldloca)
+            CodeInstruction ldlocaInstruction = new(OpCodes.Ldloca_S, TranspilerUtilities.LdLocIndex(matcher.Instruction));
+
+            // 2. Rewind and find the start of the 'default:' case
+            matcher.Start();
+            matcher.MatchForward(false,
+                new CodeMatch(OpCodes.Ldarg_0),
+                new CodeMatch(OpCodes.Ldfld, includeTempField)
+            );
+
+            if (matcher.IsInvalid)
+            {
+                throw new Exception("Could not find default case entry (includeTemporaryCardsInBattle).");
+            }
+
+            // 3. Inject our check before the default case.
+            // InsertAndAdvance pulls incoming switch jump labels to the FIRST inserted instruction.
+            matcher.InsertAndAdvance(
+                // Arg 1: ref list
+                ldlocaInstruction,
+
+                // Arg 2: this.setupParams
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld, setupParamsField),
+
+                // Call TryCustomCardCollect(ref list, this.setupParams)
+                new CodeInstruction(OpCodes.Call, customMethod),
+
+                // If true -> jump straight to loopStartLabel (skipping default:)
+                new CodeInstruction(OpCodes.Brtrue, loopStartLabel)
+            );
+
+            return matcher.InstructionEnumeration();
+        }
+
+        public static bool TryCustomCardCollect(ref List<CardState> list)
+        {
+            // SetupParams is null at this point it gets cleared in Initialize.
+            var setupParams = DeckScreen_Setup_Patch.CachedSetupParams;
+
+            // Just in case
+            if (setupParams == null)
+                return false;
+            
+            if (setupParams.targetMode.IsCardTargetingMode())
+            {
+                List<CardState> ret = [];
+                if (setupParams.targetMode.CollectCards(setupParams, ret))
+                {
+                    list = ret;
+                    return true;
+                }
+                return false;
+            }
+
+            return false; // Executes default case
         }
     }
 
@@ -423,10 +527,37 @@ namespace Conductor.Patches
     {
         public static TargetMode mode;
         public static bool result;
-        public static void Postfix(bool __result, TargetMode modeForCollection)
+        public static void Postfix(ref bool __result, ref TargetMode modeForCollection, CardState? card, RoomState room)
         {
             result = __result;
             mode = modeForCollection;
+
+            // Fix for Characters with triggers that effect other floors as a result of playing a spell card.
+            if (result == false && card?.GetCardType() == CardType.Spell)
+            {
+                using (GenericPools.GetList<CharacterState>(out var list))
+                {
+                    room.AddCharactersToList(list, Team.Type.Heroes | Team.Type.Monsters);
+                    foreach (CharacterState item in list)
+                    {
+                        if (Utilities.CardsThatTargetMultipleRooms!.Contains(item.GetSpawnerCard()?.GetCardDataID()) || Utilities.CharactersThatTargetMultipleRooms.Contains(item.GetSourceCharacterData()))
+                        {
+                            __result = result = true;
+                            mode = modeForCollection = TargetMode.Tower;
+                        }
+                        foreach (CardState equipment in item.GetEquipment())
+                        {
+                            if (Utilities.CardsThatTargetMultipleRooms!.Contains(equipment.GetCardDataID()))
+                            {
+                                __result = result = true;
+                                mode = modeForCollection = TargetMode.Tower;
+                            }
+                        }
+                        // TODO handle Rooms with effects that could give effects that target multiple rooms.
+                    }
+                }
+
+            }
         }
     }
 
