@@ -39,7 +39,11 @@ namespace Conductor.TargetModes
         /// </summary>
         public virtual bool TargetsRoom { get; } = false;
         /// <summary>
-        /// Does the target mode target characters in multiple rooms.
+        /// Does the target mode target characters in multiple rooms?
+        /// If this returns true then CollectPreviewTargets must be overriden and should include the targets on other floors.
+        /// 
+        /// Failure to set this properly and implementing CollectPreviewTargets will result in cards 
+        /// unexpectedly modifying the state of characters on other floors
         /// </summary>
         public virtual bool TargetsMultipleRooms { get; } = false;
         /// <summary>
@@ -74,6 +78,8 @@ namespace Conductor.TargetModes
         /// Return ALL characters in the rooms that you are targeting, not just the ones being targeted by the target mode.
         /// The default behavior selects all characters in the current room. Again if you are just targeting characters in a singular room you don't need to implement this as it won't get called.
         /// (See the function of same name in TargetHelper)
+        /// 
+        /// Failure to implement this function correctly will result in the effects using this target mode modifying the state of the character instead of the preview state.
         /// </summary>
         /// <param name="card">Card current;y being played</param>
         /// <param name="roomManager">RoomManager instance</param>
