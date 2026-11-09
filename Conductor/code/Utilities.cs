@@ -18,6 +18,7 @@ namespace Conductor
 
         internal static MethodInfo CreateAdditionalTooltips1 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectState), typeof(TooltipContainer), typeof(SaveManager)]);
+
         internal readonly static MethodInfo CreateAdditionalTooltips2 = AccessTools.Method(typeof(CardEffectBase), "CreateAdditionalTooltips",
             [typeof(CardEffectData), typeof(List<TooltipContent>), typeof(SaveManager), typeof(CardState)]);
         internal readonly static MethodInfo GetCardTooltipText = AccessTools.Method(typeof(CardTraitState), "GetCardTooltipText");
@@ -25,6 +26,9 @@ namespace Conductor
         internal readonly static Dictionary<string, CardUpgradeMaskData> VanillaFilters = [];
 
         internal readonly static Dictionary<string, ExternalFunction> InkExternalFunctions = [];
+
+        internal static CardPool? CardsThatTargetMultipleRooms;
+        internal static List<CharacterData> CharactersThatTargetMultipleRooms = [];
 
         private readonly static Lazy<List<string>> DrawSpellOnDeploymentExcludedCardEffects =
             new(static () => { return GetCardEffectsFromFilter("DrawSpellOnDeployment_CardMask", false); });
@@ -205,6 +209,17 @@ namespace Conductor
         public static void AddInkExternalFunction(string name, ExternalFunction function)
         {
             InkExternalFunctions.Add(name, function);
+        }
+
+        /// <summary>
+        /// Function to mark characters that can target multiple rooms.
+        /// 
+        /// Necessary if the character (is cardless) that has a trigger that can possibly activate
+        /// </summary>
+        /// <param name="characters"></param>
+        public static void MarkCharactersThatCanTargetMultipleRooms(params CharacterData[] characters)
+        {
+            CharactersThatTargetMultipleRooms.AddRange(characters);
         }
 
         internal static bool HasOverride(Type type, MethodInfo baseMethod)
