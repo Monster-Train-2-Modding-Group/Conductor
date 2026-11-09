@@ -52,6 +52,14 @@ namespace Conductor.Patches
                             combatManager.QueueCustomTrigger(charState, trigger_test.Key, queueTriggerParams);
                         }
                     }
+
+                    var inputTriggerParams = new StatusEffectState.InputTriggerParams()
+                    {
+                        damageSourceCard = playedCard,
+                        associatedCharacter = charState,
+                    };
+                    var outputTriggerParams = new StatusEffectState.OutputTriggerParams();
+                    yield return StatusEffectManager.Instance.TriggerStatusEffectOnUnit(StatusEffectTriggerStages.OnCardPlayed, charState, inputTriggerParams, outputTriggerParams, false);
                 }
             }
             yield return combatManager.RunTriggerQueue();

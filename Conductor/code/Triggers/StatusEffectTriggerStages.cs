@@ -7,5 +7,6 @@ namespace Conductor.Triggers
     public static class StatusEffectTriggerStages
     {
         public static StatusEffectData.TriggerStage OnShift;
+        public static StatusEffectData.TriggerStage OnCardPlayed;
     }
 }

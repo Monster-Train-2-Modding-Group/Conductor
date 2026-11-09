@@ -3,6 +3,9 @@
   "status_effect_trigger_stages": [
     {
       "id": "on_shift"
+    },
+    {
+      "id": "on_card_played"
     }
   ]
 }
