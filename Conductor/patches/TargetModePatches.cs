@@ -131,7 +131,6 @@ namespace Conductor.Patches
             CodeMatcher matcher = new CodeMatcher(instructions, il);
 
             FieldInfo includeTempField = AccessTools.Field(typeof(DeckScreen), "includeTemporaryCardsInBattle");
-            FieldInfo setupParamsField = AccessTools.Field(typeof(DeckScreen), "setupParams");
             MethodInfo getCountMethod = AccessTools.PropertyGetter(typeof(List<CardState>), nameof(List<CardState>.Count));
             MethodInfo customMethod = AccessTools.Method(
                 typeof(DeckScreen_CollectCardsForSelection_Patch),
@@ -179,10 +178,6 @@ namespace Conductor.Patches
             matcher.InsertAndAdvance(
                 // Arg 1: ref list
                 ldlocaInstruction,
-
-                // Arg 2: this.setupParams
-                new CodeInstruction(OpCodes.Ldarg_0),
-                new CodeInstruction(OpCodes.Ldfld, setupParamsField),
 
                 // Call TryCustomCardCollect(ref list, this.setupParams)
                 new CodeInstruction(OpCodes.Call, customMethod),

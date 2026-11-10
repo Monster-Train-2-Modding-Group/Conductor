@@ -1,3 +1,7 @@
+## V0.5.20
+- Fix Transpiler patch failure.
+- Protect against accessing essences before it is initialized.
+
 ## V0.5.19
 - No-op for thunderstore
 - New nuget package name Conductor.MonsterTrain2

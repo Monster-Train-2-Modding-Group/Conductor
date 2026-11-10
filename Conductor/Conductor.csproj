@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Conductor</RootNamespace>
     <LangVersion>latest</LangVersion>
-    <Version>0.5.19</Version>
+    <Version>0.5.20</Version>
     <PackageId>Conductor.MonsterTrain2</PackageId>
   </PropertyGroup>
 

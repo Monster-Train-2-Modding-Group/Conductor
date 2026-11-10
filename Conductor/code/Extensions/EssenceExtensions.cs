@@ -1,7 +1,4 @@
 ﻿using Conductor.Data.Registers;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Conductor.Extensions
 {
@@ -9,6 +6,7 @@ namespace Conductor.Extensions
     {
         public static bool IsEssenceUpgrade(this CardUpgradeData upgrade)
         {
+            if (UnitEssenceRegistry.Instance == null) return false;
             return UnitEssenceRegistry.Instance!.IsEssenceUpgrade(upgrade);
         }
 
@@ -21,6 +19,7 @@ namespace Conductor.Extensions
 
         public static CharacterData? GetSourceEssenceCharacter(this CardUpgradeData upgrade)
         {
+            if (UnitEssenceRegistry.Instance == null) return null;
             return UnitEssenceRegistry.Instance!.GetSourceEssenceCharacter(upgrade);
         }
 
@@ -32,6 +31,7 @@ namespace Conductor.Extensions
 
         public static CardUpgradeData? GetEssence(this CharacterData character)
         {
+            if (UnitEssenceRegistry.Instance == null) return null;
             return UnitEssenceRegistry.Instance!.GetEssence(character);
         }
 
