@@ -28,8 +28,10 @@ No manual setup is needed.
 
    ```toml
    [package.dependencies]
-   Conductor-Conductor = "0.4.1"
+   Conductor-Conductor = "0.5.19"
    ```
+   
+   Replace the version string 0.5.19 with the latest version.
 
 2. If testing locally, download the latest release and extract it into your `BepInEx/plugins` folder.
 
@@ -38,7 +40,7 @@ No manual setup is needed.
    * Add a package reference to your `.csproj`:
 
      ```xml
-     <PackageReference Include="Conductor" Version="0.4.1" />
+     <PackageReference Include="Conductor.MonsterTrain2" Version="0.5.*" />
      ```
 
 ---
@@ -63,23 +65,6 @@ Check out the [**Conductor Wiki**](https://github.com/Monster-Train-2-Modding-Gr
 
 ---
 
-## Attribution
-
-Icons used in this project are credited as follows:
-
-* **Vengeance icon:** [Knight icons created by Freepik – Flaticon](https://www.flaticon.com/free-icons/knight)
-* **Encounter icon:** [Find icons created by Freepik – Flaticon](https://www.flaticon.com/free-icons/find)
-* **Junk icon:** [Recycle bin icons created by cah nggunung – Flaticon](https://www.flaticon.com/free-icons/recycle-bin)
-* **Intangible icon:** [Ghost icons created by Aldo Cervantes – Flaticon](https://www.flaticon.com/free-icons/ghost)
-* **Smirk icon:** [*Smirk* | Megami Tensei Wiki | Fandom](https://megamitensei.fandom.com/wiki/Smirk)
-* **Construct icon**: <a href="https://www.flaticon.com/free-icons/gears" title="gears icons">Gears icons created by The Chohans - Flaticon</a>
-* **Divine Blessing icon**: <a href="https://www.flaticon.com/free-icons/halo" title="halo icons">Halo icons created by Freepik - Flaticon</a>
-* **Penance icon**: <a href="https://www.flaticon.com/free-icons/pray" title="pray icons">Pray icons created by Aranagraphics - Flaticon</a>
-* **Sniper icon**: <a href="https://www.flaticon.com/free-icons/miscellaneous" title="miscellaneous icons">Miscellaneous icons created by Smashicons - Flaticon</a>
-* **Follow-up icon**: <a href="https://www.flaticon.com/free-icons/pvp" title="pvp icons">Pvp icons created by cah nggunung - Flaticon</a>
-
----
-
 ## Contributing
 
 Contributions and pull requests are always welcome!
@@ -89,5 +74,4 @@ If you’d like to help expand Conductor’s features or documentation:
 * Submit a pull request
 * Join the discussion on the MT2 Discord [#mt2-modding](https://discord.com/channels/336546996779483136/1377778943674810368) channel.
 
----
 
