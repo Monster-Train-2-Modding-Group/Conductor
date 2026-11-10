@@ -1,3 +1,11 @@
+## V0.5.18
+- Add Status Effect Trigger Stage on_card_played
+- Add Sparkles (Deals damage when a spell card is played)
+- Remove Steelguard (unused)
+- Support for characters,equipment with triggers that can affect multiple floors that could result from a card being played.
+- Add CollectCards function for CardTargetSelector
+- TargetMode.Hand now sets targetCards to the cards in your hand for effects that use it.
+
 ## V0.5.17
 - Pierce has been renamed to Skewer (the id is still pierce)
 - Added back_in_all_rooms target mode
