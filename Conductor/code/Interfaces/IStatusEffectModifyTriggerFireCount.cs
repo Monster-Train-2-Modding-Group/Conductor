@@ -3,7 +3,6 @@
     /// <summary>
     /// Interface to make a status effect able to modify the trigger fire count for any triggers.
     /// </summary>
-    [Obsolete("Use Conductor.MonsterTrain2 instead.")]
     public interface IStatusEffectModifyTriggerFireCount
     {
         /// <summary>

@@ -14,7 +14,6 @@ namespace Conductor.TrackedValues
     /// Note that if your TrackedValue is associated with a card you need not make a class as
     /// the default behavior of a TrackedValue is to track a particular stat about a card.
     /// </summary>
-    [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
     public abstract class AbstractTrackedValueHandler : ITrackedValueHandler
     {
         /// <summary>

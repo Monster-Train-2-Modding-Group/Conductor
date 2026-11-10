@@ -9,7 +9,6 @@ namespace Conductor.Interfaces
     /// 
     /// Data should be serialized/deserialized in JSON.
     /// </summary>
-    [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
     public interface ISaveData
     {
         /// <summary>

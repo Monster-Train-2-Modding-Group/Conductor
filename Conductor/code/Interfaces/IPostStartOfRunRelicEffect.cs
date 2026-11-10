@@ -11,7 +11,7 @@
     /// remove all cards and then add the appropriate starter deck afterward thus negating any modifications 
     /// you did to the starter deck.
     /// </summary>
-   [Obsolete("Use Conductor.MonsterTrain2 package instead. Use IRelicEffectPostStartOfRunEffect isntead")]
+   [Obsolete("Use IRelicEffectPostStartOfRunEffect instead. This interface will be removed on 11/24/2026.")]
 
     public interface IPostStartOfRunRelicEffect : IRelicEffect
     {

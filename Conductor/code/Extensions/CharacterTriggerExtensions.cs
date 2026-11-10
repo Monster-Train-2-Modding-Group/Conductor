@@ -330,8 +330,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being added.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnStatusEffectAdded(this CharacterTriggerData.Trigger trigger, TriggerOnStatusAddedDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -345,8 +343,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being removed.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnStatusEffectRemoved(this CharacterTriggerData.Trigger trigger, TriggerOnStatusRemovedDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -360,8 +356,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a status effect being added.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnCardPlayed(this CharacterTriggerData.Trigger trigger, TriggerOnCardPlayedDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -375,8 +369,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a card being discarded.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnCardDiscarded(this CharacterTriggerData.Trigger trigger, TriggerOnCardDiscardedDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -391,8 +383,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of a card being discarded.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnCardPurged(this CharacterTriggerData.Trigger trigger, TriggerOnCardPurgedDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -408,8 +398,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of another character being spawned</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnCharacterSpawned(this CharacterTriggerData.Trigger trigger, TriggerOnAnotherSpawnDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -423,8 +411,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of another character being hit</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnCharacterHit(this CharacterTriggerData.Trigger trigger, TriggerOnCharacterHitDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -438,8 +424,6 @@ namespace Conductor.Extensions
         /// <param name="trigger">A Custom CharacterTriggerData.Trigger, this function call is ignored on Vanilla Triggers.</param>
         /// <param name="func">Function to call to determine if the trigger should be fired as a result of the pyre taking damage.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger SetToTriggerOnPyreDamage(this CharacterTriggerData.Trigger trigger, TriggerOnPyreDamageDelegate func)
         {
             if (IsVanillaTrigger(trigger)) return trigger;
@@ -455,8 +439,6 @@ namespace Conductor.Extensions
         /// </summary>
         /// <param name="trigger">A CharacterTriggerData.Trigger.</param>
         /// <returns>The trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger AllowTriggerToFirePreCharacterTriggerStatus(this CharacterTriggerData.Trigger trigger)
         {
             PreCharacterTriggerAllowedTriggers.Add(trigger);
@@ -468,8 +450,6 @@ namespace Conductor.Extensions
         /// </summary>
         /// <param name="otherTrigger">Existing trigger to alias the custom one to.</param>
         /// <returns>The Custom Trigger</returns>
-        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
-
         public static CharacterTriggerData.Trigger AliasOfTriggerType(this CharacterTriggerData.Trigger customTrigger, CharacterTriggerData.Trigger otherTrigger)
         {
             if (IsVanillaTrigger(customTrigger)) return customTrigger;

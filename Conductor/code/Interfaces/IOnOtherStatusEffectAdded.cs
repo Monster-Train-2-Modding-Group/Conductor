@@ -7,7 +7,7 @@ namespace Conductor.Interfaces
     /// <summary>
     /// Interface for StatusEffectState to allow changing the number of stacks added.
     /// </summary>
-    [Obsolete("Use Conductor.MonsterTrain2 instead. Interface name changing to IStatusEffectModifyOtherStatusEffect.")]
+    [Obsolete("Use IStatusEffectModifyOtherStatusEffect instead. This interface will be removed on 11/24/2026.")]
     public interface IOnOtherStatusEffectAdded
     {
         /// <summary>

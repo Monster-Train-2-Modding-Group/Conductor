@@ -5,7 +5,7 @@ using System.Text;
 namespace Conductor.Interfaces
 {
 
-    [Obsolete("Use Conductor.MonsterTrain2 instead. Interface name changing to IRewardWithCards.")]
+    [Obsolete("Use IRewardWithCards instead. This interface will be removed on 11/24/2026.")]
     public interface ICardGiverReward
     {
         List<CardData> GetAllCardData();

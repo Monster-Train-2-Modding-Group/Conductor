@@ -1,3 +1,8 @@
+## V0.5.19
+- No-op for thunderstore
+- New nuget package name Conductor.MonsterTrain2
+- Fix Obsolete functions. Any Obsolete function/class will be removed in 2 weeks.
+
 ## V0.5.18
 - Add Status Effect Trigger Stage on_card_played
 - Add Sparkles (Deals damage when a spell card is played)
