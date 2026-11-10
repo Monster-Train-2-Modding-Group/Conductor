@@ -64,10 +64,16 @@ namespace Conductor.Patches
                 character.GetStatusEffects(ref statusEffectStacks);
                 foreach (var statusEffectStack in statusEffectStacks)
                 {
+                    // TODO Remove
                     if (statusEffectStack.State is IOnOtherStatusEffectAdded otherStatusEffectAdded)
                     {
                         ret = otherStatusEffectAdded.OnOtherStatusEffectBeingAdded(statusEffectStack.Count, statusId, ret);
                     }
+                    else if (statusEffectStack.State is IStatusEffectModifyOtherStatusEffect otherStatusEffectAdded2)
+                    {
+                        ret = otherStatusEffectAdded2.OnOtherStatusEffectBeingAdded(statusEffectStack.Count, statusId, ret);
+                    }
+
                 }
             }
 

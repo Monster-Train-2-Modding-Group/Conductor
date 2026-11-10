@@ -122,6 +122,10 @@ namespace Conductor.Patches
             {
                 cardDatasCollected.AddRange(cardGiverReward.GetAllCardData());
             }
+            else if (reward is IRewardWithCards rewardWithCards)
+            {
+                cardDatasCollected.AddRange(rewardWithCards.GetAllCardData());
+            }
         }
     }
 }

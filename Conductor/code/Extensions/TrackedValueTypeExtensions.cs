@@ -34,6 +34,7 @@ namespace Conductor.Extensions
         /// <param name="trackedValue">A custom TrackedValue enum</param>
         /// <param name="handler">Handler class for the TrackedValue.</param>
         /// <returns>The TrackedValue</returns>
+        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
         public static CardStatistics.TrackedValueType SetTrackedValueHandler(this CardStatistics.TrackedValueType trackedValue, AbstractTrackedValueHandler handler)
         {
             if (IsVanillaTrackedValue(trackedValue)) return trackedValue;
@@ -59,6 +60,7 @@ namespace Conductor.Extensions
         /// <param name="trackedValue">A custom TrackedValue enum</param>
         /// <param name="handler">Handler function for the TrackedValue. Takes a StatValueData and ICoreGameManagers and returns an int for the TrackedValue.</param>
         /// <returns>The TrackedValue</returns>
+        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
         public static CardStatistics.TrackedValueType SetTrackedValueGetter(this CardStatistics.TrackedValueType trackedValue, TrackedValueGetter handler)
         {
             if (IsVanillaTrackedValue(trackedValue)) return trackedValue;
@@ -79,6 +81,7 @@ namespace Conductor.Extensions
         /// <param name="trackedValue">TrackedValueType</param>
         /// <param name="listenToThese">A set of TrackedValueTypes to listen for</param>
         /// <returns>The tracked value</returns>
+        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
         public static CardStatistics.TrackedValueType ListenToTrackedValues(this CardStatistics.TrackedValueType trackedValue, params CardStatistics.TrackedValueType[] listenToThese)
         {
             if (IsVanillaTrackedValue(trackedValue)) return trackedValue;

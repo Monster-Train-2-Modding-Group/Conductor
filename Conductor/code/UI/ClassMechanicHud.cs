@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 namespace Conductor.UI
 {
+    [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
     public abstract class ClassMechanicHud : HudCountUI, IGameUISubComponent
     {
         public enum HudType

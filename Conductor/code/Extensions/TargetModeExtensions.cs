@@ -15,6 +15,8 @@ namespace Conductor.Extensions
         /// <param name="targetMode">Must be a custom TargetMode from Trainworks</param>
         /// <param name="targetSelectorClass">Class implementing CharacterTargetSelector for TargetModes that target unit, CardTargetSelector otherwise.</param>
         /// <returns>The TargetMode</returns>
+        [Obsolete("Use Conductor.MonsterTrain2 package instead.")]
+
         public static TargetMode SetTargetModeSelector(this TargetMode targetMode, ITargetSelector targetSelectorClass)
         {
             if (IsVanillaTargetMode(targetMode)) return targetMode;

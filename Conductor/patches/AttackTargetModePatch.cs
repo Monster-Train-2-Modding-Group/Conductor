@@ -46,11 +46,20 @@ namespace Conductor.Patches
                 character.GetStatusEffects(ref statusEffectStacks);
                 foreach (var statusEffectStack in statusEffectStacks)
                 {
+                    // TODO Remove
                     if (statusEffectStack.State is IChangeAttackingTargetModeStatusEffect statusEffect)
                     {
                         if (statusEffect.Precedence < precedence && statusEffect.Priority < priority)
                         {
                             targetMode = statusEffect.TargetMode;
+                            found = true;
+                        }
+                    }
+                    else if (statusEffectStack.State is IStatusEffectChangeAttackingTargetMode statusEffect2)
+                    {
+                        if (statusEffect2.Precedence < precedence && statusEffect2.Priority < priority)
+                        {
+                            targetMode = statusEffect2.TargetMode;
                             found = true;
                         }
                     }

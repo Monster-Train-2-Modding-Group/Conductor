@@ -19,6 +19,10 @@ namespace Conductor.Patches
                     {
                         postStartOfRunRelicEffect.ApplyEffect(___relicEffectParams, ___allGameManagers.GetCoreManagers());
                     }
+                    else if (effect is IRelicEffectPostStartOfRunEffect postStartOfRunEffect2)
+                    {
+                        postStartOfRunEffect2.ApplyEffect(___relicEffectParams, ___allGameManagers.GetCoreManagers());
+                    }
                 }
             }
         }

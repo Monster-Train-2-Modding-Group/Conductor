@@ -24,6 +24,7 @@ using UnityEngine;
 
 namespace Conductor
 {
+    
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
     {
@@ -54,6 +55,7 @@ namespace Conductor
                         "json/status_effects/brambles.json",
                         "json/status_effects/construct.json",
                         "json/status_effects/divine_blessing.json",
+                        //"json/status_effects/divide.json",
                         "json/status_effects/growth.json",
                         "json/status_effects/heroic.json",
                         "json/status_effects/hex.json",
@@ -65,6 +67,8 @@ namespace Conductor
                         "json/status_effects/recoil.json",
                         "json/status_effects/skewer.json",
                         "json/status_effects/smirk.json",
+                        "json/status_effects/sparkles.json",
+                        //"json/status_effects/replicate.json",
 
                         //"json/status_effects/test.json",
                         "json/status_effects/other_sprites.json",
@@ -104,6 +108,8 @@ namespace Conductor
                         Utilities.CopyI2LocTerm("StatusEffect_CapturedSoul_CharacterTooltipText", "StatusEffect_StygianBlessing_CharacterTooltipText");
                     }
 
+                    var register = c.GetInstance<IRegister<CardPool>>();
+                    Utilities.CardsThatTargetMultipleRooms =  register.GetValueOrDefault("CardsThatTargetMultipleRooms");
 
                     // TODO Migrate pierce -> skewer Framework looks up status effect by GetStatusId().
                     /*var statusEffectRegister = c.GetInstance<StatusEffectDataRegister>();
@@ -209,6 +215,7 @@ namespace Conductor
                         return ctx.GetStatusEffectTriggerStageEnum(id);
                     }
                     StatusEffectTriggerStages.OnShift = GetTriggerStage("on_shift");
+                    StatusEffectTriggerStages.OnCardPlayed = GetTriggerStage("on_card_played");
 
                     // Fix dormant
                     var dormant = StatusEffectManager.Instance.GetStatusEffectDataById("dormant");

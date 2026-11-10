@@ -1,0 +1,54 @@
+{
+  "$schema": "https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded/releases/latest/download/schema.json",
+  "status_effects": [
+    {
+      "id": "sparkles",
+      "class_name": "@StatusEffectSparklesState",
+      "names": {
+        "english": "Sparkles",
+        "chinese": ""
+      },
+      "stackable_names": {
+        "english": "Sparkles {0}",
+        "chinese": " {0}"
+      },
+      "card_tooltips": {
+        "english": "Unit takes 1 damage per stack when you play a spell on this floor.<br>Does not decrease.",
+        "chinese": ""
+      },
+      "character_tooltips": {
+        "english": "Takes [codeint0] damage when you play a spell on this floor.<br>Does not decrease.",
+        "chinese": ""
+      },
+      "replacement_texts": {
+        "english": "<b>Sparkles</b>",
+        "chinese": "<b></b>"
+      },
+      "is_propagatable": true,
+      "exclude_monster_propagation": true,
+      "display_category": "negative",
+      "trigger_stage": "@on_card_played",
+      "is_stackable": true,
+      "param_int": 1,
+      "icon": "@sparkles"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "sparkles",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_sparkles.png"
+      }
+    }
+  ],
+  "atlas_icons": [
+    {
+      "id": "sparkles",
+      "path": {
+        "bundle": "@ConductorAssets",
+        "asset_path": "Assets/Conductor/Textures/status_sparkles_tooltip.png"
+      }
+    }
+  ]
+}
