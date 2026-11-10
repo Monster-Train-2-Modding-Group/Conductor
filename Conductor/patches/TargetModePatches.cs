@@ -535,6 +535,7 @@ namespace Conductor.Patches
                     room.AddCharactersToList(list, Team.Type.Heroes | Team.Type.Monsters);
                     foreach (CharacterState item in list)
                     {
+                        if (item == null) continue;
                         if (Utilities.CardsThatTargetMultipleRooms!.Contains(item.GetSpawnerCard()?.GetCardDataID()) || Utilities.CharactersThatTargetMultipleRooms.Contains(item.GetSourceCharacterData()))
                         {
                             __result = result = true;

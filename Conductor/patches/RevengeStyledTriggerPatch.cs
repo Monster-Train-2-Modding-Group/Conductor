@@ -16,7 +16,7 @@ namespace Conductor.Patches
     [HarmonyPatch(typeof(CharacterState), nameof(CharacterState.ApplyDamage))]
     class CharacterState_ApplyDamage_Patch
     {
-        static bool alreadyLoggedWarning = false;
+        //static bool alreadyLoggedWarning = false;
 
         public static IEnumerator Postfix(IEnumerator enumerator, CharacterState __instance, int damage, ApplyDamageParams damageParams, AllGameManagers ___allGameManagers)
         {
@@ -29,11 +29,12 @@ namespace Conductor.Patches
                     yield return enumerator.Current;
                     if (queueAndRunTriggerFound)
                     {
-                        if (!alreadyLoggedWarning)
+                        // The first QueueAndRunTrigger is OnHit.
+                        /*if (!alreadyLoggedWarning)
                         {
                             Plugin.Logger.LogError("Found multiple calls to QueueAndRunTrigger, so skipping HandleOnHitTriggers, Patch may need to be redone.");
                             alreadyLoggedWarning = true;
-                        }
+                        }*/
                         continue;
                     }
                     yield return HandleOnHitTriggers(__instance, damage, damageParams, ___allGameManagers.GetCoreManagers());

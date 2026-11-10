@@ -1,3 +1,8 @@
+## V0.6.0
+- Bump version for Punished.
+- Fix preview crash when playing a card on a cardless unit.
+- Fix triggering on OnHitPatches due to base game code change.
+
 ## V0.5.20
 - Fix Transpiler patch failure.
 - Protect against accessing essences before it is initialized.
